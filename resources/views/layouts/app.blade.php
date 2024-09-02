@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="sm-hover"
-    data-sidebar-image="none" data-preloader="disable">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-layout="vertical" data-topbar="light" data-sidebar="dark"
+    data-sidebar-size="sm-hover" data-sidebar-image="none" data-preloader="disable">
 
 
 <!-- Mirrored from themesbrand.com/velzon/html/modern/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Aug 2024 01:46:43 GMT -->
@@ -13,24 +13,25 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
 
     <!-- jsvectormap css -->
-    <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
 
     <!--Swiper slider css-->
-    <link href="assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="assets/js/layout.js"></script>
+    <script src="../../assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
 </head>
@@ -933,1509 +934,1051 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
         <!-- ========== App Menu ========== -->
-        <div class="app-menu navbar-menu">
-            <!-- LOGO -->
-            <div class="navbar-brand-box">
-                <!-- Dark Logo-->
-                <a href="index.html" class="logo logo-dark">
-                    <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
-                    </span>
-                </a>
-                <!-- Light Logo-->
-                <a href="index.html" class="logo logo-light">
-                    <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
-                    </span>
-                </a>
-                <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-                    id="vertical-hover">
-                    <i class="ri-record-circle-line"></i>
-                </button>
-            </div>
+        @include('layouts.navbars.sidebar')
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
 
-            <div id="scrollbar">
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
                 <div class="container-fluid">
 
-                    <div id="two-column-menu">
-                    </div>
-                    <ul class="navbar-nav" id="navbar-nav">
-                        <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Dashboards</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarDashboards">
-                                <ul class="nav nav-sm flex-column">
-                                    <!-- <li class="nav-item">
-                                        <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Analytics </a>
-                                    </li> -->
-                                    <!-- <li class="nav-item">
-                                        <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> CRM </a>
-                                    </li> -->
-                                    {{-- <li class="nav-item">
-                                        <a href="index.html" class="nav-link" data-key="t-ecommerce"> Ecommerce </a>
-                                    </li> --}}
-                                    <!-- <li class="nav-item">
-                                        <a href="dashboard-crypto.html" class="nav-link" data-key="t-crypto"> Crypto </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-projects.html" class="nav-link" data-key="t-projects"> Projects </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-nft.html" class="nav-link" data-key="t-nft"> NFT</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-job.html" class="nav-link" data-key="t-job">Job</a>
-                                    </li> -->
-                                </ul>
-                            </div>
-                        </li> <!-- end Dashboard Menu -->
-                        {{-- <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="sidebarApps">
-                                <i class="lab la-delicious"></i> <span data-key="t-apps">Apps</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarApps">
-                                <ul class="nav nav-sm flex-column">
-                                    <!-- <li class="nav-item">
-                                        <a href="#sidebarCalendar" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCalendar" data-key="t-calender">
-                                            Calendar
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarCalendar">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-calendar.html" class="nav-link" data-key="t-main-calender"> Main Calender </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-calendar-month-grid.html" class="nav-link" data-key="t-month-grid"> Month Grid </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    -->
-                                    <li class="nav-item">
-                                        <a href="apps-chat.html" class="nav-link" data-key="t-chat"> Chat </a>
-                                    </li>
+                    <div class="row">
+                        <div class="col">
 
-                                    <li class="nav-item">
-                                        <a href="#sidebarEmail" class="nav-link" data-bs-toggle="collapse"
-                                            role="button" aria-expanded="false" aria-controls="sidebarEmail"
-                                            data-key="t-email">
-                                            Email
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarEmail">
-                                            <ul class="nav nav-sm flex-column">
-                                                <!-- <li class="nav-item">
-                                                    <a href="apps-mailbox.html" class="nav-link" data-key="t-mailbox"> Mailbox </a>
-                                                </li> -->
-                                                <li class="nav-item">
-                                                    <a href="#sidebaremailTemplates" class="nav-link"
-                                                        data-bs-toggle="collapse" role="button"
-                                                        aria-expanded="false" aria-controls="sidebaremailTemplates"
-                                                        data-key="t-email-templates">
-                                                        Email Templates
-                                                    </a>
-                                                    <div class="collapse menu-dropdown" id="sidebaremailTemplates">
-                                                        <ul class="nav nav-sm flex-column">
-                                                            <li class="nav-item">
-                                                                <a href="apps-email-basic.html" class="nav-link"
-                                                                    data-key="t-basic-action"> Basic Action </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="apps-email-ecommerce.html" class="nav-link"
-                                                                    data-key="t-ecommerce-action"> Ecommerce Action
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#sidebarEcommerce" class="nav-link" data-bs-toggle="collapse"
-                                            role="button" aria-expanded="false" aria-controls="sidebarEcommerce"
-                                            data-key="t-ecommerce"> Ecommerce
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarEcommerce">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-products.html" class="nav-link"
-                                                        data-key="t-products"> Products </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-product-details.html" class="nav-link"
-                                                        data-key="t-product-Details"> Product Details </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-add-product.html" class="nav-link"
-                                                        data-key="t-create-product"> Create Product </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-orders.html" class="nav-link"
-                                                        data-key="t-orders"> Orders </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-order-details.html" class="nav-link"
-                                                        data-key="t-order-details"> Order Details </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-customers.html" class="nav-link"
-                                                        data-key="t-customers"> Customers </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-cart.html" class="nav-link"
-                                                        data-key="t-shopping-cart"> Shopping Cart </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-checkout.html" class="nav-link"
-                                                        data-key="t-checkout"> Checkout </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-sellers.html" class="nav-link"
-                                                        data-key="t-sellers"> Sellers </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-ecommerce-seller-details.html" class="nav-link"
-                                                        data-key="t-sellers-details"> Seller Details </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> --}}
-                        <!-- <li class="nav-item">
-                                        <a href="#sidebarProjects" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProjects" data-key="t-projects">Projects
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarProjects">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-projects-list.html" class="nav-link" data-key="t-list"> List </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-projects-overview.html" class="nav-link" data-key="t-overview"> Overview </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-projects-create.html" class="nav-link" data-key="t-create-project"> Create Project </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> -->
-                        <!-- <li class="nav-item">
-                                        <a href="#sidebarTasks" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTasks" data-key="t-tasks"> Tasks
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarTasks">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-tasks-kanban.html" class="nav-link" data-key="t-kanbanboard"> Kanban Board </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-tasks-list-view.html" class="nav-link" data-key="t-list-view"> List View </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-tasks-details.html" class="nav-link" data-key="t-task-details"> Task Details </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> -->
-                        <!-- <li class="nav-item">
-                                        <a href="#sidebarCRM" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCRM" data-key="t-crm"> CRM
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarCRM">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-crm-contacts.html" class="nav-link" data-key="t-contacts"> Contacts </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crm-companies.html" class="nav-link" data-key="t-companies"> Companies </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crm-deals.html" class="nav-link" data-key="t-deals"> Deals </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crm-leads.html" class="nav-link" data-key="t-leads"> Leads </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> -->
-                        <!-- <li class="nav-item">
-                                        <a href="#sidebarCrypto" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCrypto" data-key="t-crypto">Crypto
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarCrypto">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-crypto-transactions.html" class="nav-link" data-key="t-transactions"> Transactions </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crypto-buy-sell.html" class="nav-link" data-key="t-buy-sell"> Buy & Sell </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crypto-orders.html" class="nav-link" data-key="t-orders"> Orders </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crypto-wallet.html" class="nav-link" data-key="t-my-wallet"> My Wallet </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crypto-ico.html" class="nav-link" data-key="t-ico-list"> ICO List </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-crypto-kyc.html" class="nav-link" data-key="t-kyc-application"> KYC Application </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> -->
-                        {{-- <li class="nav-item">
-                            <a href="#sidebarInvoices" class="nav-link" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarInvoices" data-key="t-invoices"> Invoices
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarInvoices">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="apps-invoices-list.html" class="nav-link" data-key="t-list-view">
-                                            List View </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="apps-invoices-details.html" class="nav-link" data-key="t-details">
-                                            Details </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="apps-invoices-create.html" class="nav-link"
-                                            data-key="t-create-invoice"> Create Invoice </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-                        <!-- <li class="nav-item">
-                                        <a href="#sidebarTickets" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTickets" data-key="t-supprt-tickets"> Support Tickets
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarTickets">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-tickets-list.html" class="nav-link" data-key="t-list-view"> List View </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-tickets-details.html" class="nav-link" data-key="t-ticket-details"> Ticket Details </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> -->
-                        <!-- <li class="nav-item">
-                                        <a href="#sidebarnft" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarnft" data-key="t-nft-marketplace">
-                                            NFT Marketplace
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="sidebarnft">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-marketplace.html" class="nav-link" data-key="t-marketplace"> Marketplace </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-explore.html" class="nav-link" data-key="t-explore-now"> Explore Now </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-auction.html" class="nav-link" data-key="t-live-auction"> Live Auction </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-item-details.html" class="nav-link" data-key="t-item-details"> Item Details </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-collections.html" class="nav-link" data-key="t-collections"> Collections </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-creators.html" class="nav-link" data-key="t-creators"> Creators </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-ranking.html" class="nav-link" data-key="t-ranking"> Ranking </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-wallet.html" class="nav-link" data-key="t-wallet-connect"> Wallet Connect </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-nft-create.html" class="nav-link" data-key="t-create-nft"> Create NFT </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> -->
-                        <!-- <li class="nav-item">
-                                        <a href="apps-file-manager.html" class="nav-link"> <span data-key="t-file-manager">File Manager</span></a>
-                                    </li> -->
-                        <!-- <li class="nav-item">
-                                        <a href="apps-todo.html" class="nav-link"> <span data-key="t-to-do">To Do</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#sidebarjobs" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarjobs" data-key="t-jobs"> Jobs</a>
-                                        <div class="collapse menu-dropdown" id="sidebarjobs">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="apps-job-statistics.html" class="nav-link" data-key="t-statistics"> Statistics </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#sidebarJoblists" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarJoblists" data-key="t-job-lists">
-                                                        Job Lists
-                                                    </a>
-                                                    <div class="collapse menu-dropdown" id="sidebarJoblists">
-                                                        <ul class="nav nav-sm flex-column">
-                                                            <li class="nav-item">
-                                                                <a href="apps-job-lists.html" class="nav-link" data-key="t-list"> List
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="apps-job-grid-lists.html" class="nav-link" data-key="t-grid"> Grid </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="apps-job-details.html" class="nav-link" data-key="t-overview"> Overview</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#sidebarCandidatelists" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCandidatelists" data-key="t-candidate-lists">
-                                                        Candidate Lists
-                                                    </a>
-                                                    <div class="collapse menu-dropdown" id="sidebarCandidatelists">
-                                                        <ul class="nav nav-sm flex-column">
-                                                            <li class="nav-item">
-                                                                <a href="apps-job-candidate-lists.html" class="nav-link" data-key="t-list-view"> List View
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="apps-job-candidate-grid.html" class="nav-link" data-key="t-grid-view"> Grid View</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-job-application.html" class="nav-link" data-key="t-application"> Application </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-job-new.html" class="nav-link" data-key="t-new-job"> New Job </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-job-companies-lists.html" class="nav-link" data-key="t-companies-list"> Companies List </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="apps-job-categories.html" class="nav-link" data-key="t-job-categories"> Job Categories</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="apps-api-key.html" class="nav-link" data-key="t-api-key">API Key</a>
-                                    </li> -->
-                    </ul>
-                </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse"
-                        role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                        <i class="las la-columns"></i> <span data-key="t-layouts">Layouts</span> <span
-                            class="badge badge-pill bg-danger" data-key="t-hot">Hot</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarLayouts">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="layouts-horizontal.html" target="_blank" class="nav-link"
-                                    data-key="t-horizontal">Horizontal</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="layouts-detached.html" target="_blank" class="nav-link"
-                                    data-key="t-detached">Detached</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="layouts-two-column.html" target="_blank" class="nav-link"
-                                    data-key="t-two-column">Two Column</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="layouts-vertical-hovered.html" target="_blank" class="nav-link"
-                                    data-key="t-hovered">Hovered</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> <!-- end Dashboard Menu -->
-
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarPages">
-                        <i class="las la-pager"></i> <span data-key="t-pages">Pages</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarPages">
-                        <ul class="nav nav-sm flex-column">
-
-
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse"
-                        role="button" aria-expanded="false" aria-controls="sidebarLanding">
-                        <i class="ri-rocket-line"></i> <span data-key="t-landing">Landing</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarLanding">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="landing.html" class="nav-link" data-key="t-one-page"> One Page
-                                </a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                        <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> NFT Landing </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="job-landing.html" class="nav-link" data-key="t-job">Job</a>
-                                    </li> -->
-                        </ul>
-                    </div>
-                </li>
-
-
-
-
-
-
-
-
-
-                </ul>
-            </div>
-            <!-- Sidebar -->
-        </div>
-
-        <div class="sidebar-background"></div>
-    </div>
-  
-
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="main-content">
-
-        <div class="page-content">
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col">
-
-                        <div class="h-100">
-                            <div class="row mb-3 pb-1">
-                                <div class="col-12">
-                                    <div class="d-flex align-items-lg-center flex-lg-row flex-column">
-                                        <div class="flex-grow-1">
-                                            <h4 class="fs-16 mb-1">Good Morning, Anna!</h4>
-                                            <p class="text-muted mb-0">Here's what's happening with your store
-                                                today.</p>
-                                        </div>
-                                        <div class="mt-3 mt-lg-0">
-                                            <form action="javascript:void(0);">
-                                                <div class="row g-3 mb-0 align-items-center">
-                                                    <div class="col-sm-auto">
-                                                        <div class="input-group">
-                                                            <input type="text"
-                                                                class="form-control border-0 fs-13 dash-filter-picker shadow"
-                                                                data-provider="flatpickr" data-range-date="true"
-                                                                data-date-format="d M, Y"
-                                                                data-deafult-date="01 Jan 2022 to 31 Jan 2022">
-                                                            <div
-                                                                class="input-group-text bg-secondary border-secondary text-white">
-                                                                <i class="ri-calendar-2-line"></i>
+                            <div class="h-100">
+                                <div class="row mb-3 pb-1">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                                            <div class="flex-grow-1">
+                                                <h4 class="fs-16 mb-1">Good Morning, Anna!</h4>
+                                                <p class="text-muted mb-0">Here's what's happening with your store
+                                                    today.</p>
+                                            </div>
+                                            <div class="mt-3 mt-lg-0">
+                                                <form action="javascript:void(0);">
+                                                    <div class="row g-3 mb-0 align-items-center">
+                                                        <div class="col-sm-auto">
+                                                            <div class="input-group">
+                                                                <input type="text"
+                                                                    class="form-control border-0 fs-13 dash-filter-picker shadow"
+                                                                    data-provider="flatpickr" data-range-date="true"
+                                                                    data-date-format="d M, Y"
+                                                                    data-deafult-date="01 Jan 2022 to 31 Jan 2022">
+                                                                <div
+                                                                    class="input-group-text bg-secondary border-secondary text-white">
+                                                                    <i class="ri-calendar-2-line"></i>
+                                                                </div>
                                                             </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-auto">
+                                                            <button type="button" class="btn btn-soft-success"><i
+                                                                    class="ri-add-circle-line align-middle me-1"></i>
+                                                                Add Product</button>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-auto">
+                                                            <button type="button"
+                                                                class="btn btn-soft-info btn-icon waves-effect waves-light layout-rightside-btn"><i
+                                                                    class="ri-pulse-line"></i></button>
+                                                        </div>
+                                                        <!--end col-->
+                                                    </div>
+                                                    <!--end row-->
+                                                </form>
+                                            </div>
+                                        </div><!-- end card header -->
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+
+                                <div class="row">
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p
+                                                            class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                                            Total Earnings</p>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <h5 class="text-success fs-14 mb-0">
+                                                            <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
+                                                            +16.24 %
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span
+                                                                class="counter-value" data-target="559.25">0</span>k
+                                                        </h4>
+                                                        <a href="#"
+                                                            class="text-decoration-underline text-muted">View net
+                                                            earnings</a>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title bg-success-subtle rounded fs-3">
+                                                            <i class="bx bx-dollar-circle text-success"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p
+                                                            class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                                            Orders</p>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <h5 class="text-danger fs-14 mb-0">
+                                                            <i class="ri-arrow-right-down-line fs-13 align-middle"></i>
+                                                            -3.57 %
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span
+                                                                class="counter-value" data-target="36894">0</span>
+                                                        </h4>
+                                                        <a href="#"
+                                                            class="text-decoration-underline text-muted">View all
+                                                            orders</a>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title bg-info-subtle rounded fs-3">
+                                                            <i class="bx bx-shopping-bag text-info"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p
+                                                            class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                                            Customers</p>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <h5 class="text-success fs-14 mb-0">
+                                                            <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
+                                                            +29.08 %
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span
+                                                                class="counter-value" data-target="183.35">0</span>M
+                                                        </h4>
+                                                        <a href="#"
+                                                            class="text-decoration-underline text-muted">See
+                                                            details</a>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title bg-warning-subtle rounded fs-3">
+                                                            <i class="bx bx-user-circle text-warning"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p
+                                                            class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                                            My Balance</p>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <h5 class="text-muted fs-14 mb-0">
+                                                            +0.00 %
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span
+                                                                class="counter-value" data-target="165.89">0</span>k
+                                                        </h4>
+                                                        <a href="#"
+                                                            class="text-decoration-underline text-muted">Withdraw
+                                                            money</a>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title bg-primary-subtle rounded fs-3">
+                                                            <i class="bx bx-wallet text-primary"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+                                </div> <!-- end row-->
+
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="card">
+                                            <div class="card-header border-0 align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Revenue</h4>
+                                                <div>
+                                                    <button type="button" class="btn btn-soft-secondary btn-sm">
+                                                        ALL
+                                                    </button>
+                                                    <button type="button" class="btn btn-soft-secondary btn-sm">
+                                                        1M
+                                                    </button>
+                                                    <button type="button" class="btn btn-soft-secondary btn-sm">
+                                                        6M
+                                                    </button>
+                                                    <button type="button" class="btn btn-soft-primary btn-sm">
+                                                        1Y
+                                                    </button>
+                                                </div>
+                                            </div><!-- end card header -->
+
+                                            <div class="card-header p-0 border-0 bg-light-subtle">
+                                                <div class="row g-0 text-center">
+                                                    <div class="col-6 col-sm-3">
+                                                        <div class="p-3 border border-dashed border-start-0">
+                                                            <h5 class="mb-1"><span class="counter-value"
+                                                                    data-target="7585">0</span></h5>
+                                                            <p class="text-muted mb-0">Orders</p>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
-                                                    <div class="col-auto">
-                                                        <button type="button" class="btn btn-soft-success"><i
-                                                                class="ri-add-circle-line align-middle me-1"></i>
-                                                            Add Product</button>
+                                                    <div class="col-6 col-sm-3">
+                                                        <div class="p-3 border border-dashed border-start-0">
+                                                            <h5 class="mb-1">$<span class="counter-value"
+                                                                    data-target="22.89">0</span>k</h5>
+                                                            <p class="text-muted mb-0">Earnings</p>
+                                                        </div>
                                                     </div>
                                                     <!--end col-->
-                                                    <div class="col-auto">
-                                                        <button type="button"
-                                                            class="btn btn-soft-info btn-icon waves-effect waves-light layout-rightside-btn"><i
-                                                                class="ri-pulse-line"></i></button>
+                                                    <div class="col-6 col-sm-3">
+                                                        <div class="p-3 border border-dashed border-start-0">
+                                                            <h5 class="mb-1"><span class="counter-value"
+                                                                    data-target="367">0</span></h5>
+                                                            <p class="text-muted mb-0">Refunds</p>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-6 col-sm-3">
+                                                        <div
+                                                            class="p-3 border border-dashed border-start-0 border-end-0">
+                                                            <h5 class="mb-1 text-success"><span class="counter-value"
+                                                                    data-target="18.92">0</span>%</h5>
+                                                            <p class="text-muted mb-0">Conversation Ratio</p>
+                                                        </div>
                                                     </div>
                                                     <!--end col-->
                                                 </div>
-                                                <!--end row-->
-                                            </form>
+                                            </div><!-- end card header -->
+
+                                            <div class="card-body p-0 pb-2">
+                                                <div class="w-100">
+                                                    <div id="customer_impression_charts"
+                                                        data-colors='["--vz-warning", "--vz-primary", "--vz-success"]'
+                                                        class="apex-charts" dir="ltr"></div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+
+                                    <div class="col-xl-4">
+                                        <!-- card -->
+                                        <div class="card card-height-100">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Sales by Locations</h4>
+                                                <div class="flex-shrink-0">
+                                                    <button type="button" class="btn btn-soft-primary btn-sm">
+                                                        Export Report
+                                                    </button>
+                                                </div>
+                                            </div><!-- end card header -->
+
+                                            <!-- card body -->
+                                            <div class="card-body">
+
+                                                <div id="sales-by-locations"
+                                                    data-colors='["--vz-light", "--vz-warning", "--vz-primary"]'
+                                                    style="height: 269px" dir="ltr"></div>
+
+                                                <div class="px-2 py-2 mt-1">
+                                                    <p class="mb-1">Canada <span class="float-end">75%</span></p>
+                                                    <div class="progress mt-2" style="height: 6px;">
+                                                        <div class="progress-bar progress-bar-striped bg-primary"
+                                                            role="progressbar" style="width: 75%" aria-valuenow="75"
+                                                            aria-valuemin="0" aria-valuemax="75">
+                                                        </div>
+                                                    </div>
+
+                                                    <p class="mt-3 mb-1">Greenland <span class="float-end">47%</span>
+                                                    </p>
+                                                    <div class="progress mt-2" style="height: 6px;">
+                                                        <div class="progress-bar progress-bar-striped bg-primary"
+                                                            role="progressbar" style="width: 47%" aria-valuenow="47"
+                                                            aria-valuemin="0" aria-valuemax="47">
+                                                        </div>
+                                                    </div>
+
+                                                    <p class="mt-3 mb-1">Russia <span class="float-end">82%</span>
+                                                    </p>
+                                                    <div class="progress mt-2" style="height: 6px;">
+                                                        <div class="progress-bar progress-bar-striped bg-primary"
+                                                            role="progressbar" style="width: 82%" aria-valuenow="82"
+                                                            aria-valuemin="0" aria-valuemax="82">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end card body -->
                                         </div>
-                                    </div><!-- end card header -->
+                                        <!-- end card -->
+                                    </div>
+                                    <!-- end col -->
                                 </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
 
-                            <div class="row">
-                                <div class="col-xl-3 col-md-6">
-                                    <!-- card -->
-                                    <div class="card card-animate">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-grow-1 overflow-hidden">
-                                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                        Total Earnings</p>
-                                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Best Selling Products</h4>
                                                 <div class="flex-shrink-0">
-                                                    <h5 class="text-success fs-14 mb-0">
-                                                        <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                        +16.24 %
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                                <div>
-                                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span
-                                                            class="counter-value" data-target="559.25">0</span>k
-                                                    </h4>
-                                                    <a href="#"
-                                                        class="text-decoration-underline text-muted">View net
-                                                        earnings</a>
-                                                </div>
-                                                <div class="avatar-sm flex-shrink-0">
-                                                    <span class="avatar-title bg-success-subtle rounded fs-3">
-                                                        <i class="bx bx-dollar-circle text-success"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div><!-- end col -->
-
-                                <div class="col-xl-3 col-md-6">
-                                    <!-- card -->
-                                    <div class="card card-animate">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-grow-1 overflow-hidden">
-                                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                        Orders</p>
-                                                </div>
-                                                <div class="flex-shrink-0">
-                                                    <h5 class="text-danger fs-14 mb-0">
-                                                        <i class="ri-arrow-right-down-line fs-13 align-middle"></i>
-                                                        -3.57 %
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                                <div>
-                                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span
-                                                            class="counter-value" data-target="36894">0</span>
-                                                    </h4>
-                                                    <a href="#"
-                                                        class="text-decoration-underline text-muted">View all
-                                                        orders</a>
-                                                </div>
-                                                <div class="avatar-sm flex-shrink-0">
-                                                    <span class="avatar-title bg-info-subtle rounded fs-3">
-                                                        <i class="bx bx-shopping-bag text-info"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div><!-- end col -->
-
-                                <div class="col-xl-3 col-md-6">
-                                    <!-- card -->
-                                    <div class="card card-animate">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-grow-1 overflow-hidden">
-                                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                        Customers</p>
-                                                </div>
-                                                <div class="flex-shrink-0">
-                                                    <h5 class="text-success fs-14 mb-0">
-                                                        <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                        +29.08 %
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                                <div>
-                                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span
-                                                            class="counter-value" data-target="183.35">0</span>M
-                                                    </h4>
-                                                    <a href="#"
-                                                        class="text-decoration-underline text-muted">See
-                                                        details</a>
-                                                </div>
-                                                <div class="avatar-sm flex-shrink-0">
-                                                    <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                        <i class="bx bx-user-circle text-warning"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div><!-- end col -->
-
-                                <div class="col-xl-3 col-md-6">
-                                    <!-- card -->
-                                    <div class="card card-animate">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-grow-1 overflow-hidden">
-                                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                        My Balance</p>
-                                                </div>
-                                                <div class="flex-shrink-0">
-                                                    <h5 class="text-muted fs-14 mb-0">
-                                                        +0.00 %
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                                <div>
-                                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span
-                                                            class="counter-value" data-target="165.89">0</span>k
-                                                    </h4>
-                                                    <a href="#"
-                                                        class="text-decoration-underline text-muted">Withdraw
-                                                        money</a>
-                                                </div>
-                                                <div class="avatar-sm flex-shrink-0">
-                                                    <span class="avatar-title bg-primary-subtle rounded fs-3">
-                                                        <i class="bx bx-wallet text-primary"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div><!-- end col -->
-                            </div> <!-- end row-->
-
-                            <div class="row">
-                                <div class="col-xl-8">
-                                    <div class="card">
-                                        <div class="card-header border-0 align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Revenue</h4>
-                                            <div>
-                                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                                    ALL
-                                                </button>
-                                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                                    1M
-                                                </button>
-                                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                                    6M
-                                                </button>
-                                                <button type="button" class="btn btn-soft-primary btn-sm">
-                                                    1Y
-                                                </button>
-                                            </div>
-                                        </div><!-- end card header -->
-
-                                        <div class="card-header p-0 border-0 bg-light-subtle">
-                                            <div class="row g-0 text-center">
-                                                <div class="col-6 col-sm-3">
-                                                    <div class="p-3 border border-dashed border-start-0">
-                                                        <h5 class="mb-1"><span class="counter-value"
-                                                                data-target="7585">0</span></h5>
-                                                        <p class="text-muted mb-0">Orders</p>
+                                                    <div class="dropdown card-header-dropdown">
+                                                        <a class="text-reset dropdown-btn" href="#"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <span class="fw-semibold text-uppercase fs-13">Sort by:
+                                                            </span><span class="text-muted">Today<i
+                                                                    class="mdi mdi-chevron-down ms-1"></i></span>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="#">Today</a>
+                                                            <a class="dropdown-item" href="#">Yesterday</a>
+                                                            <a class="dropdown-item" href="#">Last 7 Days</a>
+                                                            <a class="dropdown-item" href="#">Last 30 Days</a>
+                                                            <a class="dropdown-item" href="#">This Month</a>
+                                                            <a class="dropdown-item" href="#">Last Month</a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <!--end col-->
-                                                <div class="col-6 col-sm-3">
-                                                    <div class="p-3 border border-dashed border-start-0">
-                                                        <h5 class="mb-1">$<span class="counter-value"
-                                                                data-target="22.89">0</span>k</h5>
-                                                        <p class="text-muted mb-0">Earnings</p>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-6 col-sm-3">
-                                                    <div class="p-3 border border-dashed border-start-0">
-                                                        <h5 class="mb-1"><span class="counter-value"
-                                                                data-target="367">0</span></h5>
-                                                        <p class="text-muted mb-0">Refunds</p>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-6 col-sm-3">
-                                                    <div class="p-3 border border-dashed border-start-0 border-end-0">
-                                                        <h5 class="mb-1 text-success"><span class="counter-value"
-                                                                data-target="18.92">0</span>%</h5>
-                                                        <p class="text-muted mb-0">Conversation Ratio</p>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                            </div>
-                                        </div><!-- end card header -->
+                                            </div><!-- end card header -->
 
-                                        <div class="card-body p-0 pb-2">
-                                            <div class="w-100">
-                                                <div id="customer_impression_charts"
-                                                    data-colors='["--vz-warning", "--vz-primary", "--vz-success"]'
+                                            <div class="card-body">
+                                                <div class="table-responsive table-card">
+                                                    <table
+                                                        class="table table-hover table-centered align-middle table-nowrap mb-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="avatar-sm bg-light rounded p-1 me-2">
+                                                                            <img src="assets/images/products/img-1.png"
+                                                                                alt=""
+                                                                                class="img-fluid d-block" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5 class="fs-14 my-1"><a
+                                                                                    href="apps-ecommerce-product-details.html"
+                                                                                    class="text-reset">Branded
+                                                                                    T-Shirts</a></h5>
+                                                                            <span class="text-muted">24 Apr
+                                                                                2021</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$29.00</h5>
+                                                                    <span class="text-muted">Price</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">62</h5>
+                                                                    <span class="text-muted">Orders</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">510</h5>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$1,798</h5>
+                                                                    <span class="text-muted">Amount</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="avatar-sm bg-light rounded p-1 me-2">
+                                                                            <img src="assets/images/products/img-2.png"
+                                                                                alt=""
+                                                                                class="img-fluid d-block" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5 class="fs-14 my-1"><a
+                                                                                    href="apps-ecommerce-product-details.html"
+                                                                                    class="text-reset">Bentwood
+                                                                                    Chair</a></h5>
+                                                                            <span class="text-muted">19 Mar
+                                                                                2021</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$85.20</h5>
+                                                                    <span class="text-muted">Price</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">35</h5>
+                                                                    <span class="text-muted">Orders</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal"><span
+                                                                            class="badge bg-danger-subtle text-danger">Out
+                                                                            of
+                                                                            stock</span> </h5>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$2982</h5>
+                                                                    <span class="text-muted">Amount</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="avatar-sm bg-light rounded p-1 me-2">
+                                                                            <img src="assets/images/products/img-3.png"
+                                                                                alt=""
+                                                                                class="img-fluid d-block" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5 class="fs-14 my-1"><a
+                                                                                    href="apps-ecommerce-product-details.html"
+                                                                                    class="text-reset">Borosil Paper
+                                                                                    Cup</a></h5>
+                                                                            <span class="text-muted">01 Mar
+                                                                                2021</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$14.00</h5>
+                                                                    <span class="text-muted">Price</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">80</h5>
+                                                                    <span class="text-muted">Orders</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">749</h5>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$1120</h5>
+                                                                    <span class="text-muted">Amount</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="avatar-sm bg-light rounded p-1 me-2">
+                                                                            <img src="assets/images/products/img-4.png"
+                                                                                alt=""
+                                                                                class="img-fluid d-block" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5 class="fs-14 my-1"><a
+                                                                                    href="apps-ecommerce-product-details.html"
+                                                                                    class="text-reset">One Seater
+                                                                                    Sofa</a></h5>
+                                                                            <span class="text-muted">11 Feb
+                                                                                2021</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$127.50</h5>
+                                                                    <span class="text-muted">Price</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">56</h5>
+                                                                    <span class="text-muted">Orders</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal"><span
+                                                                            class="badge bg-danger-subtle text-danger">Out
+                                                                            of
+                                                                            stock</span></h5>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$7140</h5>
+                                                                    <span class="text-muted">Amount</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="avatar-sm bg-light rounded p-1 me-2">
+                                                                            <img src="assets/images/products/img-5.png"
+                                                                                alt=""
+                                                                                class="img-fluid d-block" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5 class="fs-14 my-1"><a
+                                                                                    href="apps-ecommerce-product-details.html"
+                                                                                    class="text-reset">Stillbird
+                                                                                    Helmet</a></h5>
+                                                                            <span class="text-muted">17 Jan
+                                                                                2021</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$54</h5>
+                                                                    <span class="text-muted">Price</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">74</h5>
+                                                                    <span class="text-muted">Orders</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">805</h5>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 my-1 fw-normal">$3996</h5>
+                                                                    <span class="text-muted">Amount</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div
+                                                    class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+                                                    <div class="col-sm">
+                                                        <div class="text-muted">
+                                                            Showing <span class="fw-semibold">5</span> of <span
+                                                                class="fw-semibold">25</span> Results
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-auto  mt-3 mt-sm-0">
+                                                        <ul
+                                                            class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+                                                            <li class="page-item disabled">
+                                                                <a href="#" class="page-link">←</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a href="#" class="page-link">1</a>
+                                                            </li>
+                                                            <li class="page-item active">
+                                                                <a href="#" class="page-link">2</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a href="#" class="page-link">3</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a href="#" class="page-link">→</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <div class="card card-height-100">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Top Sellers</h4>
+                                                <div class="flex-shrink-0">
+                                                    <div class="dropdown card-header-dropdown">
+                                                        <a class="text-reset dropdown-btn" href="#"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <span class="text-muted">Report<i
+                                                                    class="mdi mdi-chevron-down ms-1"></i></span>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="#">Download
+                                                                Report</a>
+                                                            <a class="dropdown-item" href="#">Export</a>
+                                                            <a class="dropdown-item" href="#">Import</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card header -->
+
+                                            <div class="card-body">
+                                                <div class="table-responsive table-card">
+                                                    <table
+                                                        class="table table-centered table-hover align-middle table-nowrap mb-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/companies/img-1.png"
+                                                                                alt=""
+                                                                                class="avatar-sm p-2" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5 class="fs-14 my-1 fw-medium"><a
+                                                                                    href="apps-ecommerce-seller-details.html"
+                                                                                    class="text-reset">iTest
+                                                                                    Factory</a>
+                                                                            </h5>
+                                                                            <span class="text-muted">Oliver
+                                                                                Tyler</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">Bags and Wallets</span>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-0">8547</p>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">$541200</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 mb-0">32%<i
+                                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr><!-- end -->
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/companies/img-2.png"
+                                                                                alt=""
+                                                                                class="avatar-sm p-2" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">
+                                                                            <h5 class="fs-14 my-1 fw-medium"><a
+                                                                                    href="apps-ecommerce-seller-details.html"
+                                                                                    class="text-reset">Digitech
+                                                                                    Galaxy</a></h5>
+                                                                            <span class="text-muted">John
+                                                                                Roberts</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">Watches</span>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-0">895</p>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">$75030</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 mb-0">79%<i
+                                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr><!-- end -->
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/companies/img-3.png"
+                                                                                alt=""
+                                                                                class="avatar-sm p-2" />
+                                                                        </div>
+                                                                        <div class="flex-gow-1">
+                                                                            <h5 class="fs-14 my-1 fw-medium"><a
+                                                                                    href="apps-ecommerce-seller-details.html"
+                                                                                    class="text-reset">Nesta
+                                                                                    Technologies</a></h5>
+                                                                            <span class="text-muted">Harley
+                                                                                Fuller</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">Bike Accessories</span>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-0">3470</p>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">$45600</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 mb-0">90%<i
+                                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr><!-- end -->
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/companies/img-8.png"
+                                                                                alt=""
+                                                                                class="avatar-sm p-2" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">
+                                                                            <h5 class="fs-14 my-1 fw-medium"><a
+                                                                                    href="apps-ecommerce-seller-details.html"
+                                                                                    class="text-reset">Zoetic
+                                                                                    Fashion</a></h5>
+                                                                            <span class="text-muted">James
+                                                                                Bowen</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">Clothes</span>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-0">5488</p>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">$29456</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 mb-0">40%<i
+                                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr><!-- end -->
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/companies/img-5.png"
+                                                                                alt=""
+                                                                                class="avatar-sm p-2" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">
+                                                                            <h5 class="fs-14 my-1 fw-medium"><a
+                                                                                    href="apps-ecommerce-seller-details.html"
+                                                                                    class="text-reset">Meta4Systems</a>
+                                                                            </h5>
+                                                                            <span class="text-muted">Zoe Dennis</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">Furniture</span>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-0">4100</p>
+                                                                    <span class="text-muted">Stock</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">$11260</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 mb-0">57%<i
+                                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr><!-- end -->
+                                                        </tbody>
+                                                    </table><!-- end table -->
+                                                </div>
+
+                                                <div
+                                                    class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+                                                    <div class="col-sm">
+                                                        <div class="text-muted">
+                                                            Showing <span class="fw-semibold">5</span> of <span
+                                                                class="fw-semibold">25</span> Results
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-auto  mt-3 mt-sm-0">
+                                                        <ul
+                                                            class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+                                                            <li class="page-item disabled">
+                                                                <a href="#" class="page-link">←</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a href="#" class="page-link">1</a>
+                                                            </li>
+                                                            <li class="page-item active">
+                                                                <a href="#" class="page-link">2</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a href="#" class="page-link">3</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a href="#" class="page-link">→</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div> <!-- .card-body-->
+                                        </div> <!-- .card-->
+                                    </div> <!-- .col-->
+                                </div> <!-- end row-->
+
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="card card-height-100">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Store Visits by Source</h4>
+                                                <div class="flex-shrink-0">
+                                                    <div class="dropdown card-header-dropdown">
+                                                        <a class="text-reset dropdown-btn" href="#"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <span class="text-muted">Report<i
+                                                                    class="mdi mdi-chevron-down ms-1"></i></span>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="#">Download
+                                                                Report</a>
+                                                            <a class="dropdown-item" href="#">Export</a>
+                                                            <a class="dropdown-item" href="#">Import</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card header -->
+
+                                            <div class="card-body">
+                                                <div id="store-visits-source"
+                                                    data-colors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]'
                                                     class="apex-charts" dir="ltr"></div>
                                             </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div><!-- end col -->
+                                        </div> <!-- .card-->
+                                    </div> <!-- .col-->
 
-                                <div class="col-xl-4">
-                                    <!-- card -->
-                                    <div class="card card-height-100">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Sales by Locations</h4>
-                                            <div class="flex-shrink-0">
-                                                <button type="button" class="btn btn-soft-primary btn-sm">
-                                                    Export Report
-                                                </button>
-                                            </div>
-                                        </div><!-- end card header -->
-
-                                        <!-- card body -->
-                                        <div class="card-body">
-
-                                            <div id="sales-by-locations"
-                                                data-colors='["--vz-light", "--vz-warning", "--vz-primary"]'
-                                                style="height: 269px" dir="ltr"></div>
-
-                                            <div class="px-2 py-2 mt-1">
-                                                <p class="mb-1">Canada <span class="float-end">75%</span></p>
-                                                <div class="progress mt-2" style="height: 6px;">
-                                                    <div class="progress-bar progress-bar-striped bg-primary"
-                                                        role="progressbar" style="width: 75%" aria-valuenow="75"
-                                                        aria-valuemin="0" aria-valuemax="75">
-                                                    </div>
+                                    <div class="col-xl-8">
+                                        <div class="card">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Recent Orders</h4>
+                                                <div class="flex-shrink-0">
+                                                    <button type="button" class="btn btn-soft-info btn-sm">
+                                                        <i class="ri-file-list-3-line align-middle"></i> Generate
+                                                        Report
+                                                    </button>
                                                 </div>
+                                            </div><!-- end card header -->
 
-                                                <p class="mt-3 mb-1">Greenland <span class="float-end">47%</span>
-                                                </p>
-                                                <div class="progress mt-2" style="height: 6px;">
-                                                    <div class="progress-bar progress-bar-striped bg-primary"
-                                                        role="progressbar" style="width: 47%" aria-valuenow="47"
-                                                        aria-valuemin="0" aria-valuemax="47">
-                                                    </div>
-                                                </div>
-
-                                                <p class="mt-3 mb-1">Russia <span class="float-end">82%</span>
-                                                </p>
-                                                <div class="progress mt-2" style="height: 6px;">
-                                                    <div class="progress-bar progress-bar-striped bg-primary"
-                                                        role="progressbar" style="width: 82%" aria-valuenow="82"
-                                                        aria-valuemin="0" aria-valuemax="82">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end card body -->
-                                    </div>
-                                    <!-- end card -->
-                                </div>
-                                <!-- end col -->
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Best Selling Products</h4>
-                                            <div class="flex-shrink-0">
-                                                <div class="dropdown card-header-dropdown">
-                                                    <a class="text-reset dropdown-btn" href="#"
-                                                        data-bs-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                        <span class="fw-semibold text-uppercase fs-13">Sort by:
-                                                        </span><span class="text-muted">Today<i
-                                                                class="mdi mdi-chevron-down ms-1"></i></span>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Today</a>
-                                                        <a class="dropdown-item" href="#">Yesterday</a>
-                                                        <a class="dropdown-item" href="#">Last 7 Days</a>
-                                                        <a class="dropdown-item" href="#">Last 30 Days</a>
-                                                        <a class="dropdown-item" href="#">This Month</a>
-                                                        <a class="dropdown-item" href="#">Last Month</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card header -->
-
-                                        <div class="card-body">
-                                            <div class="table-responsive table-card">
-                                                <table
-                                                    class="table table-hover table-centered align-middle table-nowrap mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img src="assets/images/products/img-1.png"
-                                                                            alt=""
-                                                                            class="img-fluid d-block" />
+                                            <div class="card-body">
+                                                <div class="table-responsive table-card">
+                                                    <table
+                                                        class="table table-borderless table-centered align-middle table-nowrap mb-0">
+                                                        <thead class="text-muted table-light">
+                                                            <tr>
+                                                                <th scope="col">Order ID</th>
+                                                                <th scope="col">Customer</th>
+                                                                <th scope="col">Product</th>
+                                                                <th scope="col">Amount</th>
+                                                                <th scope="col">Vendor</th>
+                                                                <th scope="col">Status</th>
+                                                                <th scope="col">Rating</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="apps-ecommerce-order-details.html"
+                                                                        class="fw-medium link-primary">#VZ2112</a>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/users/avatar-1.jpg"
+                                                                                alt=""
+                                                                                class="avatar-xs rounded-circle" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">Alex Smith</div>
                                                                     </div>
-                                                                    <div>
-                                                                        <h5 class="fs-14 my-1"><a
-                                                                                href="apps-ecommerce-product-details.html"
-                                                                                class="text-reset">Branded
-                                                                                T-Shirts</a></h5>
-                                                                        <span class="text-muted">24 Apr
-                                                                            2021</span>
+                                                                </td>
+                                                                <td>Clothes</td>
+                                                                <td>
+                                                                    <span class="text-success">$109.00</span>
+                                                                </td>
+                                                                <td>Zoetic Fashion</td>
+                                                                <td>
+                                                                    <span
+                                                                        class="badge bg-success-subtle text-success">Paid</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 fw-medium mb-0">5.0<span
+                                                                            class="text-muted fs-11 ms-1">(61
+                                                                            votes)</span></h5>
+                                                                </td>
+                                                            </tr><!-- end tr -->
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="apps-ecommerce-order-details.html"
+                                                                        class="fw-medium link-primary">#VZ2111</a>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/users/avatar-2.jpg"
+                                                                                alt=""
+                                                                                class="avatar-xs rounded-circle" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">Jansh Brown</div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$29.00</h5>
-                                                                <span class="text-muted">Price</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">62</h5>
-                                                                <span class="text-muted">Orders</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">510</h5>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$1,798</h5>
-                                                                <span class="text-muted">Amount</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img src="assets/images/products/img-2.png"
-                                                                            alt=""
-                                                                            class="img-fluid d-block" />
+                                                                </td>
+                                                                <td>Kitchen Storage</td>
+                                                                <td>
+                                                                    <span class="text-success">$149.00</span>
+                                                                </td>
+                                                                <td>Micro Design</td>
+                                                                <td>
+                                                                    <span
+                                                                        class="badge bg-warning-subtle text-warning">Pending</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 fw-medium mb-0">4.5<span
+                                                                            class="text-muted fs-11 ms-1">(61
+                                                                            votes)</span></h5>
+                                                                </td>
+                                                            </tr><!-- end tr -->
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="apps-ecommerce-order-details.html"
+                                                                        class="fw-medium link-primary">#VZ2109</a>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/users/avatar-3.jpg"
+                                                                                alt=""
+                                                                                class="avatar-xs rounded-circle" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">Ayaan Bowen</div>
                                                                     </div>
-                                                                    <div>
-                                                                        <h5 class="fs-14 my-1"><a
-                                                                                href="apps-ecommerce-product-details.html"
-                                                                                class="text-reset">Bentwood
-                                                                                Chair</a></h5>
-                                                                        <span class="text-muted">19 Mar
-                                                                            2021</span>
+                                                                </td>
+                                                                <td>Bike Accessories</td>
+                                                                <td>
+                                                                    <span class="text-success">$215.00</span>
+                                                                </td>
+                                                                <td>Nesta Technologies</td>
+                                                                <td>
+                                                                    <span
+                                                                        class="badge bg-success-subtle text-success">Paid</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 fw-medium mb-0">4.9<span
+                                                                            class="text-muted fs-11 ms-1">(89
+                                                                            votes)</span></h5>
+                                                                </td>
+                                                            </tr><!-- end tr -->
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="apps-ecommerce-order-details.html"
+                                                                        class="fw-medium link-primary">#VZ2108</a>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/users/avatar-4.jpg"
+                                                                                alt=""
+                                                                                class="avatar-xs rounded-circle" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">Prezy Mark</div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$85.20</h5>
-                                                                <span class="text-muted">Price</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">35</h5>
-                                                                <span class="text-muted">Orders</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal"><span
-                                                                        class="badge bg-danger-subtle text-danger">Out
-                                                                        of
-                                                                        stock</span> </h5>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$2982</h5>
-                                                                <span class="text-muted">Amount</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img src="assets/images/products/img-3.png"
-                                                                            alt=""
-                                                                            class="img-fluid d-block" />
+                                                                </td>
+                                                                <td>Furniture</td>
+                                                                <td>
+                                                                    <span class="text-success">$199.00</span>
+                                                                </td>
+                                                                <td>Syntyce Solutions</td>
+                                                                <td>
+                                                                    <span
+                                                                        class="badge bg-danger-subtle text-danger">Unpaid</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 fw-medium mb-0">4.3<span
+                                                                            class="text-muted fs-11 ms-1">(47
+                                                                            votes)</span></h5>
+                                                                </td>
+                                                            </tr><!-- end tr -->
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="apps-ecommerce-order-details.html"
+                                                                        class="fw-medium link-primary">#VZ2107</a>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="flex-shrink-0 me-2">
+                                                                            <img src="assets/images/users/avatar-6.jpg"
+                                                                                alt=""
+                                                                                class="avatar-xs rounded-circle" />
+                                                                        </div>
+                                                                        <div class="flex-grow-1">Vihan Hudda</div>
                                                                     </div>
-                                                                    <div>
-                                                                        <h5 class="fs-14 my-1"><a
-                                                                                href="apps-ecommerce-product-details.html"
-                                                                                class="text-reset">Borosil Paper
-                                                                                Cup</a></h5>
-                                                                        <span class="text-muted">01 Mar
-                                                                            2021</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$14.00</h5>
-                                                                <span class="text-muted">Price</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">80</h5>
-                                                                <span class="text-muted">Orders</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">749</h5>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$1120</h5>
-                                                                <span class="text-muted">Amount</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img src="assets/images/products/img-4.png"
-                                                                            alt=""
-                                                                            class="img-fluid d-block" />
-                                                                    </div>
-                                                                    <div>
-                                                                        <h5 class="fs-14 my-1"><a
-                                                                                href="apps-ecommerce-product-details.html"
-                                                                                class="text-reset">One Seater
-                                                                                Sofa</a></h5>
-                                                                        <span class="text-muted">11 Feb
-                                                                            2021</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$127.50</h5>
-                                                                <span class="text-muted">Price</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">56</h5>
-                                                                <span class="text-muted">Orders</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal"><span
-                                                                        class="badge bg-danger-subtle text-danger">Out
-                                                                        of
-                                                                        stock</span></h5>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$7140</h5>
-                                                                <span class="text-muted">Amount</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img src="assets/images/products/img-5.png"
-                                                                            alt=""
-                                                                            class="img-fluid d-block" />
-                                                                    </div>
-                                                                    <div>
-                                                                        <h5 class="fs-14 my-1"><a
-                                                                                href="apps-ecommerce-product-details.html"
-                                                                                class="text-reset">Stillbird
-                                                                                Helmet</a></h5>
-                                                                        <span class="text-muted">17 Jan
-                                                                            2021</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$54</h5>
-                                                                <span class="text-muted">Price</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">74</h5>
-                                                                <span class="text-muted">Orders</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">805</h5>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 my-1 fw-normal">$3996</h5>
-                                                                <span class="text-muted">Amount</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div
-                                                class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
-                                                <div class="col-sm">
-                                                    <div class="text-muted">
-                                                        Showing <span class="fw-semibold">5</span> of <span
-                                                            class="fw-semibold">25</span> Results
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto  mt-3 mt-sm-0">
-                                                    <ul
-                                                        class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
-                                                        <li class="page-item disabled">
-                                                            <a href="#" class="page-link">←</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a href="#" class="page-link">1</a>
-                                                        </li>
-                                                        <li class="page-item active">
-                                                            <a href="#" class="page-link">2</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a href="#" class="page-link">3</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a href="#" class="page-link">→</a>
-                                                        </li>
-                                                    </ul>
+                                                                </td>
+                                                                <td>Bags and Wallets</td>
+                                                                <td>
+                                                                    <span class="text-success">$330.00</span>
+                                                                </td>
+                                                                <td>iTest Factory</td>
+                                                                <td>
+                                                                    <span
+                                                                        class="badge bg-success-subtle text-success">Paid</span>
+                                                                </td>
+                                                                <td>
+                                                                    <h5 class="fs-14 fw-medium mb-0">4.7<span
+                                                                            class="text-muted fs-11 ms-1">(161
+                                                                            votes)</span></h5>
+                                                                </td>
+                                                            </tr><!-- end tr -->
+                                                        </tbody><!-- end tbody -->
+                                                    </table><!-- end table -->
                                                 </div>
                                             </div>
+                                        </div> <!-- .card-->
+                                    </div> <!-- .col-->
+                                </div> <!-- end row-->
 
-                                        </div>
-                                    </div>
-                                </div>
+                            </div> <!-- end .h-100-->
 
-                                <div class="col-xl-6">
-                                    <div class="card card-height-100">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Top Sellers</h4>
-                                            <div class="flex-shrink-0">
-                                                <div class="dropdown card-header-dropdown">
-                                                    <a class="text-reset dropdown-btn" href="#"
-                                                        data-bs-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                        <span class="text-muted">Report<i
-                                                                class="mdi mdi-chevron-down ms-1"></i></span>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Download
-                                                            Report</a>
-                                                        <a class="dropdown-item" href="#">Export</a>
-                                                        <a class="dropdown-item" href="#">Import</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card header -->
+                        </div> <!-- end col -->
 
-                                        <div class="card-body">
-                                            <div class="table-responsive table-card">
-                                                <table
-                                                    class="table table-centered table-hover align-middle table-nowrap mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/companies/img-1.png"
-                                                                            alt="" class="avatar-sm p-2" />
-                                                                    </div>
-                                                                    <div>
-                                                                        <h5 class="fs-14 my-1 fw-medium"><a
-                                                                                href="apps-ecommerce-seller-details.html"
-                                                                                class="text-reset">iTest
-                                                                                Factory</a>
-                                                                        </h5>
-                                                                        <span class="text-muted">Oliver
-                                                                            Tyler</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">Bags and Wallets</span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">8547</p>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">$541200</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 mb-0">32%<i
-                                                                        class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                                </h5>
-                                                            </td>
-                                                        </tr><!-- end -->
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/companies/img-2.png"
-                                                                            alt="" class="avatar-sm p-2" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">
-                                                                        <h5 class="fs-14 my-1 fw-medium"><a
-                                                                                href="apps-ecommerce-seller-details.html"
-                                                                                class="text-reset">Digitech
-                                                                                Galaxy</a></h5>
-                                                                        <span class="text-muted">John
-                                                                            Roberts</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">Watches</span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">895</p>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">$75030</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 mb-0">79%<i
-                                                                        class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                                </h5>
-                                                            </td>
-                                                        </tr><!-- end -->
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/companies/img-3.png"
-                                                                            alt="" class="avatar-sm p-2" />
-                                                                    </div>
-                                                                    <div class="flex-gow-1">
-                                                                        <h5 class="fs-14 my-1 fw-medium"><a
-                                                                                href="apps-ecommerce-seller-details.html"
-                                                                                class="text-reset">Nesta
-                                                                                Technologies</a></h5>
-                                                                        <span class="text-muted">Harley
-                                                                            Fuller</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">Bike Accessories</span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">3470</p>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">$45600</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 mb-0">90%<i
-                                                                        class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                                </h5>
-                                                            </td>
-                                                        </tr><!-- end -->
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/companies/img-8.png"
-                                                                            alt="" class="avatar-sm p-2" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">
-                                                                        <h5 class="fs-14 my-1 fw-medium"><a
-                                                                                href="apps-ecommerce-seller-details.html"
-                                                                                class="text-reset">Zoetic
-                                                                                Fashion</a></h5>
-                                                                        <span class="text-muted">James
-                                                                            Bowen</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">Clothes</span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">5488</p>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">$29456</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 mb-0">40%<i
-                                                                        class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                                </h5>
-                                                            </td>
-                                                        </tr><!-- end -->
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/companies/img-5.png"
-                                                                            alt="" class="avatar-sm p-2" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">
-                                                                        <h5 class="fs-14 my-1 fw-medium"><a
-                                                                                href="apps-ecommerce-seller-details.html"
-                                                                                class="text-reset">Meta4Systems</a>
-                                                                        </h5>
-                                                                        <span class="text-muted">Zoe Dennis</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">Furniture</span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">4100</p>
-                                                                <span class="text-muted">Stock</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-muted">$11260</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 mb-0">57%<i
-                                                                        class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                                </h5>
-                                                            </td>
-                                                        </tr><!-- end -->
-                                                    </tbody>
-                                                </table><!-- end table -->
-                                            </div>
-
-                                            <div
-                                                class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
-                                                <div class="col-sm">
-                                                    <div class="text-muted">
-                                                        Showing <span class="fw-semibold">5</span> of <span
-                                                            class="fw-semibold">25</span> Results
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto  mt-3 mt-sm-0">
-                                                    <ul
-                                                        class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
-                                                        <li class="page-item disabled">
-                                                            <a href="#" class="page-link">←</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a href="#" class="page-link">1</a>
-                                                        </li>
-                                                        <li class="page-item active">
-                                                            <a href="#" class="page-link">2</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a href="#" class="page-link">3</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a href="#" class="page-link">→</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                        </div> <!-- .card-body-->
-                                    </div> <!-- .card-->
-                                </div> <!-- .col-->
-                            </div> <!-- end row-->
-
-                            <div class="row">
-                                <div class="col-xl-4">
-                                    <div class="card card-height-100">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Store Visits by Source</h4>
-                                            <div class="flex-shrink-0">
-                                                <div class="dropdown card-header-dropdown">
-                                                    <a class="text-reset dropdown-btn" href="#"
-                                                        data-bs-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                        <span class="text-muted">Report<i
-                                                                class="mdi mdi-chevron-down ms-1"></i></span>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Download
-                                                            Report</a>
-                                                        <a class="dropdown-item" href="#">Export</a>
-                                                        <a class="dropdown-item" href="#">Import</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card header -->
-
-                                        <div class="card-body">
-                                            <div id="store-visits-source"
-                                                data-colors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]'
-                                                class="apex-charts" dir="ltr"></div>
-                                        </div>
-                                    </div> <!-- .card-->
-                                </div> <!-- .col-->
-
-                                <div class="col-xl-8">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Recent Orders</h4>
-                                            <div class="flex-shrink-0">
-                                                <button type="button" class="btn btn-soft-info btn-sm">
-                                                    <i class="ri-file-list-3-line align-middle"></i> Generate
-                                                    Report
-                                                </button>
-                                            </div>
-                                        </div><!-- end card header -->
-
-                                        <div class="card-body">
-                                            <div class="table-responsive table-card">
-                                                <table
-                                                    class="table table-borderless table-centered align-middle table-nowrap mb-0">
-                                                    <thead class="text-muted table-light">
-                                                        <tr>
-                                                            <th scope="col">Order ID</th>
-                                                            <th scope="col">Customer</th>
-                                                            <th scope="col">Product</th>
-                                                            <th scope="col">Amount</th>
-                                                            <th scope="col">Vendor</th>
-                                                            <th scope="col">Status</th>
-                                                            <th scope="col">Rating</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="apps-ecommerce-order-details.html"
-                                                                    class="fw-medium link-primary">#VZ2112</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/users/avatar-1.jpg"
-                                                                            alt=""
-                                                                            class="avatar-xs rounded-circle" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">Alex Smith</div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Clothes</td>
-                                                            <td>
-                                                                <span class="text-success">$109.00</span>
-                                                            </td>
-                                                            <td>Zoetic Fashion</td>
-                                                            <td>
-                                                                <span
-                                                                    class="badge bg-success-subtle text-success">Paid</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 fw-medium mb-0">5.0<span
-                                                                        class="text-muted fs-11 ms-1">(61
-                                                                        votes)</span></h5>
-                                                            </td>
-                                                        </tr><!-- end tr -->
-                                                        <tr>
-                                                            <td>
-                                                                <a href="apps-ecommerce-order-details.html"
-                                                                    class="fw-medium link-primary">#VZ2111</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/users/avatar-2.jpg"
-                                                                            alt=""
-                                                                            class="avatar-xs rounded-circle" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">Jansh Brown</div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Kitchen Storage</td>
-                                                            <td>
-                                                                <span class="text-success">$149.00</span>
-                                                            </td>
-                                                            <td>Micro Design</td>
-                                                            <td>
-                                                                <span
-                                                                    class="badge bg-warning-subtle text-warning">Pending</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 fw-medium mb-0">4.5<span
-                                                                        class="text-muted fs-11 ms-1">(61
-                                                                        votes)</span></h5>
-                                                            </td>
-                                                        </tr><!-- end tr -->
-                                                        <tr>
-                                                            <td>
-                                                                <a href="apps-ecommerce-order-details.html"
-                                                                    class="fw-medium link-primary">#VZ2109</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/users/avatar-3.jpg"
-                                                                            alt=""
-                                                                            class="avatar-xs rounded-circle" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">Ayaan Bowen</div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Bike Accessories</td>
-                                                            <td>
-                                                                <span class="text-success">$215.00</span>
-                                                            </td>
-                                                            <td>Nesta Technologies</td>
-                                                            <td>
-                                                                <span
-                                                                    class="badge bg-success-subtle text-success">Paid</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 fw-medium mb-0">4.9<span
-                                                                        class="text-muted fs-11 ms-1">(89
-                                                                        votes)</span></h5>
-                                                            </td>
-                                                        </tr><!-- end tr -->
-                                                        <tr>
-                                                            <td>
-                                                                <a href="apps-ecommerce-order-details.html"
-                                                                    class="fw-medium link-primary">#VZ2108</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/users/avatar-4.jpg"
-                                                                            alt=""
-                                                                            class="avatar-xs rounded-circle" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">Prezy Mark</div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Furniture</td>
-                                                            <td>
-                                                                <span class="text-success">$199.00</span>
-                                                            </td>
-                                                            <td>Syntyce Solutions</td>
-                                                            <td>
-                                                                <span
-                                                                    class="badge bg-danger-subtle text-danger">Unpaid</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 fw-medium mb-0">4.3<span
-                                                                        class="text-muted fs-11 ms-1">(47
-                                                                        votes)</span></h5>
-                                                            </td>
-                                                        </tr><!-- end tr -->
-                                                        <tr>
-                                                            <td>
-                                                                <a href="apps-ecommerce-order-details.html"
-                                                                    class="fw-medium link-primary">#VZ2107</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0 me-2">
-                                                                        <img src="assets/images/users/avatar-6.jpg"
-                                                                            alt=""
-                                                                            class="avatar-xs rounded-circle" />
-                                                                    </div>
-                                                                    <div class="flex-grow-1">Vihan Hudda</div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Bags and Wallets</td>
-                                                            <td>
-                                                                <span class="text-success">$330.00</span>
-                                                            </td>
-                                                            <td>iTest Factory</td>
-                                                            <td>
-                                                                <span
-                                                                    class="badge bg-success-subtle text-success">Paid</span>
-                                                            </td>
-                                                            <td>
-                                                                <h5 class="fs-14 fw-medium mb-0">4.7<span
-                                                                        class="text-muted fs-11 ms-1">(161
-                                                                        votes)</span></h5>
-                                                            </td>
-                                                        </tr><!-- end tr -->
-                                                    </tbody><!-- end tbody -->
-                                                </table><!-- end table -->
-                                            </div>
-                                        </div>
-                                    </div> <!-- .card-->
-                                </div> <!-- .col-->
-                            </div> <!-- end row-->
-
-                        </div> <!-- end .h-100-->
-
-                    </div> <!-- end col -->
-
-                    {{-- <div class="col-auto layout-rightside-col">
+                        {{-- <div class="col-auto layout-rightside-col">
                         <div class="overlay"></div>
                         <div class="layout-rightside">
                             <div class="card h-100 rounded-0">
@@ -2947,31 +2490,16 @@
                         </div> <!-- end .rightbar-->
 
                     </div> <!-- end col --> --}}
-                </div>
+                    </div>
 
+                </div>
+                <!-- container-fluid -->
             </div>
-            <!-- container-fluid -->
+            <!-- End Page-content -->
+
+            @include('layouts.navbars.footer')
         </div>
-        <!-- End Page-content -->
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> © Velzon.
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="text-sm-end d-none d-sm-block">
-                            Design & Develop by Themesbrand
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <!-- end main content-->
+        <!-- end main content-->
 
     </div>
     <!-- END layout-wrapper -->
@@ -3804,28 +3332,28 @@
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
+    <script src="../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../../assets/libs/node-waves/waves.min.js"></script>
+    <script src="../../assets/libs/feather-icons/feather.min.js"></script>
+    <script src="../../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="../../assets/js/plugins.js"></script>
 
     <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="../../assets/libs/apexcharts/apexcharts.min.js"></script>
 
     <!-- Vector map-->
-    <script src="assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
-    <script src="assets/libs/jsvectormap/maps/world-merc.js"></script>
+    <script src="../../assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+    <script src="../../assets/libs/jsvectormap/maps/world-merc.js"></script>
 
     <!--Swiper slider js-->
-    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/libs/swiper/swiper-bundle.min.js"></script>
 
     <!-- Dashboard init -->
-    <script src="assets/js/pages/dashboard-ecommerce.init.js"></script>
+    <script src="../../assets/js/pages/dashboard-ecommerce.init.js"></script>
 
     <!-- App js -->
-    <script src="assets/js/app.js"></script>
+    <script src="../../assets/js/app.js"></script>
 </body>
 
 
