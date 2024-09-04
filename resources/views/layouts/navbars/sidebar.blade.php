@@ -2,23 +2,23 @@
         <!-- LOGO -->
         <div class="navbar-brand-box">
             <!-- Dark Logo-->
-            <a href="index.html" class="logo logo-dark">
+            {{-- <a href="index.html" class="logo logo-dark">
                 <span class="logo-sm">
                     <img src="../assets/images/logo-sm.png" alt="" height="22">
                 </span>
                 <span class="logo-lg">
                     <img src="../assets/images/logo-dark.png" alt="" height="17">
                 </span>
-            </a>
+            </a> --}}
             <!-- Light Logo-->
-            <a href="index.html" class="logo logo-light">
+            {{-- <a href="index.html" class="logo logo-light">
                 <span class="logo-sm">
                     <img src="../assets/images/logo-sm.png" alt="" height="22">
                 </span>
                 <span class="logo-lg">
                     <img src="../assets/images/logo-light.png" alt="" height="17">
                 </span>
-            </a>
+            </a> --}}
             <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
                 id="vertical-hover">
                 <i class="ri-record-circle-line"></i>
@@ -32,35 +32,26 @@
                 </div>
                 <ul class="navbar-nav" id="navbar-nav">
                     <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                    <li class="nav-item"><a href="{{ route('home') }}" class="nav-link"> <i
+                                class="las la-tachometer-alt"></i>Dashboard
+
+                        </a> </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
-                            <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Dashboards</span>
+                            <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Usuário</span>
                         </a>
-                        < class="collapse menu-dropdown" id="sidebarDashboards">
+                        <div class="collapse menu-dropdown" id="sidebarDashboards">
                             <ul class="nav nav-sm flex-column">
-                                <!-- <li class="nav-item">
-                                        <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Analytics </a>
-                                    </li> -->
-                                <!-- <li class="nav-item">
-                                        <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> CRM </a>
-                                    </li> -->
-                                {{-- <li class="nav-item">
-                                        <a href="index.html" class="nav-link" data-key="t-ecommerce"> Ecommerce </a>
-                                    </li> --}}
                                 <li class="nav-item">
-                                    <a href="dashboard-crypto.html" class="nav-link" data-key="t-crypto"> Crypto </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="dashboard-projects.html" class="nav-link" data-key="t-projects"> Projects
+                                    <a href="{{ route('user.add') }}" class="nav-link">Novo Usuário
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="dashboard-nft.html" class="nav-link" data-key="t-nft"> NFT</a>
+                                    <a href="{{ route('home') }}" class="nav-link">Dashboard
+                                    </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="dashboard-job.html" class="nav-link" data-key="t-job">Job</a>
-                                </li>
+
                             </ul>
 
                     </li>
@@ -99,9 +90,8 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="#sidebarEmail" class="nav-link" data-bs-toggle="collapse"
-                                        role="button" aria-expanded="false" aria-controls="sidebarEmail"
-                                        data-key="t-email">
+                                    <a href="#sidebarEmail" class="nav-link" data-bs-toggle="collapse" role="button"
+                                        aria-expanded="false" aria-controls="sidebarEmail" data-key="t-email">
                                         Email
                                     </a>
                                     <div class="collapse menu-dropdown" id="sidebarEmail">
@@ -113,8 +103,7 @@
                                             <li class="nav-item">
                                                 <a href="#sidebaremailTemplates" class="nav-link"
                                                     data-bs-toggle="collapse" role="button" aria-expanded="false"
-                                                    aria-controls="sidebaremailTemplates"
-                                                    data-key="t-email-templates">
+                                                    aria-controls="sidebaremailTemplates" data-key="t-email-templates">
                                                     Email Templates
                                                 </a>
                                                 <div class="collapse menu-dropdown" id="sidebaremailTemplates">
