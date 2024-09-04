@@ -54,7 +54,13 @@ class UserController extends Controller
             dd($exception->getMessage());
         }
       
-        
+//         Sweetalert::basic('Description', 'Title');
+// Sweetalert::info('Description', 'Title');
+// Sweetalert::success('Description', 'Title');
+// Sweetalert::error('Description', 'Title');
+// Sweetalert::warning('Description', 'Title');
+// Sweetalert::message('Description', 'Title');
+// Sweetalert::message('Description <h2>Custom HTML</h2>', 'Title')->html();
         
         
     }
