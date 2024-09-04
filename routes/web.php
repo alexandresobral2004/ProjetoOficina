@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/user', function () {
-    return view('/users/new');
-})->name('user.add');
+
+Route::get('/user/add',[\App\Http\Controllers\UserController::class,"add"])->name('user.add');
+
+
+Route::post('/user/save', [\App\Http\Controllers\UserController::class,"store"])->name('user.store');
 
 Route::get('/', function () {
     return view('/layouts/app');

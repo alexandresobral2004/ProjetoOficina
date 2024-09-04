@@ -33,7 +33,7 @@
                 <ul class="navbar-nav" id="navbar-nav">
                     <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                     <li class="nav-item"><a href="{{ route('home') }}" class="nav-link"> <i
-                                class="las la-tachometer-alt"></i>Dashboard
+                                class="las la-tachometer-alt"></i><span data-key="t-dashboards">Dashboard</span>
 
                         </a> </li>
                     <li class="nav-item">
@@ -55,7 +55,7 @@
                             </ul>
 
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarApps">
                             <i class="lab la-delicious"></i> <span data-key="t-apps">Apps</span>
@@ -504,9 +504,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="las la-columns"></i> <span data-key="t-layouts">Layouts</span> <span
@@ -533,10 +533,10 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> <!-- end Dashboard Menu -->
+                    </li> <!-- end Dashboard Menu --> --}}
 
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarPages">
                             <i class="las la-pager"></i> <span data-key="t-pages">Pages</span>
@@ -547,9 +547,9 @@
 
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="sidebarLanding">
                             <i class="ri-rocket-line"></i> <span data-key="t-landing">Landing</span>
@@ -569,7 +569,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
 
 
