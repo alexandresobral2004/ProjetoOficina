@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('home') }}" class="nav-link">Dashboard
+                                <a href="{{ route('user.index') }}" class="nav-link">Usuários
                                 </a>
                             </li>
 
