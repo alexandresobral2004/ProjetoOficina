@@ -14,7 +14,6 @@
                 <div class="card-body">
                     <form action="{{ route('user.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $obj->id ?? '' }}">
                         <div class="live-preview">
                             <div class="row gy-4">
                                 <div class=" col-xxl-6 col-md-6">
@@ -42,16 +41,16 @@
                                         <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                             <label>{{ __('Fone') }}</label>
                                             <input id="fone" type="text" name="fone"
-                                                class="form-control{{ $errors->has('fone') ? ' is-invalid' : '' }}"
+                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('(00) 00000-0000)') }}"
-                                                value="{{ old('fone', $obj->fone ?? '') }}" required>
+                                                value="{{ old('password', $obj->fone ?? '') }}" required>
 
                                         </div>
                                     </div>
                                     <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                             <label>{{ __('Senha') }}</label>
-                                            <input id="password" type="password" name="password"
+                                            <input id="password" type="text" name="password"
                                                 class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('Senha') }}"
                                                 value="{{ old('password', $obj->password ?? '') }}" required>
@@ -61,7 +60,7 @@
                                     <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('confirm_password') ? ' has-danger' : '' }}">
                                             <label>{{ __('Confirme a senha') }}</label>
-                                            <input id="confirm_password" type="password" name="confirm_password"
+                                            <input id="confirm_password" type="text" name="confirm_password"
                                                 class="form-control{{ $errors->has('confirm_password') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('Confirme a senha') }}"
                                                 value="{{ old('confirm_password', $obj->confirm_password ?? '') }}"
