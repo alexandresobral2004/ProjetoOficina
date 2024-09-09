@@ -31,26 +31,55 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try{
+             $user = new User();
+            if($request->id){
+                 $user = User::find($request->id);
+                $validatedData = $request->validate([
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+                     'password' => 'required|string|min:8',
+                     'confirm_password' => 'required|string|min:8',
+                     'fone'=> 'required|string|max:20',
+                     'cpf'=> 'required|string|max:15',
+                     'cnpj'=> 'required|string|max:20',
+
+                ]);
+               
+                $user->id = $request->id;
+                $user->name = $validatedData['name'];
+                $user->email = $validatedData['email'];
+                $user->password = $validatedData['password'];
+                $user->confirm_password = $validatedData['confirm_password'];
+                $user->fone = $validatedData['fone'];
+                $user->cpf = $validatedData['cpf'];
+                $user->cnpj = $validatedData['cnpj'];
+    
+                $user->save();
+                Sweetalert::success('Usuário atualizado com sucesso!', 'Sucesso!');
+                return view('/users/new');
+
+               }
+
+        
             //Validação dos dados de entrada
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'confirm_password' => 'required|string|min:6',
-            'fone'=> 'required|string|max:15',  
-            'cpf'=> 'required|string|max:15',
-            'cnpj'=> 'required|string|max:20'
-         
+            'fone'=> 'required|string|max:22',  
+            // 'cpf'=> 'required|string|max:15',
+            // 'cnpj'=> 'required|string|max:20',
+           
         ]);
-       
-
-         // Criptografando a senha
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData);
-        Sweetalert::success('Usuário salvo com sucesso!', 'Sucesso!');
-        return view('/users/new');
-
-        }
+           
+           
+              
+            // Criptografando a senha
+            $validatedData['password'] = bcrypt($validatedData['password']);
+            $user->save($validatedData);
+            Sweetalert::success('Usuário salvo com sucesso!', 'Sucesso!');
+            return view('/users/new');
+            }
+        
         catch(QueryException $exception){
             dd($exception->getMessage());
         }
@@ -79,7 +108,15 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = new User();
+        try {
+            $user = User::find($id);
+            
+            return view('/users/new', ['obj' => $user]);
+            
+        } catch (QueryException $exception) {
+            dd($exception->getMessage());
+        }
     }
 
     /**
@@ -87,7 +124,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
     }
 
     /**
