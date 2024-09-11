@@ -8,10 +8,10 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Dashboard | Velzon - Admin & Dashboard Template</title>
+    <title>OficinaDigital</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -40,6 +40,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
 
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+    <!-- INPUT MASK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js"></script>
+
 
 
 
@@ -95,11 +99,56 @@
             <div class="page-content">
 
                 <div class="container-fluid">
+
                     @include('layouts.navbars.breadcrumbs')
                     @include('sweetalert::sweetalert')
+                    <!-- Exibe mensagens de erro de validação globalmente -->
+                    {{-- @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif --}}
+                    <!-- Mensagens de sucesso -->
+                    {{-- @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif --}}
+
                     @yield('content')
+
                 </div>
 
+                <!-- SweetAlert--->
+                @if (session('success'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sucesso!',
+                                text: '{{ session('success') }}',
+                                confirmButtonText: 'Ok'
+                            });
+                        });
+                    </script>
+                @endif
+
+                @if ($errors->any())
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro!',
+                                text: '{{ $errors->first() }}', // Exibe o primeiro erro
+                                confirmButtonText: 'Ok'
+                            });
+                        });
+                    </script>
+                @endif
             </div>
             <!-- container-fluid -->
         </div>

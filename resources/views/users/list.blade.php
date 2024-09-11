@@ -26,54 +26,75 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
-                                <tr>
-                                    <th scope="row">
-                                        <div class="form-check">
-                                            <input class="form-check-input fs-15" type="checkbox" name="checkAll"
-                                                value="option1">
-                                        </div>
-                                    </th>
-                                    <td>{{ $user->id }}</td>
+                            @if ($users->isNotEmpty())
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="form-check">
+                                                <input class="form-check-input fs-15" type="checkbox" name="checkAll"
+                                                    value="option1">
+                                            </div>
+                                        </th>
+                                        <td>{{ $user->id }}</td>
 
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->fone }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->fone }}</td>
 
-                                    <td><span class="badge bg-info-subtle text-info">Re-open</span></td>
-                                    <td><span class="badge bg-danger">High</span></td>
-                                    <td>
-                                        <div class="dropdown d-inline-block">
-                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ri-more-fill align-middle"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a href="#!" class="dropdown-item"><i
-                                                            class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
-                                                </li>
-                                                <li><a href="{{ route('user.edit', $user->id) }}"
-                                                        class="dropdown-item edit-item-btn"><i
-                                                            class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                        Edit</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item remove-item-btn">
+                                        <td><span class="badge bg-info-subtle text-info">Re-open</span></td>
+                                        <td><span class="badge bg-danger">High</span></td>
+                                        <td>
+                                            <div class="dropdown d-inline-block">
+                                                <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="ri-more-fill align-middle"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a href="#!" class="dropdown-item"><i
+                                                                class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                            View</a>
+                                                    </li>
+                                                    <li><a href="{{ route('user.edit', $user->id) }}"
+                                                            class="dropdown-item edit-item-btn"><i
+                                                                class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                            Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        {{-- <a href="{{ route('user.destroy', $user->id) }}"
+                                                        class="dropdown-item remove-item-btn">
                                                         <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                         Delete
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                    </a> --}}
+                                                        {{-- <a href="#" class="dropdown-item remove-item-btn"
+                                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                            data-user-id="{{ $user->id }}"
+                                                            data-user-name="{{ $user->name }}">
+                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                            Delete
+                                                        </a> --}}
+                                                        <button type="button" class="dropdown-item remove-item-btn"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal_{{ $user->id }}">
+                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                            <span>Delete</span>
+                                                        </button>
 
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @include('layouts.modal.modalUser')
 
                         </tbody>
                         @endforeach
+                    @else
+                        <p>Nenhum usuário encontrado.</p>
+                        @endif
                     </table>
                 </div>
             </div>
         </div><!--end col-->
+
     </div><!--end row-->
 @endsection
