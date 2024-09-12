@@ -1,9 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <div class="main-content">
-
-        <div class="page-content">
-            <div class="container-fluid"> --}}
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
