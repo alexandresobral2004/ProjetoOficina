@@ -8,23 +8,23 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Sign In | Velzon - Admin & Dashboard Template</title>
+    <title>Oficina Inteligente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    {{-- <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" /> --}}
+    {{-- <meta content="Themesbrand" name="author" /> --}}
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     <!-- Layout config Js -->
-    <script src="assets/js/layout.js"></script>
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
     <!--sweetalert2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -48,7 +48,7 @@
         <!-- auth page content -->
         <div class="auth-page-content">
             <div class="container">
-                <!-- SweetAlert--->
+
                 @if (session('success'))
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
@@ -74,6 +74,20 @@
                         });
                     </script>
                 @endif
+                @if ($errors->any())
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var errors = @json($errors->all());
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro!',
+                                html: errors.join('<br>'), // Concatena erros com quebra de linha
+                                confirmButtonText: 'Ok'
+                            });
+                        });
+                    </script>
+                @endif
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
@@ -82,7 +96,9 @@
                                     <img src="assets/images/logo-light.png" alt="" height="20">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                            <p class="mt-3 fs-15 fw-medium">
+                            <h3>Oficina Inteligente</h3>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -131,9 +147,9 @@
                                         <div class="mt-4">
                                             <button class="btn btn-success w-100" type="submit">Logar</button>
                                         </div>
-                                        <div class="mt-4 d-flex justify-content-center align-items-center ">
-                                            <a href="{{ route('auth.register') }}">Novo Cadastro</a>
-                                        </div>
+                                        {{-- <div class="mt-4 d-flex justify-content-center align-items-center ">
+                                            <a href="{{ route('auth.register') }}" class="title">Novo Cadastro</a>
+                                        </div> --}}
 
                                         <div class="mt-4 text-center">
                                             <div class="signin-other-title">
@@ -162,8 +178,8 @@
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Don't have an account ? <a href="auth-signup-basic.html"
-                                    class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
+                            <p class="mb-0">Não tem uma conta?<a href="{{ route('auth.register') }}"
+                                    class="fw-semibold text-primary text-decoration-underline"> Cadastre-se </a> </p>
                         </div>
 
                     </div>

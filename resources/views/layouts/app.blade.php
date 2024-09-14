@@ -45,8 +45,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js"></script>
 
 
-
-
+    //Livewire
+    @livewireStyles
 </head>
 
 <body>
@@ -93,7 +93,9 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
+        {{-- @include('layouts.navbars.settings') --}}
         <div class="main-content">
+            <!-- Theme Settings -->
 
 
             <div class="page-content">
@@ -187,8 +189,10 @@
         </div>
     </div>
 
-    <!-- Theme Settings -->
-    @include('layouts.navbars.settings')
+
+
+    //Livewire
+    @livewireScripts
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
