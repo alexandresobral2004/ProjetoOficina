@@ -68,8 +68,8 @@ class AuthController extends Controller
             return redirect()->route('auth.dashboard')->with('success', 'Login successful');     
           
         }
-
-        return response()->json(['error' => 'Login failed'], 401);
+         Sweetalert::error('Login ou Senha inválidos!', 'Erro!');
+        return redirect()->route('auth.login');
     }
 
     // Método para logout
@@ -80,5 +80,9 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('auth.login')->with('success', 'Logout successful');
         
+    }
+
+    public function pagina404(){
+        return view('/auth/404');
     }
 }

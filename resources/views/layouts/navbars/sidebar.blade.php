@@ -44,23 +44,55 @@
                     <div class="collapse menu-dropdown" id="sidebarDashboards">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('user.add') }}" class="nav-link">Novo Usuário
+                                <a href="{{ route('user.add') }}" class="nav-link">Novo
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('user.index') }}" class="nav-link">Usuários
+                                <a href="{{ route('user.index') }}" class="nav-link">Lista
                                 </a>
                             </li>
 
                         </ul>
 
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Cliente</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarDashboards">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('user.add') }}" class="nav-link">Novo
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('user.index') }}" class="nav-link">Clientes
+                                </a>
+                            </li>
 
+                        </ul>
 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Produto</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarDashboards">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('user.add') }}" class="nav-link">Novo
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('user.index') }}" class="nav-link">Lista
+                                </a>
+                            </li>
 
+                        </ul>
 
-
-
+                </li>
 
             </ul>
         </div>
