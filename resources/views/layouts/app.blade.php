@@ -44,6 +44,10 @@
     <!-- INPUT MASK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css" rel="stylesheet">
+
+        <!-- materialdesign icon js-->
+        <script src="assets/js/pages/materialdesign.list.js"></script>
 
     //Livewire
     @livewireStyles
@@ -223,6 +227,9 @@
 
     <!-- jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <!-- materialdesign icon js-->
+    <script src="assets/js/pages/materialdesign.list.js"></script>
 
 
 </body>

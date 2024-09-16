@@ -18,7 +18,7 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         // Verifica se o usuário está autenticado e se é um administrador
-        if (Auth::check() && Auth::user()->tipo_user == 'admin') {
+        if (Auth::check() && Auth::user()->role == 'admin') {
         return $next($request); // Permite acesso
         }
 
