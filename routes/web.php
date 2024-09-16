@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ErrorController;
 
 
 
@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 });
 
 
+
+Route::fallback([ErrorController::class, 'notFound']);
 
 
 
