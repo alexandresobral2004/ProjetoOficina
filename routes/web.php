@@ -7,8 +7,8 @@ use App\Http\Controllers\ErrorController;
 
 
 
-    //Login e Logout
-Route::get('/register', [AuthController::class, 'register'])->name('auth.register');    
+//Login e Logout
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/registerSave', [AuthController::class, 'registerSave'])->name('auth.registerSave');
 Route::get('', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/logar', [AuthController::class, 'logar'])->name('auth.logar');
@@ -21,16 +21,16 @@ Route::get('/404', [AuthController::class, 'pagina404'])->name('auth.pagina404')
 
 Route::group(['middleware' => 'auth'], function () {
 
-//Dashboard 
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('auth.dashboard');
+    //Dashboard 
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('auth.dashboard');
 
-//user
+    //user
 
-Route::get('/user/add',[\App\Http\Controllers\UserController::class,"add"])->name('user.add');
-Route::post('/user/save', [\App\Http\Controllers\UserController::class,"store"])->name('user.store');
-Route::get('/user/list', [\App\Http\Controllers\UserController::class,"index"])->name('user.index');
-Route::get('/user/edit/{id}', [\App\Http\Controllers\UserController::class,"edit"])->name('user.edit');
-Route::get('/user/del/{id}', [\App\Http\Controllers\UserController::class,"destroy"])->name('user.destroy');
+    Route::get('/user/add', [\App\Http\Controllers\UserController::class, "add"])->name('user.add');
+    Route::post('/user/save', [\App\Http\Controllers\UserController::class, "store"])->name('user.store');
+    Route::get('/user/list', [\App\Http\Controllers\UserController::class, "index"])->name('user.index');
+    Route::get('/user/edit/{id}', [\App\Http\Controllers\UserController::class, "edit"])->name('user.edit');
+    Route::get('/user/del/{id}', [\App\Http\Controllers\UserController::class, "destroy"])->name('user.destroy');
 
 
 });
@@ -39,7 +39,7 @@ Route::get('/user/del/{id}', [\App\Http\Controllers\UserController::class,"destr
 
 //Rotas para admins
 Route::group(['middleware' => ['auth', 'admin']], function () {
-
+  
 });
 
 
