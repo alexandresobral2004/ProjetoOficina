@@ -15,18 +15,39 @@
                     <form action="{{ route('user.store') }}" method="POST">
                         @csrf
                         <div class="live-preview">
-                            <div class="row gy-4">
+                            <div class="row mt-2">
                                 <input type="hidden" name="id" value="{{ $obj->id ?? '' }}">
                                 <div class="col-xx-2 col-md-2">
-                                    <div class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Tipo de Usuário') }}</label>
-                                        <input id="tipo_user" readonly type="text" name="tipo_user"
-                                            class="form-control{{ $errors->has('tipo_user') ? ' is-invalid' : '' }}"
-                                            value="{{ old('tipo_user', $obj->tipo_user ?? '') }}" required>
-
+                                    <div
+                                        class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                        <label>{{ __('Tipo de Usuário*') }}</label>
+                                        <select class="form-select" id="role" name="role">
+                                            @foreach($userTypes as $value => $label)
+                                                <option value="{{ $value }}" {{ old('role', $obj->role) == $value ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
 
                                     </div>
                                 </div>
+                                <div class="col-xx-2 col-md-2">
+                                    <div
+                                        class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
+                                        <label>{{ __('Status do Usuário*') }}</label>
+                                        <select class="form-select" id="status" name="status">
+                                            @foreach($userStatus as $value => $label)
+                                                <option value="{{ $value }}" {{ old('status', $obj->status) == $value ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-2">
                                 <div class=" col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <label>{{ __('Nome') }}</label>
@@ -47,7 +68,9 @@
 
                                     </div>
                                 </div>
-                                <div class="row gy-2">
+                            </div>
+                                
+                                <div class="row mt-2">
                                     <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                             <label>{{ __('Fone') }}</label>
@@ -79,7 +102,7 @@
                                         </div>
                                     </div> --}}
                                 </div>
-                                <div class="row gy-2">
+                                <div class="row mt-2">
                                     <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                             <label>{{ __('CPF') }}</label>
@@ -101,7 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row gy-4">
+                                <div class="row mt-3">
                                     <div class="col-xxl-3 col-md-3">
                                         <button type="submit" class="btn btn-primary">Salvar</button>
                                     </div>

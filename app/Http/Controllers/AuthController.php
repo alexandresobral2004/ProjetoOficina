@@ -62,7 +62,14 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        
+       try {
+        $user = User::where('email', $request['email'])->first();
+        if($user->status == 0){
+            Sweetalert::error('Usuário inativo, contate o administrador!', 'Erro!');
+            return view('auth.login');
+        }
+
+           
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
            
@@ -71,6 +78,15 @@ class AuthController extends Controller
         }
          Sweetalert::error('Login ou Senha inválidos!', 'Erro!');
         return redirect()->route('auth.login');
+        
+       } catch (QueryException $exception) {
+        dd($exception->getMessage());
+       }
+
+       
+      
+
+     
     }
 
     // Método para logout
@@ -79,7 +95,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('auth.login')->with('success', 'Logout successful');
+        return view('auth.login')->with('success', 'Logout successful');
         
     }
 

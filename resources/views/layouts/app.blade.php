@@ -22,15 +22,15 @@
     <link href="{{ asset('assets/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="{{ asset('../../assets/js/layout.js') }}"></script>
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
     <!-- Bootstrap Css -->
-    <link href="{{ asset('../../assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ asset('../../assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset('../../assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="{{ asset('../../assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -46,8 +46,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css" rel="stylesheet">
 
-        <!-- materialdesign icon js-->
-        <script src="assets/js/pages/materialdesign.list.js"></script>
+    
 
     //Livewire
     @livewireStyles
@@ -71,7 +70,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mt-2 text-center">
-                            <lord-icon src="../../../../cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                            <lord-icon src="{{ asset('assets/libs/lottie-player/lottie-player.js') }}" trigger="loop"
                                 colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
                             <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
                                 <h4>Are you sure ?</h4>
@@ -92,12 +91,14 @@
 
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
+       
         <div class="vertical-overlay"></div>
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        {{-- @include('layouts.navbars.settings') --}}
+        @include('layouts.navbars.settings')
+       
         <div class="main-content">
             <!-- Theme Settings -->
 
@@ -106,24 +107,9 @@
 
                 <div class="container-fluid">
 
-                    @include('layouts.navbars.breadcrumbs')
+                  
                     @include('sweetalert::sweetalert')
-                    <!-- Exibe mensagens de erro de validação globalmente -->
-                    {{-- @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif --}}
-                    <!-- Mensagens de sucesso -->
-                    {{-- @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif --}}
+                
 
                     @yield('content')
 
@@ -197,30 +183,30 @@
 
     //Livewire
     @livewireScripts
-
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
     <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
-    <script src="{{ asset('../../assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
 
     <!-- apexcharts -->
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
     <!-- Vector map-->
-    <script src="{{ asset('../../assets/libs/jsvectormap/js/jsvectormap.min.js') }}"></script>
-    <script src="{{ asset('../../assets/libs/jsvectormap/maps/world-merc.js') }}"></script>
+    <script src="{{ asset('assets/libs/jsvectormap/js/jsvectormap.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jsvectormap/maps/world-merc.js') }}"></script>
 
     <!--Swiper slider js-->
     <script src="{{ asset('assets/libs/swiper/swiper-bundle.min.js') }}"></script>
 
     <!-- Dashboard init -->
-    <script src="{{ asset('../../assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{ asset('../../assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -228,8 +214,7 @@
     <!-- jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <!-- materialdesign icon js-->
-    <script src="assets/js/pages/materialdesign.list.js"></script>
+
 
 
 </body>
