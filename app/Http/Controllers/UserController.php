@@ -31,26 +31,65 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try{
+
+         
+             $user = new User();
+            if($request->id){
+
+
+                $user = User::find($request->id);
+         
+               
+                $user->id = $request->id;
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = $request->password;
+                // $user->confirm_password = 
+                $user->fone = $request->fone;
+                if($request->cpf){
+                    $user->cpf = $request->cpf;
+                }
+                $user->cnpj = $request->cnpj;
+                $user->tipo_user = $request->tipo_user;
+           
+                $user->save();
+                Sweetalert::success('Usuário atualizado com sucesso!', 'Sucesso!');
+                return view('/users/new');
+
+               }
+
+              
             //Validação dos dados de entrada
-        $validatedData = $request->validate([
+        $validatedData = $request->validate( [
+            'role' => 'required|string',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'confirm_password' => 'required|string|min:6',
-            'fone'=> 'required|string|max:15',  
-            'cpf'=> 'required|string|max:15',
-            'cnpj'=> 'required|string|max:20'
-         
+            'password'=>  'required|string|min:6',
+            'confirm_password'=>  'required|string|min:6',
+            'fone'=> 'required|string|max:22',  
+            'status'=> 'required|string',  
+          
+           
         ]);
-       
-
-         // Criptografando a senha
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData);
-        Sweetalert::success('Usuário salvo com sucesso!', 'Sucesso!');
-        return view('/users/new');
-
-        }
+            
+            
+            if($validatedData['password']  == $validatedData['confirm_password']){
+          
+                // Criptografando a senha
+                $validatedData['password'] = bcrypt($validatedData['password']);
+                
+                $user->create($validatedData);
+              
+                return redirect()->route('user.add')->with('success', 'Usuário criado com sucesso.');
+                }
+                else{
+                     Sweetalert::error('Senhas não conferem!', 'Erro!');
+                     return Redirect(route('user.add'));
+                }
+            }
+              
+            
+        
         catch(QueryException $exception){
             dd($exception->getMessage());
         }
@@ -71,7 +110,15 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = new User();
+        try {
+            $user = User::find($id);
+            
+            return view('/users/viewUser', ['user' => $user]);
+            
+        } catch (QueryException $exception) {
+            dd($exception->getMessage());
+        }
     }
 
     /**
@@ -79,22 +126,52 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $userTypes = [
+            ' ' => 'Selecione',
+            'admin' => 'Admin',
+            'user' => 'User',
+        ];
+        $userStatus = [
+            ' ' => 'Selecione',
+            'ativo' => 'Ativo',
+            'inativo' => 'Inativo',
+        ];
+        $user = new User();
+        try {
+            $user = User::find($id);
+            
+            return view('/users/edit', ['obj' => $user, 'userTypes' => $userTypes, 'userStatus' => $userStatus]);
+            
+        } catch (QueryException $exception) {
+            dd($exception->getMessage());
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
+        try {
+             $user = User::find($id);
+
+            if($user){
+               
+                $user->delete();
+                $users = User::all();
+             return view('/users/list',['users'=>$users])->with('success', 'Usuário removido com sucesso.');;
+             
+            }
+          
+
+            
+
+            } catch (QueryException $exception) {
+                dd($exception->getMessage());
+            }
+            
+
         
     }
 }
