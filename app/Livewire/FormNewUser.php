@@ -15,37 +15,50 @@ class FormNewUser extends Component
                    <div class="col-lg-12">
                        <div class="card">
                            <div class="card-header align-items-center d-flex">
-                               <h4 class="card-title mb-0 flex-grow-1">Cadastro de Usuário</h4>
+                               <h3 class="card-title mb-0 flex-grow-1">Cadastro de Usuário</h3>
+                               <span>(*) Campos obrigatórios</span>
 
-                           </div><!-- end card header -->
+                           </div>
                            <div class="card-body">
                                <form action="{{ route('user.store') }}" method="POST">
-@csrf
+                                @csrf
                                    <input type="hidden" name="id"
                                        value="{{ $obj->id ?? '' }}">
                                    <div class="live-preview">
 
-                                       <div class="row   mt-2">
+                                       <div class="row  mt-2">
                                            <div class="col-xx-2 col-md-2">
                                                <div
                                                    class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
-                                                   <label>{{ __('Tipo de Usuário') }}</label>
-                                                   <select name="tipo_user" id="tipo_user" class="form-control">
+                                                   <label>{{ __('Tipo de Usuário*') }}</label>
+                                                   <select name="role" id="role" class="form-control">
                                                        <option value=" ">Selecione</option>
-                                                       <option value="fisica">Pessoa Física</option>
-                                                       <option value="juridica">Pessoa Jurídica</option>
+                                                       <option value="user">User</option>
+                                                       <option value="admin">Admin</option>
                                                    </select>
 
                                                </div>
                                            </div>
-                                           <div id="campo_dinamico" class="col-xxl-3 col-md-3"></div>
+                                           <div class="col-xx-2 col-md-2">
+                                               <div
+                                                   class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
+                                                   <label>{{ __('Status do Usuário*') }}</label>
+                                                   <select name="role" id="role" class="form-control">
+                                                       <option value=" ">Selecione</option>
+                                                       <option value="1">Ativo</option>
+                                                       <option value="0">Inativo</option>
+                                                   </select>
+
+                                               </div>
+                                           </div>
+                                         
 
                                        </div>
-                                       <div class="row  mt-2">
+                                       <div class="row  mt-4">
                                            <div class=" col-xxl-4 col-md-4">
                                                <div
                                                    class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                                   <label>{{ __('Nome') }}</label>
+                                                   <label>{{ __('Nome*') }}</label>
                                                    <input id="name" type="text" name="name"
                                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                        placeholder="{{ __('Nome') }}"
@@ -54,10 +67,37 @@ class FormNewUser extends Component
 
                                                </div>
                                            </div>
-                                           <div class="col-xxl-4 col-md-4">
+                                           <div class=" col-xxl-2 col-md-2">
+                                               <div
+                                                   class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
+                                                   <label>{{ __('CPF') }}</label>
+                                                   <input id="cpf" type="text" name="cpf"
+                                                       class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }}"
+                                                       placeholder="{{ __('Seu CPF') }}"
+                                                       value="{{ old('name', $obj->cpf ?? '') }}">
+
+                                               </div>
+                                           </div>
+                                           <div class=" col-xxl-3 col-md-3">
+                                               <div
+                                                   class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
+                                                   <label>{{ __('CNPJ') }}</label>
+                                                   <input id="cnpj" type="text" name="cnpj"
+                                                       class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
+                                                       placeholder="{{ __('CNPJ (Para empresas)') }}"
+                                                       value="{{ old('name', $obj->cpf ?? '') }}">
+
+                                               </div>
+                                           </div>
+                                          
+                                          
+                                          
+                                       </div>
+                                       <div class="row  mt-2">
+                                       <div class="col-xxl-4 col-md-4">
                                                <div
                                                    class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                                   <label>{{ __('E-mail') }}</label>
+                                                   <label>{{ __('E-mail*') }}</label>
                                                    <input id="email" type="mail" name="email"
                                                        class="form-control{{ $errors->has('Email') ? ' is-invalid' : '' }}"
                                                        placeholder="{{ __('seuemail@email.com.br') }}"
@@ -67,10 +107,10 @@ class FormNewUser extends Component
                                                </div>
 
                                            </div>
-                                           <div class="col-xxl-2 col-md-2">
+                                       <div class="col-xxl-2 col-md-2">
                                                <div
                                                    class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
-                                                   <label>{{ __('Fone') }}</label>
+                                                   <label>{{ __('Fone*') }}</label>
                                                    <input id="fone" type="text" name="fone"
                                                        class="form-control{{ $errors->has('fone') ? ' is-invalid' : '' }}"
                                                        placeholder="{{ __('(00) 00000-0000)') }}"
@@ -79,12 +119,10 @@ class FormNewUser extends Component
 
                                                </div>
                                            </div>
-                                       </div>
-                                       <div class="row  mt-2">
                                            <div class="col-xxl-2 col-md-2">
                                                <div
                                                    class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                                   <label>{{ __('Senha') }}</label>
+                                                   <label>{{ __('Senha*') }}</label>
                                                    <input id="password" type="password" name="password"
                                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                        placeholder="{{ __('Senha') }}"
@@ -96,7 +134,7 @@ class FormNewUser extends Component
                                            <div class="col-xxl-2 col-md-2">
                                                <div
                                                    class="form-group{{ $errors->has('confirm_password') ? ' has-danger' : '' }}">
-                                                   <label>{{ __('Confirme a senha') }}</label>
+                                                   <label>{{ __('Confirme a senha*') }}</label>
                                                    <input id="confirm_password" type="password" name="confirm_password"
                                                        class="form-control{{ $errors->has('confirm_password') ? ' is-invalid' : '' }}"
                                                        placeholder="{{ __('Confirme a senha') }}"
@@ -128,60 +166,8 @@ class FormNewUser extends Component
                </div>
                </div>
                </div>
-               <script>
-                   document.getElementById('tipo_user').addEventListener('change', function () {
-                       var tipoUsuario = this.value;
-                       var campoDinamico = document.getElementById('campo_dinamico');
-
-                       // Remove os campos dinâmicos existentes
-                       campoDinamico.innerHTML = '';
-
-                       if (tipoUsuario === 'fisica') {
-                           // Criar e adicionar campo CPF com o modelo desejado
-                           var divCpf = document.createElement('div');
-                           divCpf.classList.add('form-group', 'mb-2'); // Adiciona classes do Bootstrap
-
-                           var labelCpf = document.createElement('label');
-                           labelCpf.setAttribute('for', 'cpf');
-                           labelCpf.innerText = 'CPF'; // Texto do rótulo
-
-                           var inputCpf = document.createElement('input');
-                           inputCpf.setAttribute('type', 'text');
-                           inputCpf.setAttribute('name', 'cpf');
-                           inputCpf.setAttribute('id', 'cpf');
-                           inputCpf.setAttribute('placeholder', 'Digite seu CPF');
-                           inputCpf.classList.add(
-                           'form-control'); // Adiciona a classe 'form-control' para o Bootstrap
-
-                           divCpf.appendChild(labelCpf);
-                           divCpf.appendChild(inputCpf);
-                           campoDinamico.appendChild(divCpf);
-                           // Aplicar a máscara de CPF
-                           Inputmask('999.999.999-99').mask(inputCpf);
-                       } else if (tipoUsuario === 'juridica') {
-                           // Criar e adicionar campo CNPJ com o modelo desejado
-                           var divCnpj = document.createElement('div');
-                           divCnpj.classList.add('form-group', 'mb-2'); // Adiciona classes do Bootstrap
-
-                           var labelCnpj = document.createElement('label');
-                           labelCnpj.setAttribute('for', 'cnpj');
-                           labelCnpj.innerText = 'CNPJ'; // Texto do rótulo
-
-                           var inputCnpj = document.createElement('input');
-                           inputCnpj.setAttribute('type', 'text');
-                           inputCnpj.setAttribute('name', 'cnpj');
-                           inputCnpj.setAttribute('id', 'cnpj');
-                           inputCnpj.setAttribute('placeholder', 'Digite seu CNPJ');
-                           inputCnpj.classList.add(
-                           'form-control'); // Adiciona a classe 'form-control' para o Bootstrap
-
-                           divCnpj.appendChild(labelCnpj);
-                           divCnpj.appendChild(inputCnpj);
-                           campoDinamico.appendChild(divCnpj);
-                           // Aplicar a máscara de CNPJ
-                           Inputmask('99.999.999/9999-99').mask(inputCnpj);
-                       }
-                   });
+                <script>
+              
 
                    //Mascara  para FONE, CPF e CNPJ
                    Inputmask({

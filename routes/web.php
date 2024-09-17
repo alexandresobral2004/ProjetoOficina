@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/list', [\App\Http\Controllers\UserController::class, "index"])->name('user.index');
     Route::get('/user/edit/{id}', [\App\Http\Controllers\UserController::class, "edit"])->name('user.edit');
     Route::get('/user/del/{id}', [\App\Http\Controllers\UserController::class, "destroy"])->name('user.destroy');
-
+    Route::get('/user/view/{id}', [\App\Http\Controllers\UserController::class, "show"])->name('user.show');
 
 });
 

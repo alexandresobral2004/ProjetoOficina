@@ -23,7 +23,7 @@ class DataTable extends Component
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Basic Datatable.</h5>
+                <h3 class="card-title mb-0">Lista de Usuários</h3>
             </div>
             <div class="card-body">
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
@@ -40,13 +40,13 @@ class DataTable extends Component
                             <th data-ordering="false">E-mail</th>
                             <th data-ordering="false">Fone</th>
                             <th>Status</th>
-                            <th>Prioridade</th>
+                       
                             <th data-ordering="false">Action</th>
                         </tr>
                     </thead>
                         <tbody>
-@if($users->isNotEmpty())
-@foreach($users as $user)
+                                @if($users->isNotEmpty())
+                                @foreach($users as $user)
                                     <tr>
                                         <th scope="row">
                                             <div class="form-check">
@@ -60,8 +60,14 @@ class DataTable extends Component
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->fone }}</td>
 
-                                        <td><span class="badge bg-info-subtle text-info">Re-open</span></td>
-                                        <td><span class="badge bg-danger">High</span></td>
+                                        <td><span class="badge bg-info-subtle text-info" style="font-size: 12px;">
+                                            @if($user->status == 1)
+                                                Ativo
+                                            @else
+                                                Inativo
+                                            @endif
+                                        </span></td>
+                                    
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -69,7 +75,7 @@ class DataTable extends Component
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="#!" class="dropdown-item"><i
+                                                    <li><a href="{{ route('user.show', $user->id) }}" class="dropdown-item"><i
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                             View</a>
                                                     </li>
@@ -79,18 +85,7 @@ class DataTable extends Component
                                                             Edit</a>
                                                     </li>
                                                     <li>
-                                                        {{-- <a href="{{ route('user.destroy', $user->id) }}"
-                                                        class="dropdown-item remove-item-btn">
-                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                        Delete
-                                                        </a> --}}
-                                                        {{-- <a href="#" class="dropdown-item remove-item-btn"
-                                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                            data-user-id="{{ $user->id }}"
-                                                        data-user-name="{{ $user->name }}">
-                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                        Delete
-                                                        </a> --}}
+                                                    
                                                         <button type="button" class="dropdown-item remove-item-btn"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal_{{ $user->id }}">
