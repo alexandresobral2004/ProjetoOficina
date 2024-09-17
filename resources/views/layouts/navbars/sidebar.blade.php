@@ -56,7 +56,26 @@
                             </li>
 
                         </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sideBarEmployeeDashboards" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sideBarEmployeeDashboards">
+                        <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Funcionario</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sideBarEmployeeDashboards">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('employee.add')}}" class="nav-link">Novo Funcionario
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('employee.index')}}" class="nav-link">Funcionarios
+                                </a>
+                            </li>
 
+                        </ul>
+                    </div>
                 </li>
                 {{-- @if (auth()->check() && auth()->user()->role === 'admin')
                 <!-- Conteúdo para administradores -->
