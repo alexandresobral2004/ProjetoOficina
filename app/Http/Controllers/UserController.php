@@ -61,14 +61,14 @@ class UserController extends Controller
               
             //Validação dos dados de entrada
         $validatedData = $request->validate( [
-            'tipo_user' => 'required|string',
+            'role' => 'required|string',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password'=>  'required|string|min:8',
-            'confirm_password'=>  'required|string|min:8',
+            'password'=>  'required|string|min:6',
+            'confirm_password'=>  'required|string|min:6',
             'fone'=> 'required|string|max:22',  
-            'cpf'=> 'string|max:20',
-            'cnpj'=> 'string|max:20',
+            'status'=> 'required|string',  
+          
            
         ]);
             
@@ -110,7 +110,15 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = new User();
+        try {
+            $user = User::find($id);
+            
+            return view('/users/viewUser', ['user' => $user]);
+            
+        } catch (QueryException $exception) {
+            dd($exception->getMessage());
+        }
     }
 
     /**
@@ -118,11 +126,21 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        $userTypes = [
+            ' ' => 'Selecione',
+            'admin' => 'Admin',
+            'user' => 'User',
+        ];
+        $userStatus = [
+            ' ' => 'Selecione',
+            'ativo' => 'Ativo',
+            'inativo' => 'Inativo',
+        ];
         $user = new User();
         try {
             $user = User::find($id);
             
-            return view('/users/edit', ['obj' => $user]);
+            return view('/users/edit', ['obj' => $user, 'userTypes' => $userTypes, 'userStatus' => $userStatus]);
             
         } catch (QueryException $exception) {
             dd($exception->getMessage());

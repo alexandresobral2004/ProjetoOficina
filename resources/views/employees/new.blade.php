@@ -8,46 +8,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Cadastro de Usuário</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">Cadastro de Funcionarios</h4>
 
                 </div><!-- end card header -->
                 <div class="card-body">
-                    <form action="{{ route('user.store') }}" method="POST">
+                    <form action="{{ route('employee.store') }}" method="POST">
                         @csrf
                         <div class="live-preview">
-                            <div class="row mt-2">
-                                <input type="hidden" name="id" value="{{ $obj->id ?? '' }}">
-                                <div class="col-xx-2 col-md-2">
-                                    <div
-                                        class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Tipo de Usuário*') }}</label>
-                                        <select class="form-select" id="role" name="role">
-                                            @foreach($userTypes as $value => $label)
-                                                <option value="{{ $value }}" {{ old('role', $obj->role) == $value ? 'selected' : '' }}>
-                                                    {{ $label }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-                                </div>
-                                <div class="col-xx-2 col-md-2">
-                                    <div
-                                        class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Status do Usuário*') }}</label>
-                                        <select class="form-select" id="status" name="status">
-                                            @foreach($userStatus as $value => $label)
-                                                <option value="{{ $value }}" {{ old('status', $obj->status) == $value ? 'selected' : '' }}>
-                                                    {{ $label }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row mt-2">
+                            <div class="row gy-4">
                                 <div class=" col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <label>{{ __('Nome') }}</label>
@@ -68,9 +36,7 @@
 
                                     </div>
                                 </div>
-                            </div>
-                                
-                                <div class="row mt-2">
+                                <div class="row gy-2">
                                     <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                             <label>{{ __('Fone') }}</label>
@@ -84,14 +50,14 @@
                                     <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                             <label>{{ __('Senha') }}</label>
-                                            <input id="password" type="password" name="password"
+                                            <input id="password" type="text" name="password"
                                                 class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('Senha') }}"
                                                 value="{{ old('password', $obj->password ?? '') }}" required>
 
                                         </div>
                                     </div>
-                                    {{-- <div class="col-xxl-3 col-md-3">
+                                    <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('confirm_password') ? ' has-danger' : '' }}">
                                             <label>{{ __('Confirme a senha') }}</label>
                                             <input id="confirm_password" type="text" name="confirm_password"
@@ -100,31 +66,21 @@
                                                 value="{{ old('confirm_password', $obj->confirm_password ?? '') }}"
                                                 required>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
-                                <div class="row mt-2">
+                                <div class="row gy-2">
                                     <div class="col-xxl-3 col-md-3">
                                         <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                             <label>{{ __('CPF') }}</label>
                                             <input id="cpf" type="text" name="cpf"
                                                 class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('000.000.000-00') }}"
-                                                value="{{ old('cpf', $obj->cpf ?? '') }}">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-3 col-md-3">
-                                        <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
-                                            <label>{{ __('CNPJ') }}</label>
-                                            <input id="cnpj" type="text" name="cnpj"
-                                                class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
-                                                placeholder="{{ __('00.000.000/0000-00') }}"
-                                                value="{{ old('cnpj', $obj->cnpj ?? '') }}">
+                                                value="{{ old('cpf', $obj->cpf ?? '') }}" required>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
+                                <div class="row gy-4">
                                     <div class="col-xxl-3 col-md-3">
                                         <button type="submit" class="btn btn-primary">Salvar</button>
                                     </div>
@@ -140,20 +96,6 @@
             </div>
         </div>
     </div>
-    <script>
-        //Mascara  para FONE, CPF e CNPJ
-        Inputmask({
-            mask: '(99) 99999-9999'
-        }).mask(document.getElementById('fone'));
-
-        Inputmask({
-            mask: '999.999.999-99'
-        }).mask(document.getElementById('cpf'));
-
-        Inputmask({
-            mask: '99.999.999/999-99'
-        }).mask(document.getElementById('cnpj'));
-    </script>
 
     </div>
 
