@@ -18,9 +18,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 
 
-Route::get('/', function () {
-    return view('/layouts/app');
-})->name('home');
+// Route::get('/', function () {
+//     return view('/layouts/app');
+// })->name('home');
 
 
 
