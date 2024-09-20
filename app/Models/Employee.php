@@ -23,8 +23,11 @@ class Employee extends EloquentModel
         'confirm_password',
         'fone',
         'cpf',
-
-
+        'cnpj',
+        'dtNasc',
+        'profissao',
+        'razaoSocial',
+        'foneFixo',
     ];
 
     /**

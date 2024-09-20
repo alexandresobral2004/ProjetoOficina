@@ -35,23 +35,36 @@ class EmployeeController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'confirm_password' => 'required|string|min:6',
+            'password' => 'required|string|max:6',
+            'confirm_password' => 'required|string|max:6',
             'fone'=> 'required|string|max:15',  
-            'cpf'=> 'required|string|max:15',
+            'cpf'=> 'nullable|string|max:15|unique:employees',
+            'cnpj'=> 'nullable|string|max:15|unique:employees',
+            'dtNasc'=> 'nullable|date',
+            'profissao'=> 'nullable|string|max:30',
+            'razaoSocial'=> 'nullable|string|max:255',
+            'foneFixo'=> 'nullable|string|max:15',
+            
          
         ]);
+
+        if(empty($request->cpf) && empty($request->cnpj)){
+            return Redirect('/employees/new')->with("Erro", "CPF ou CNPJ obrigatorio");
+        };
+        $validatedData['cpf'] = $request->cpf;
+        $validatedData['cnpj'] = $request->cnpj;
        
 
          // Criptografando a senha
         $validatedData['password'] = bcrypt($validatedData['password']);
         Employee::create($validatedData);
-        Sweetalert::success('Funcionario salvo com sucesso!', 'Sucesso!');
-        return view('/employees/new');
+       
+        return view('/employees/new')->with("Sucesso", "Usuário criado com sucesso!");
 
          }
          catch(QueryException $exception){
-            dd($exception->getMessage());
+             return Redirect('/employees/new')->with("Erro", $exception->getMessage());
+            
          }
       
 //         Sweetalert::basic('Description', 'Title');
