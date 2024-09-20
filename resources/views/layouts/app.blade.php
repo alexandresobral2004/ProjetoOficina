@@ -8,29 +8,29 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Dashboard | Velzon - Admin & Dashboard Template</title>
+    <title>OficinaDigital</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+
+
     <!-- App favicon -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     <!-- jsvectormap css -->
-    <link href="../../assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!--Swiper slider css-->
-    <link href="../../assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="../../assets/js/layout.js"></script>
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
     <!-- Bootstrap Css -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="../../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="../../assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="../../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -41,8 +41,15 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
+    <!-- INPUT MASK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css" rel="stylesheet">
 
+    
+
+    //Livewire
+    @livewireStyles
 </head>
 
 <body>
@@ -63,7 +70,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mt-2 text-center">
-                            <lord-icon src="../../../../cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                            <lord-icon src="{{ asset('assets/libs/lottie-player/lottie-player.js') }}" trigger="loop"
                                 colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
                             <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
                                 <h4>Are you sure ?</h4>
@@ -84,22 +91,56 @@
 
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
+       
         <div class="vertical-overlay"></div>
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
+        @include('layouts.navbars.settings')
+       
         <div class="main-content">
+            <!-- Theme Settings -->
 
 
             <div class="page-content">
 
                 <div class="container-fluid">
-                    @include('layouts.navbars.breadcrumbs')
+
+                  
                     @include('sweetalert::sweetalert')
+                
+
                     @yield('content')
+
                 </div>
 
+                <!-- SweetAlert--->
+                @if (session('success'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sucesso!',
+                                text: '{{ session('success') }}',
+                                confirmButtonText: 'Ok'
+                            });
+                        });
+                    </script>
+                @endif
+
+                @if ($errors->any())
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro!',
+                                text: '{{ $errors->first() }}', // Exibe o primeiro erro
+                                confirmButtonText: 'Ok'
+                            });
+                        });
+                    </script>
+                @endif
             </div>
             <!-- container-fluid -->
         </div>
@@ -138,32 +179,43 @@
         </div>
     </div>
 
-    <!-- Theme Settings -->
-    @include('layouts.navbars.settings')
 
+
+    //Livewire
+    @livewireScripts
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <!-- JAVASCRIPT -->
-    <script src="../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="../../assets/libs/node-waves/waves.min.js"></script>
-    <script src="../../assets/libs/feather-icons/feather.min.js"></script>
-    <script src="../../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="../../assets/js/plugins.js"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
 
     <!-- apexcharts -->
-    <script src="../../assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
     <!-- Vector map-->
-    <script src="../../assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
-    <script src="../../assets/libs/jsvectormap/maps/world-merc.js"></script>
+    <script src="{{ asset('assets/libs/jsvectormap/js/jsvectormap.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jsvectormap/maps/world-merc.js') }}"></script>
 
     <!--Swiper slider js-->
-    <script src="../assets/libs/swiper/swiper-bundle.min.js"></script>
+    <script src="{{ asset('assets/libs/swiper/swiper-bundle.min.js') }}"></script>
 
     <!-- Dashboard init -->
-    <script src="../../assets/js/pages/dashboard-ecommerce.init.js"></script>
+    <script src="{{ asset('assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
 
     <!-- App js -->
-    <script src="../../assets/js/app.js"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery Mask Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
+
 
 </body>
 
