@@ -38,11 +38,11 @@ class EmployeeController extends Controller
             'password' => 'required|string|max:6',
             'confirm_password' => 'required|string|max:6',
             'fone'=> 'required|string|max:15',  
-            'cpf'=> 'nullable|string|max:15|unique:employees',
-            'cnpj'=> 'nullable|string|max:15|unique:employees',
+            'cpf'=> 'nullable|string|max:20|unique:employees',
+            'cnpj'=> 'nullable|string|max:20|unique:employees',
             'dtNasc'=> 'nullable|date',
             'profissao'=> 'nullable|string|max:30',
-            'razaoSocial'=> 'nullable|string|max:255',
+            'razaoSocial'=> 'nullable|string|max:60',
             'foneFixo'=> 'nullable|string|max:15',
             
          
@@ -54,15 +54,21 @@ class EmployeeController extends Controller
         $validatedData['cpf'] = $request->cpf;
         $validatedData['cnpj'] = $request->cnpj;
        
-
+        if($request->password != $request->confirm_password){
+            return Redirect('/employees/new')->with("Erro", "Senhas diferentes");
+        }
          // Criptografando a senha
         $validatedData['password'] = bcrypt($validatedData['password']);
+
+       
         Employee::create($validatedData);
        
+
         return view('/employees/new')->with("Sucesso", "Usuário criado com sucesso!");
 
          }
          catch(QueryException $exception){
+            dd($exception->getMessage());
              return Redirect('/employees/new')->with("Erro", $exception->getMessage());
             
          }

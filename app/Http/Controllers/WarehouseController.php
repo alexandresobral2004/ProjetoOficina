@@ -22,7 +22,7 @@ class WarehouseController extends Controller
      */
     public function add()
     {
-        return view('/warehouse/NewItem',['obj'=>new Warehouse_itens()]);
+        return view('/warehouse/new',['obj'=>new Warehouse_itens()]);
     }
 
     
@@ -33,26 +33,26 @@ class WarehouseController extends Controller
         try{
             //Validação dos dados de entrada
         $validatedData = $request->validate([
-            'sku' => 'required|numeric|max:255',
-            'part_name' => 'required|string|max:255',
-            'quantity' => 'required|numeric|min:0',
-            'quality' => 'required|string|max:255',
-            'highest_price' => 'required|numeric|min:0.0',
-            'lowest_price' => 'required|numeric|min:0.0',
-            'media_price' => 'required|numeric|min:0.0',
-            'model' => 'required|string|max:255',
-            'brand' => 'required|string|max:255',
+            'cod' => 'required|string|max:50|unique:warehouse_itens',
+            'nome_peca' => 'required|string|max:255',
+            'qtde' => 'required|numeric|min:0',
+            'preco_custo' => 'required|numeric|min:0.0',
+            'preco_final' => 'required|numeric|min:0.0',
+            'margem' => 'required|numeric|min:0.0',
+            'modelo' => 'required|string|max:255',
+            'marca' => 'required|string|max:255',
             'compatibility' => 'required|string|max:255',
-            'source' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-         
+           
+        
         ]);
+
+        $preco_final = $request->preco_custo + ($request->preco_custo * $request->margem);
+        $validatedData['preco_final'] = $preco_final;
        
 
         Warehouse_itens::create($validatedData);
         Sweetalert::success('Item cadastrado com sucesso!', 'Sucesso!');
-        return view('/warehouse/NewItem');
+        return view('/warehouse/new')->with('success', 'Registration successful');
 
          }
          catch(QueryException $exception){

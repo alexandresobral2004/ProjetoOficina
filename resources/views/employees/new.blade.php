@@ -167,9 +167,14 @@
             mask: '999.999.999-99'
         }).mask(document.getElementById('cpf'));
 
-        // Inputmask({
-        //     mask: '99.999.999/999-99'
-        // }).mask(document.getElementById('cnpj'));
+        Inputmask({
+            mask: '(99) 9999-9999'
+        }).mask(document.getElementById('foneFixo'));
+
+
+        Inputmask({
+            mask: '99.999.999/9999-99'
+        }).mask(document.getElementById('cnpj'));
     </script>
 
 

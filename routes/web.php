@@ -30,9 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/employee/list', [\App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
     
     // Rota para o almoxarifado ---------------
-    Route::get('/warehouse/NewItem', [\App\Http\Controllers\WarehouseController::class, "add"])->name('warehouse_itens.add');
-    Route::post('/warehouse/save', [\App\Http\Controllers\WarehouseController::class, 'store'])->name('warehouse_itens.store');
-    Route::get('/warehouse/list', [\App\Http\Controllers\WarehouseController::class, 'index'])->name('warehouse_itens.index');
+    Route::get('/warehouse/new', [\App\Http\Controllers\WarehouseController::class, "add"])->name('warehouse.add');
+    Route::post('/warehouse/save', [\App\Http\Controllers\WarehouseController::class, 'store'])->name('warehouse.store');
+    Route::get('/warehouse/list', [\App\Http\Controllers\WarehouseController::class, 'index'])->name('warehouse.index');
     //rota para deletar
     //rota para editar
 
