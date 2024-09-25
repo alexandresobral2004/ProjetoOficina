@@ -10,7 +10,7 @@ class FormNewUser extends Component
     {
         return <<<'HTML'
         <div>
-@include('layouts.messages.message')
+        @include('layouts.messages.message')
                <div class="row">
                    <div class="col-lg-12">
                        <div class="card">
