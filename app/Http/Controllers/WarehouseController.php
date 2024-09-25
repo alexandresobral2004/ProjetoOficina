@@ -37,11 +37,11 @@ class WarehouseController extends Controller
             'nome_peca' => 'required|string|max:255',
             'qtde' => 'required|numeric|min:0',
             'preco_custo' => 'required|numeric|min:0.0',
-            'preco_final' => 'required|numeric|min:0.0',
+            'preco_final' => 'numeric|min:0.0',
             'margem' => 'required|numeric|min:0.0',
             'modelo' => 'required|string|max:255',
             'marca' => 'required|string|max:255',
-            'compatibility' => 'required|string|max:255',
+            'compatibility' => 'string|max:400',
            
         
         ]);

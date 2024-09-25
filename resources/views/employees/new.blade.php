@@ -1,12 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <div class="main-content">
-        @section('content')
-
-        <div class="page-content">
-            <div class="container-fluid"> --}}
     <div class="row">
         <div class="col-lg-12">
+
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     <h4 class="card-title mb-0 flex-grow-1">Cadastro de Clientes</h4>
@@ -51,7 +47,7 @@
                                             value="{{ old('profissao', $obj->profissao ?? '') }}">
                                     </div>
                                 </div>
-                                <div class="col-xxl-3 col-md-3">
+                                <div class="col-xxl-2 col-md-2">
                                     <div class="form-group{{ $errors->has('dtNasc') ? ' has-danger' : '' }}">
                                         <label>{{ __('Data de Nascimento') }}</label>
                                         <input id="dtNasc" type="date" name="dtNasc"
@@ -67,7 +63,7 @@
                                         <label>{{ __('Fone') }}</label>
                                         <input id="fone" type="text" name="fone"
                                             class="form-control{{ $errors->has('fone') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('(00) 00000-0000)') }}"
+                                            placeholder="{{ __('(00) 00000-0000') }}"
                                             value="{{ old('fone', $obj->fone ?? '') }}" required>
 
                                     </div>
@@ -78,7 +74,7 @@
                                         <label>{{ __('Fone Fixo') }}</label>
                                         <input id="foneFixo" type="text" name="foneFixo"
                                             class="form-control{{ $errors->has('foneFixo') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('(00) 00000-0000)') }}"
+                                            placeholder="{{ __('(00) 0000-0000') }}"
                                             value="{{ old('foneFixo', $obj->foneFixo ?? '') }}">
 
                                     </div>
@@ -101,7 +97,7 @@
                                         <label>{{ __('CNPJ') }}</label>
                                         <input id="cnpj" type="text" name="cnpj"
                                             class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('000.000.000-00') }}"
+                                            placeholder="{{ __('00.000.000/0000-00') }}"
                                             value="{{ old('cnpj', $obj->cnpj ?? '') }}">
 
                                     </div>
@@ -112,7 +108,7 @@
                                         <input id="razaosocial" type="text" name="razaosocial"
                                             class="form-control{{ $errors->has('razaosocial') ? ' is-invalid' : '' }} text-decoration-none border rounded-2"
                                             placeholder="{{ __('Empresa Teste Ltda') }}"
-                                            value="{{ old('razaosocial', $obj->cnpj ?? '') }}">
+                                            value="{{ old('razaosocial', $obj->razaosocial ?? '') }}">
 
                                     </div>
                                 </div>
@@ -120,20 +116,20 @@
                         </div>
 
                         <div class="row mt-2">
-                            <div class="col-xxl-3 col-md-3">
+                            <div class="col-xxl-2 col-md-2">
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label>{{ __('Senha') }}</label>
-                                    <input id="password" type="text" name="password"
+                                    <input id="password" type="password" name="password"
                                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} text-decoration-none border rounded-2"
                                         placeholder="{{ __('Senha') }}"
                                         value="{{ old('password', $obj->password ?? '') }}" required maxlength="6">
 
                                 </div>
                             </div>
-                            <div class="col-xxl-3 col-md-3">
+                            <div class="col-xxl-2 col-md-2">
                                 <div class="form-group{{ $errors->has('confirm_password') ? ' has-danger' : '' }}">
                                     <label>{{ __('Confirme a senha') }}</label>
-                                    <input id="confirm_password" type="text" name="confirm_password"
+                                    <input id="confirm_password" type="password" name="confirm_password"
                                         class="form-control{{ $errors->has('confirm_password') ? ' is-invalid' : '' }} text-decoration-none border rounded-2"
                                         placeholder="{{ __('Confirme a senha') }}"
                                         value="{{ old('confirm_password', $obj->confirm_password ?? '') }}" required
@@ -153,29 +149,25 @@
             </form>
 
         </div>
+        <script>
+            //Mascara  para FONE, CPF e CNPJ
+            Inputmask({
+                mask: '(99) 99999-9999'
+            }).mask(document.getElementById('fone'));
 
-    </div>
-    </div>
-    </div>
-    <script>
-        //Mascara  para FONE, CPF e CNPJ
-        Inputmask({
-            mask: '(99) 99999-9999'
-        }).mask(document.getElementById('fone'));
+            Inputmask({
+                mask: '999.999.999-99'
+            }).mask(document.getElementById('cpf'));
 
-        Inputmask({
-            mask: '999.999.999-99'
-        }).mask(document.getElementById('cpf'));
-
-        Inputmask({
-            mask: '(99) 9999-9999'
-        }).mask(document.getElementById('foneFixo'));
+            Inputmask({
+                mask: '(99) 9999-9999'
+            }).mask(document.getElementById('foneFixo'));
 
 
-        Inputmask({
-            mask: '99.999.999/9999-99'
-        }).mask(document.getElementById('cnpj'));
-    </script>
+            Inputmask({
+                mask: '99.999.999/9999-99'
+            }).mask(document.getElementById('cnpj'));
+        </script>
 
 
     </div>

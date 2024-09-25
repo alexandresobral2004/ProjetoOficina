@@ -31,6 +31,10 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         try{
+
+           
+
+           
             //Validação dos dados de entrada
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -48,28 +52,39 @@ class EmployeeController extends Controller
          
         ]);
 
-        if(empty($request->cpf) && empty($request->cnpj)){
-            return Redirect('/employees/new')->with("Erro", "CPF ou CNPJ obrigatorio");
-        };
-        $validatedData['cpf'] = $request->cpf;
-        $validatedData['cnpj'] = $request->cnpj;
-       
-        if($request->password != $request->confirm_password){
-            return Redirect('/employees/new')->with("Erro", "Senhas diferentes");
-        }
-         // Criptografando a senha
-        $validatedData['password'] = bcrypt($validatedData['password']);
+      
+         if($validatedData['password'] == $validatedData['confirm_password']){
+           
+            // Criptografando a senha
+            $validatedData['password'] = bcrypt($validatedData['password']);
+             
+            if($validatedData['cpf']  == null && $validatedData['cnpj'] == null ){
+                 Sweetalert::error('CPF ou CNPJ obrigatorio!', 'Erro!');
+                
+                  return redirect()->route('employee.add')->with("Erro", "CPF ou CNPJ obrigatorio");  
+            }
 
+           
+           
+            
+         }
+         else{
+            Sweetalert::error('Senhas não conferem!', 'Erro!');
+            return Redirect(route('employee.add'));
+          
+         }
+          
        
-        Employee::create($validatedData);
-       
-
-        return view('/employees/new')->with("Sucesso", "Usuário criado com sucesso!");
+           Employee::create($validatedData);
+           Sweetalert::success('Usuário criado com sucesso!', 'Sucesso!');
+           return view('/employees/new');
+        
+      
 
          }
          catch(QueryException $exception){
-            dd($exception->getMessage());
-             return Redirect('/employees/new')->with("Erro", $exception->getMessage());
+            // dd($exception->getMessage());
+              return Redirect()->route('employee.add')->with("Erro", $exception->getMessage());
             
          }
       

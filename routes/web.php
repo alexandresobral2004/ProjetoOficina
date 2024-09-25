@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Middleware\CheckForTokenExpiration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ErrorController;
+
 
 
 //Login e Logout
@@ -11,6 +13,9 @@ Route::post('/registerSave', [AuthController::class, 'registerSave'])->name('aut
 Route::get('', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/logar', [AuthController::class, 'logar'])->name('auth.logar');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::fallback(function () {
+return redirect()->route('auth.login')->with('message', 'Sua sessão expirou. Faça login novamente.');
+});
 
 
 // Route::get('/', function () {
@@ -44,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/del/{id}', [\App\Http\Controllers\UserController::class, "destroy"])->name('user.destroy');
     Route::get('/user/view/{id}', [\App\Http\Controllers\UserController::class, "show"])->name('user.show');
 
-});
+})->middleware(CheckForTokenExpiration::class);
 
 
 

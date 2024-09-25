@@ -1,9 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <div class="main-content">
-
-        <div class="page-content">
-            <div class="container-fluid"> --}}
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -65,39 +61,45 @@
                                     <!--<div> tela de cadastro de modelos </div>-->
                                 </div>
                                 <div class="col-xxl-3 col-md-3">
-                                    <!-- decima celula de cadastro: compatibilidade -->
-                                    <div class="form-group{{ $errors->has('compatibility') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Veículos Compatíveis') }}</label>
-                                        <!-- MULTISELETOR COM AS COMPATIBILIDADES -->
-                                        <input id="compatibility" type="text" name="compatibility"
-                                            class="form-control{{ $errors->has('compatibility') ? ' is-invalid' : '' }}"
-                                            value="{{ old('compatibility', $obj->compatibility ?? '') }}" required>
+                                    <!-- decima-primeira celula de cadastro: Origem (Fabricante/Fornecedor) -->
+                                    <div class="form-group{{ $errors->has('marca') ? ' has-danger' : '' }}">
+                                        <label>{{ __('Marca/Fabricante') }}</label>
+                                        <!-- MULTISELETOR PARA ORIGENS E FORNECEDORES DAS PECAS -->
+                                        <!-- E UMA AREA DE CADASTRO DE ORIGENS E FORNECEDORES -->
+                                        <input id="marca" type="text" name="marca"
+                                            class="form-control{{ $errors->has('marca') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Origem (Fabricante/Fornecedor)') }}"
+                                            value="{{ old('marca', $obj->marca ?? '') }}" required>
                                     </div>
-                                    <!--<div> tela de cadastro de compatibilidades </div>-->
+                                    <!--<div> mini-tela  de cadastro de origens </div>-->
                                 </div>
 
 
 
+
+
+                            </div>
+
+                            <div class="row mt-2">
                                 <div class="col-xxl-3 col-md-3"><!-- sexta celula de cadastro: menor_preco -->
                                     <div class="form-group{{ $errors->has('margem') ? ' has-danger' : '' }}">
                                         <label>{{ __('Margem de Lucro(%)') }}</label>
                                         <input id="margem" type="number" min="0" name="margem"
                                             class="form-control{{ $errors->has('margem') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('%') }}"
-                                            value="{{ old('margem', $obj->margem ?? '') }}" required>
+                                            value="{{ old('margem', $obj->margem ?? '') }}" required
+                                            oninput="calcularPrecoFinal()">
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row mt-2">
 
                                 <div class="col-xxl-3 col-md-3">
                                     <!-- quinta celula de cadastro: maior_preco -->
                                     <div class="form-group{{ $errors->has('preco_custo') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Preço de custo(R$)') }}</label>
+                                        <label>{{ __('Preço de custo: R$') }}</label>
                                         <input id="preco_custo" type="number" min="0" name="preco_custo"
                                             class="form-control{{ $errors->has('preco_custo') ? ' is-invalid' : '' }}"
-                                            value="{{ old('preco_custo', $obj->preco_custo ?? '') }}" required>
+                                            value="{{ old('preco_custo', $obj->preco_custo ?? '') }}" required
+                                            oninput="calcularPrecoFinal()">
                                     </div>
 
                                 </div>
@@ -105,7 +107,7 @@
                                 <div class="col-xxl-3 col-md-3">
                                     <!-- setima celula de cadastro: media_preco -->
                                     <div class="form-group{{ $errors->has('preco_final') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Preço Final') }}</label>
+                                        <label>{{ __('Preço Final : R$') }}</label>
                                         <!-- A MEDIA DE PREÇO SERÁ GERADA AUTOMATICAMENTE ASSIM QUE O CAMPO DE MENOR PREÇO FOR PREENCHIDO-->
 
                                         <input id="preco_final" type="number" name="preco_final"
@@ -123,52 +125,20 @@
 
 
 
-                                <div class="col-xxl-3 col-md-3">
-                                    <!-- decima-primeira celula de cadastro: Origem (Fabricante/Fornecedor) -->
-                                    <div class="form-group{{ $errors->has('marca') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Marca/Fabricante') }}</label>
-                                        <!-- MULTISELETOR PARA ORIGENS E FORNECEDORES DAS PECAS -->
-                                        <!-- E UMA AREA DE CADASTRO DE ORIGENS E FORNECEDORES -->
-                                        <input id="marca" type="text" name="marca"
-                                            class="form-control{{ $errors->has('marca') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Origem (Fabricante/Fornecedor)') }}"
-                                            value="{{ old('marca', $obj->marca ?? '') }}" required>
+
+                                <div class="container mt-1">
+                                    <!-- decima celula de cadastro: compatibilidade -->
+                                    <div class="form-group{{ $errors->has('compatibility') ? ' has-danger' : '' }}">
+                                        <label>{{ __('Veículos Compatíveis(Descreva os automóveis compatíveis e o anode fabricação )') }}</label>
+                                        <!-- MULTISELETOR COM AS COMPATIBILIDADES -->
+                                        <textarea style="width: 100%" id="compatibility" type="textarea" rows="3" cols="50" name="compatibility"
+                                            placeholder="Gol(G3) 2015, 2016 | Saveiro (G3) 2015, 2016"
+                                            class="form-control{{ $errors->has('compatibility') ? ' is-invalid' : '' }}"
+                                            value="{{ old('compatibility', $obj->compatibility ?? '') }}" required></textarea>
                                     </div>
-                                    <!--<div> mini-tela  de cadastro de origens </div>-->
+                                    <!--<div> tela de cadastro de compatibilidades </div>-->
                                 </div>
                             </div> <!-- fim da quarta linha de cadastro d-flex -->
-
-                            {{-- <div class="row gy-5">
-
-
-                                <div class="col-xxl-3 col-md-3">
-                                    <!-- decima-segunda celula de cadastro: Categoria -->
-                                    <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Categoria') }}</label>
-                                        <!-- MULTISELETOR PARA CATEGORIAS -->
-                                        <!-- E UMA AREA DE CADASTRO DE CATEGORIAS -->
-                                        <input id="category" type="text" name="category"
-                                            class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('"motor", "suspensão", "freios", "transmissão", etc') }}"
-                                            value="{{ old('category', $obj->category ?? '') }}" required>
-                                    </div>
-                                    <!--<div> mini-tela de cadastro de categorias </div>-->
-                                </div>
-
-                                <div class="col-xxl-3 col-md-3">
-                                    <!-- decima-terceira celula de cadastro: Localização no estoque -->
-                                    <div class="form-group{{ $errors->has('location') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Localização no estoque') }}</label>
-
-                                        <!-- Depende de como estiver organizado-->
-                                        <!-- Enumaração e Ordenação de prateleiras e caixas?-->
-                                        <input id="location" type="text" name="location"
-                                            class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Localização no estoque') }}"
-                                            value="{{ old('location', $obj->location ?? '') }}" required>
-                                    </div>
-                                </div>
-                            </div> --}}
 
                             <div class="row mt-4">
                                 <div class="col-xxl-3 col-md-3">
@@ -182,13 +152,21 @@
             </div>
 
         </div>
-    </div>
-    </div>
+        <script>
+            function calcularPrecoFinal() {
 
-    </div>
+                let precoCusto = parseFloat(document.getElementById('preco_custo').value) || 0;
+                let margemLucro = parseFloat(document.getElementById('margem').value) || 0;
+                // Garantindo que os valores sejam números
+                if (isNaN(precoCusto)) precoCusto = 0;
+                if (isNaN(margemLucro)) margemLucro = 0;
 
-    {{-- </div>
-    </div>
+                // Calculando o preço final
+                let precoFinal = precoCusto + (precoCusto * margemLucro / 100);
 
-    </div> --}}
+                // Definindo o valor do campo Preço Final com 2 casas decimais
+                document.getElementById('preco_final').value = precoFinal.toFixed(2);
+            }
+        </script>
+    </div>
 @endsection
