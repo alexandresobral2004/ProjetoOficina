@@ -50,7 +50,8 @@ class UserController extends Controller
                     $user->cpf = $request->cpf;
                 }
                 $user->cnpj = $request->cnpj;
-                $user->tipo_user = $request->tipo_user;
+                $user->role = $request->role;
+                $user->status = $request->status;
            
                 $user->save();
                 Sweetalert::success('Usuário atualizado com sucesso!', 'Sucesso!');
@@ -133,12 +134,14 @@ class UserController extends Controller
         ];
         $userStatus = [
             ' ' => 'Selecione',
-            'ativo' => 'Ativo',
-            'inativo' => 'Inativo',
+           1 => 'Ativo',
+           0 => 'Inativo',
         ];
         $user = new User();
         try {
             $user = User::find($id);
+
+         
             
             return view('/users/edit', ['obj' => $user, 'userTypes' => $userTypes, 'userStatus' => $userStatus]);
             

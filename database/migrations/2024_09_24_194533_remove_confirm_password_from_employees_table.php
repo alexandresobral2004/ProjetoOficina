@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('tipo_user')->nullable()->change();
+        Schema::table('employees', function (Blueprint $table) {
+        // Remover a coluna confirm_password
+        $table->dropColumn('confirm_password');
         });
-      
     }
 
     /**
@@ -22,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+         Schema::table('employees', function (Blueprint $table) {
+         // Adicionar novamente a coluna confirm_password
+         $table->string('confirm_password')->nullable();
+         });
     }
 };

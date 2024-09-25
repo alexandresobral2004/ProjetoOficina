@@ -13,19 +13,16 @@ return new class extends Migration
 
     public function up(){
     Schema::create('warehouse_itens', function (Blueprint $table) {
-        $table->string('sku')->primary(); 
-        $table->string('part_name'); 
-        $table->integer('quantity')->nullable(); 
-        $table->string('quality')->nullable(); 
-        $table->decimal('highest_price', 8, 2)->nullable();
-        $table->decimal('lowest_price', 8, 2)->nullable(); 
-        $table->decimal('media_price', 8, 2)->nullable(); 
-        $table->string('model'); 
-        $table->string('brand'); 
-        $table->string('compatibility'); 
-        $table->string('source'); 
-        $table->string('category'); 
-        $table->string('location');
+        $table->unsignedBigInteger('id')->primary()->autoIncrement();
+        $table->string('cod');
+        $table->string('nome_peca'); 
+        $table->integer('qtde')->nullable();  
+        $table->decimal('preco_custo', 8, 2)->nullable();
+        $table->decimal('margem', 8, 2)->nullable(); 
+        $table->decimal('preco_final', 8, 2)->nullable(); 
+        $table->string('modelo')->nullable();
+        $table->string('marca')->nullable();
+        $table->string('compatibility')->nullable();
         $table->timestamps();
     });
 }
