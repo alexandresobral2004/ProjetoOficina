@@ -39,14 +39,15 @@ class DataTable extends Component
                             <th data-ordering="false">Name</th>
                             <th data-ordering="false">E-mail</th>
                             <th data-ordering="false">Fone</th>
+                             <th data-ordering="false">Tipo</th>
                             <th>Status</th>
                        
                             <th data-ordering="false">Action</th>
                         </tr>
                     </thead>
                         <tbody>
-                                @if($users->isNotEmpty())
-                                @foreach($users as $user)
+@if($users->isNotEmpty())
+@foreach($users as $user)
                                     <tr>
                                         <th scope="row">
                                             <div class="form-check">
@@ -59,13 +60,14 @@ class DataTable extends Component
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->fone }}</td>
+                                        <td>{{ $user->role }}</td>
 
-                                        <td><span class="badge bg-info-subtle text-info" style="font-size: 12px;">
-                                            @if($user->status == 1)
+                                        <td class="text-center"><span class="badge-danger bg-light text-info" style="font-size: 14px;">
+@if($user->status == 1)
                                                 Ativo
-                                            @else
+@else
                                                 Inativo
-                                            @endif
+@endif
                                         </span></td>
                                     
                                         <td>

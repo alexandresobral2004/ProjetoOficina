@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-       
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('status')->default('1');
-      });
+        Schema::table('employees', function (Blueprint $table) {
+             $table->string('cpf')->nullable()->change();
+        });
     }
 
     /**
@@ -22,10 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('status');
-            });
+        Schema::table('employees', function (Blueprint $table) {
+            //
+        });
     }
 };

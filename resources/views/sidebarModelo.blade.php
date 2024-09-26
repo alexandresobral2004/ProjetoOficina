@@ -1,6 +1,6 @@
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
-    div class="navbar-brand-box">
+    <div class="navbar-brand-box">
         <!-- Dark Logo-->
         <a href="index.html" class="logo logo-dark">
             <span class="logo-sm">

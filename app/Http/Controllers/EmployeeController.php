@@ -31,27 +31,61 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         try{
+
+           
+
+           
             //Validação dos dados de entrada
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'confirm_password' => 'required|string|min:6',
+            'password' => 'required|string|max:6',
+            'confirm_password' => 'required|string|max:6',
             'fone'=> 'required|string|max:15',  
-            'cpf'=> 'required|string|max:15',
+            'cpf'=> 'nullable|string|max:20|unique:employees',
+            'cnpj'=> 'nullable|string|max:20|unique:employees',
+            'dtNasc'=> 'nullable|date',
+            'profissao'=> 'nullable|string|max:30',
+            'razaoSocial'=> 'nullable|string|max:60',
+            'foneFixo'=> 'nullable|string|max:15',
+            
          
         ]);
-       
 
-         // Criptografando a senha
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        Employee::create($validatedData);
-        Sweetalert::success('Funcionario salvo com sucesso!', 'Sucesso!');
-        return view('/employees/new');
+      
+         if($validatedData['password'] == $validatedData['confirm_password']){
+           
+            // Criptografando a senha
+            $validatedData['password'] = bcrypt($validatedData['password']);
+             
+            if($validatedData['cpf']  == null && $validatedData['cnpj'] == null ){
+                 Sweetalert::error('CPF ou CNPJ obrigatorio!', 'Erro!');
+                
+                  return redirect()->route('employee.add')->with("Erro", "CPF ou CNPJ obrigatorio");  
+            }
+
+           
+           
+            
+         }
+         else{
+            Sweetalert::error('Senhas não conferem!', 'Erro!');
+            return Redirect(route('employee.add'));
+          
+         }
+          
+       
+           Employee::create($validatedData);
+           Sweetalert::success('Usuário criado com sucesso!', 'Sucesso!');
+           return view('/employees/new');
+        
+      
 
          }
          catch(QueryException $exception){
-            dd($exception->getMessage());
+            // dd($exception->getMessage());
+              return Redirect()->route('employee.add')->with("Erro", $exception->getMessage());
+            
          }
       
 //         Sweetalert::basic('Description', 'Title');

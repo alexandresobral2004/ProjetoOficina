@@ -91,8 +91,8 @@
                                  <!-- item -->
                                  <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                      <div class="d-flex">
-                                         <img src="{{ asset('/assets/images/users/avatar-2.jpg') }}"
-                                             class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                         {{-- <img src="{{ asset('/assets/images/users/avatar-2.jpg') }}" --}}
+                                         class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                          <div class="flex-grow-1">
                                              <h6 class="m-0">Angela Bernier</h6>
                                              <span class="fs-11 mb-0 text-muted">Manager</span>
@@ -102,8 +102,8 @@
                                  <!-- item -->
                                  <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                      <div class="d-flex">
-                                         <img src="{{ asset('/assets/images/users/avatar-3.jpg') }}"
-                                             class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                         {{-- <img src="{{ asset('/assets/images/users/avatar-3.jpg') }}" --}}
+                                         class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                          <div class="flex-grow-1">
                                              <h6 class="m-0">David Grasso</h6>
                                              <span class="fs-11 mb-0 text-muted">Web Designer</span>
@@ -113,8 +113,8 @@
                                  <!-- item -->
                                  <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                      <div class="d-flex">
-                                         <img src="{{ asset('/assets/images/users/avatar-5.jpg') }}"
-                                             class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                         {{-- <img src="{{ asset('/assets/images/users/avatar-5.jpg') }}" --}}
+                                         class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                          <div class="flex-grow-1">
                                              <h6 class="m-0">Mike Bunch</h6>
                                              <span class="fs-11 mb-0 text-muted">React Developer</span>
@@ -172,14 +172,20 @@
                              <img class="rounded-circle header-profile-user"
                                  src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
                              <span class="text-start ms-xl-2">
-                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
+                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
+                                     @if (!is_null(Auth::user()->name))
+                                         <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}</h6>
+                                     @endif
+                                 </span>
                                  <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
                              </span>
                          </span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-end">
                          <!-- item-->
-                         <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}</h6>
+                         @if (!is_null(Auth::user()->name))
+                             <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}</h6>
+                         @endif
                          <a class="dropdown-item" href="pages-profile.html"><i
                                  class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                  class="align-middle">Profile</span></a>

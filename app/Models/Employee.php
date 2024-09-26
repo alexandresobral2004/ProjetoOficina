@@ -20,11 +20,13 @@ class Employee extends EloquentModel
         'name',
         'email',
         'password',
-        'confirm_password',
         'fone',
         'cpf',
-
-
+        'cnpj',
+        'dtNasc',
+        'profissao',
+        'razaoSocial',
+        'foneFixo',
     ];
 
     /**

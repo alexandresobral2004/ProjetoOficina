@@ -687,7 +687,7 @@ class TemaLayout extends Component
 
                                 <div class="form-check sidebar-setting card-radio">
                                     <input class="form-check-input" type="radio" name="data-sidebar-image"
-                                        id="sidebarimg-02" value="img-2">
+                                     id="sidebarimg-02" value="img-2">
                                     <label class="form-check-label p-0 avatar-sm h-auto" for="sidebarimg-02">
                                         <img src="{{ asset('assets/images/sidebar/img-2.jpg') }}" alt=""
                                             class="avatar-md w-auto object-fit-cover">

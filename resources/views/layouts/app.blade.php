@@ -46,7 +46,12 @@
 
     <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css" rel="stylesheet">
 
-    
+    <style>
+        .form-control:focus {
+            border-color: #ff9800;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+        }
+    </style>
 
     //Livewire
     @livewireStyles
@@ -91,14 +96,14 @@
 
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
-       
+
         <div class="vertical-overlay"></div>
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         @include('layouts.navbars.settings')
-       
+
         <div class="main-content">
             <!-- Theme Settings -->
 
@@ -107,9 +112,9 @@
 
                 <div class="container-fluid">
 
-                  
+
                     @include('sweetalert::sweetalert')
-                
+
 
                     @yield('content')
 
