@@ -64,9 +64,9 @@ class DataTable extends Component
 
                                         <td class="text-center"><span class="badge-danger bg-light text-info" style="font-size: 14px;">
 @if($user->status == 1)
-                                                Ativo
+                                                <span style="color: green;">Ativo</span>
 @else
-                                                Inativo
+                                              <span style="color: red;">Inativo</span>
 @endif
                                         </span></td>
                                     

@@ -61,18 +61,18 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sideBarEmployeeDashboards" data-bs-toggle="collapse"
                         role="button" aria-expanded="false" aria-controls="sideBarEmployeeDashboards">
-                        <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Funcionário</span>
+                        <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Clientes</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sideBarEmployeeDashboards">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('employee.add') }}" class="nav-link">Novo Funcionario
+                                <a href="{{ route('clientes.add') }}" class="nav-link">Novo
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('employee.index') }}" class="nav-link">Funcionarios
                                 </a>
-                            </li>
+                            </li> --}}
 
                         </ul>
                     </div>

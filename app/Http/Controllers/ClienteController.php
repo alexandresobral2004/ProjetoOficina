@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Employee;
+use App\Models\Cliente;
+use App\Models\Cliente_end;
 use Illuminate\Http\Request;
 use Wavey\Sweetalert\Sweetalert;
 use Illuminate\Database\QueryException;
+use App\Models\Address_Cliente;
 
-class EmployeeController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-          $employees = Employee::all();
-          return view('/employees/list',['employees'=>$employees]);
+          $Clientes = Cliente::all();
+          return view('/clientes/list',['clientes'=>$Clientes]);
     }
 
     /**
@@ -22,7 +24,7 @@ class EmployeeController extends Controller
      */
     public function add()
     {
-        return view('/employees/new',['obj'=>new Employee()]);
+        return view('/clientes/new',['obj'=>new Cliente()]);
     }
 
     /**
@@ -33,7 +35,7 @@ class EmployeeController extends Controller
         try{
 
            
-
+            
            
             //Validação dos dados de entrada
         $validatedData = $request->validate([
@@ -42,15 +44,14 @@ class EmployeeController extends Controller
             'password' => 'required|string|max:6',
             'confirm_password' => 'required|string|max:6',
             'fone'=> 'required|string|max:15',  
-            'cpf'=> 'nullable|string|max:20|unique:employees',
-            'cnpj'=> 'nullable|string|max:20|unique:employees',
+            'cpf'=> 'nullable|string|max:20|unique:clientes',
+            'cnpj'=> 'nullable|string|max:20|unique:clientes',
             'dtNasc'=> 'nullable|date',
             'profissao'=> 'nullable|string|max:30',
             'razaoSocial'=> 'nullable|string|max:60',
             'foneFixo'=> 'nullable|string|max:15',
-            
-         
         ]);
+
 
       
          if($validatedData['password'] == $validatedData['confirm_password']){
@@ -61,7 +62,7 @@ class EmployeeController extends Controller
             if($validatedData['cpf']  == null && $validatedData['cnpj'] == null ){
                  Sweetalert::error('CPF ou CNPJ obrigatorio!', 'Erro!');
                 
-                  return redirect()->route('employee.add')->with("Erro", "CPF ou CNPJ obrigatorio");  
+                  return redirect()->route('cliente.add')->with("Erro", "CPF ou CNPJ obrigatorio");  
             }
 
            
@@ -70,21 +71,33 @@ class EmployeeController extends Controller
          }
          else{
             Sweetalert::error('Senhas não conferem!', 'Erro!');
-            return Redirect(route('employee.add'));
+            return Redirect(route('clientes.add'));
           
          }
+
+            $validatedData2 = $request->validate([
+            'address'=> 'required|string|max:255',
+            'city'=> 'required|string|max:100',
+            'state'=> 'required|string|max:100',
+            'zip_code'=> 'required|string|max:15',
+            ]);
           
        
-           Employee::create($validatedData);
+           $cliente = Cliente::create($validatedData);
+           $end = new Cliente_end();
+           $end->fill($validatedData2);
+           $end->cliente_id = $cliente->id;
+        
+           $end->save();
            Sweetalert::success('Usuário criado com sucesso!', 'Sucesso!');
-           return view('/employees/new');
+           return view('/clientes/new');
         
       
 
          }
          catch(QueryException $exception){
             // dd($exception->getMessage());
-              return Redirect()->route('employee.add')->with("Erro", $exception->getMessage());
+              return Redirect()->route('clientes.add')->with("Erro", $exception->getMessage());
             
          }
       

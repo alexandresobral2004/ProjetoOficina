@@ -24,15 +24,15 @@ return redirect()->route('auth.login')->with('message', 'Sua sessão expirou. Fa
 
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
 
     //Dashboard 
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('auth.dashboard');
   
-    //Employee
-    Route::get('/employee/add', [\App\Http\Controllers\EmployeeController::class, "add"])->name('employee.add');
-    Route::post('/employee/save', [\App\Http\Controllers\EmployeeController::class, 'store'])->name('employee.store');
-    Route::get('/employee/list', [\App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
+    //cliente
+    Route::get('/clientes/add', [\App\Http\Controllers\ClienteController::class, "add"])->name('clientes.add');
+    Route::post('/clientes/save', [\App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store');
+    Route::get('/clientes/list', [\App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
     
     // Rota para o almoxarifado ---------------
     Route::get('/warehouse/new', [\App\Http\Controllers\WarehouseController::class, "add"])->name('warehouse.add');

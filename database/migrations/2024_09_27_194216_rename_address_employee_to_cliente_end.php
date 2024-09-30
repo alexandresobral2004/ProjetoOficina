@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-             $table->integer('status')->default('0');
-        });
+         Schema::rename('address_employee', 'cliente_end');
     }
 
     /**
@@ -21,8 +19,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-             $table->dropColumn('status');
+        Schema::table('cliente_end', function (Blueprint $table) {
+            //
         });
     }
 };

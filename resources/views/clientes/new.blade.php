@@ -5,15 +5,16 @@
 
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Cadastro de Clientes</h4>
+                    <h3 class="col-xxl-6 col-md-6 flex-grow-1">Novo Cliente</h3>
 
                 </div><!-- end card header -->
                 <div class="card-body">
-                    <form action="{{ route('employee.store') }}" method="POST">
+                    <h4>Dados Pessoais</h4>
+                    <form action="{{ route('clientes.store') }}" method="POST">
                         @csrf
                         <div class="live-preview">
                             <div class="row mt-2">
-                                <div class=" col-xxl-6 col-md-6">
+                                <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <label>{{ __('Nome') }}</label>
                                         <input id="name" type="text" name="name"
@@ -23,6 +24,8 @@
 
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row mt-2">
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                         <label>{{ __('E-mail') }}</label>
@@ -34,6 +37,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
 
                             <div class="row mt-2">
@@ -82,7 +86,7 @@
                             </div>
 
                             <div class="row mt-2">
-                                <div class="col-xxl-3 col-md-3">
+                                <div class="col-xxl-2 col-md-2">
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                         <label>{{ __('CPF') }}</label>
                                         <input id="cpf" type="text" name="cpf"
@@ -92,7 +96,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-xxl-3 col-md-3">
+                                <div class="col-xxl-2 col-md-2">
                                     <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
                                         <label>{{ __('CNPJ') }}</label>
                                         <input id="cnpj" type="text" name="cnpj"
@@ -102,7 +106,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-xxl-4 col-md-4">
+                                <div class="col-xxl-3 col-md-3">
                                     <div class="form-group{{ $errors->has('razaosocial') ? ' has-danger' : '' }}">
                                         <label>{{ __('Razão Social(Empresa)') }}</label>
                                         <input id="razaosocial" type="text" name="razaosocial"
@@ -137,37 +141,97 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row mt-5">
+                            <div class="col-xxl-6 col-md-6">
+                                <h3>Endereço</h3>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="row mt-2">
+                                <div class="col-xxl-2 col-md-2">
+                                    <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
+                                        <label>{{ __('Zip Code') }}</label>
+                                        <input id="zip_code" type="text" name="zip_code"
+                                            class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Zip Code') }}"
+                                            value="{{ old('zip_code', $end->zip_code ?? '') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
+                                        <label>{{ __('Endereço') }}</label>
+                                        <input id="address" type="text" name="address"
+                                            class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Rua e Número') }}"
+                                            value="{{ old('address', $end->address ?? '') }}" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-xxl-2 col-md-2">
+                                    <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
+                                        <label>{{ __('Cidade') }}</label>
+                                        <input id="city" type="text" name="city"
+                                            class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Cidade') }}"
+                                            value="{{ old('city', $end->city ?? '') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-1 col-md-1">
+                                    <div class="form-group{{ $errors->has('state') ? ' has-danger' : '' }}">
+                                        <label>{{ __('UF') }}</label>
+                                        <input id="state" type="text" name="state"
+                                            class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('UF') }}"
+                                            value="{{ old('state', $end->state ?? '') }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mt-2">
                             <div class="col-xxl-3 col-md-3 mt-2">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
                             </div>
 
                         </div>
+                    </form>
                 </div>
 
+
+
+
             </div>
-            </form>
 
         </div>
-        <script>
-            //Mascara  para FONE, CPF e CNPJ
-            Inputmask({
-                mask: '(99) 99999-9999'
-            }).mask(document.getElementById('fone'));
-
-            Inputmask({
-                mask: '999.999.999-99'
-            }).mask(document.getElementById('cpf'));
-
-            Inputmask({
-                mask: '(99) 9999-9999'
-            }).mask(document.getElementById('foneFixo'));
 
 
-            Inputmask({
-                mask: '99.999.999/9999-99'
-            }).mask(document.getElementById('cnpj'));
-        </script>
+
+    </div>
+    <div class="row mt-3">
+        @livewire('clientes.ListClientes')
+    </div>
+    <script>
+        //Mascara  para FONE, CPF e CNPJ
+        Inputmask({
+            mask: '(99) 99999-9999'
+        }).mask(document.getElementById('fone'));
+
+        Inputmask({
+            mask: '999.999.999-99'
+        }).mask(document.getElementById('cpf'));
+
+        Inputmask({
+            mask: '(99) 9999-9999'
+        }).mask(document.getElementById('foneFixo'));
+
+
+        Inputmask({
+            mask: '99.999.999/9999-99'
+        }).mask(document.getElementById('cnpj'));
+    </script>
 
 
     </div>

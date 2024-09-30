@@ -59,7 +59,9 @@ class UserController extends Controller
 
                }
 
-              
+              //colocando o status como 0
+            $request->merge(['status' => $request->input('status', '0')]);
+            
             //Validação dos dados de entrada
         $validatedData = $request->validate( [
             'role' => 'required|string',
@@ -78,6 +80,10 @@ class UserController extends Controller
           
                 // Criptografando a senha
                 $validatedData['password'] = bcrypt($validatedData['password']);
+
+
+                //Padronizando status para 0 (zero)
+                $validatedData['status'] = $validatedData['status'] ?? '0';
                 
                 $user->create($validatedData);
               
