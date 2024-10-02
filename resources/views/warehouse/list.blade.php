@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                            style="width:100%; max-height: 10vh">
+                            style="width:100%;">
                             <thead>
                                 <tr>
                                     <th class="text-truncate" data-ordering="false">SKU</th>
@@ -35,35 +35,22 @@
                                         <td class="text-truncate">{{ $warehouse_itens->margem }}%</td>
                                         <td class="text-truncate">R$ {{ $warehouse_itens->preco_custo }}</td>
                                         <td class="text-truncate">R$ {{ $warehouse_itens->preco_final }}</td>
-                                        <td class="text-truncate">{{ $warehouse_itens->compatibility }}</td>   
-                                        <td>
-                                            <div class="dropdown d-inline-block d-flex justify-content-center align-items-center ">
-                                                <style>
-                                                    ::marker {
-                                                        content: none;
-                                                    }
-                                                </style>
-                                                <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="ri-more-fill align-middle"></i>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                   <li><a href="#!" class="dropdown-item">
-                                                    <i class="ri-eye-fill align-bottom me-2 text-muted"></i>View</a></li>
-                                                    <li><a class="dropdown-item edit-item-btn"><i
-                                                                class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item remove-item-btn">
-                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <td class="text-truncate" title="{{ $warehouse_itens->compatibility }}" style="max-width: 15vw;">{{ $warehouse_itens->compatibility }}</td>   
+                                        <td class="text-truncate">
+                                            <button class="btn btn-soft-secondary btn-sm" type="button" aria-expanded="false">
+                                                <a href="{{ route('warehouse.edit', $warehouse_itens->id) }}"><i class="ri-pencil-fill align-bottom text-muted"></i>Edit</a>
+                                            </button>
+                                            <!--redirecionamento para a pagina de cadastro porem com as informações preenchidas-->
+
+                                            <button class="btn btn-soft-secondary btn-sm bg-danger text-dark"   type="button" aria-expanded="false">
+                                               <!--<a href="{{ route('warehouse.destroy', $warehouse_itens->id) }}">--> <i class="ri-delete-bin-fill bg-danger align-bottom "></i>Delete<!--</a>-->
+                                            </button>
+                                            <!--aviso de certeza e talvez um codigo de confirmação-->
                                         </td>
                                     </tr>
                                 @endforeach 
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
