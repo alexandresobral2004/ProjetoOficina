@@ -11,6 +11,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "*",
         "realrashid/sweet-alert": "*",
+        "twbs/bootstrap-icons": "*",
         "wavey/sweetalert": "*"
     },
     "require-dev": {
