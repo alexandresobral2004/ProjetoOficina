@@ -1,13 +1,7 @@
-@extends('layouts.app')
-@section('content')
     <div class="row">
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-header align-items-center d-flex">
-                    <h3 class="col-xxl-6 col-md-6 flex-grow-1">Novo Cliente</h3>
-
-                </div><!-- end card header -->
                 <div class="card-body">
                     <h4>Dados Pessoais</h4>
                     <form action="{{ route('clientes.store') }}" method="POST">
@@ -24,8 +18,6 @@
 
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row mt-2">
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                         <label>{{ __('E-mail') }}</label>
@@ -33,34 +25,23 @@
                                             class="form-control{{ $errors->has('Email') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('seuemail@email.com.br') }}"
                                             value="{{ old('email', $obj->email ?? '') }}" required>
-
                                     </div>
                                 </div>
                             </div>
-
-
-
+                            <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
                             <div class="row mt-2">
-
-                                <div class="col-xxl-3 col-md-3">
-                                    <div class="form-group{{ $errors->has('profissao') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Profissão') }}</label>
-                                        <input id="profissao" type="text" name="profissao"
-                                            class="form-control{{ $errors->has('cargo') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Profissao') }}"
-                                            value="{{ old('profissao', $obj->profissao ?? '') }}">
+                                <div class="col-xxl-6 col-md-6">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="tipo_pessoa" id="pessoa_fisica" value="fisica" checked>
+                                        <label class="form-check-label" for="pessoa_fisica">Pessoa Física</label>
                                     </div>
-                                </div>
-                                <div class="col-xxl-2 col-md-2">
-                                    <div class="form-group{{ $errors->has('dtNasc') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Data de Nascimento') }}</label>
-                                        <input id="dtNasc" type="date" name="dtNasc"
-                                            class="form-control{{ $errors->has('dtNasc') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Data de Nascimento') }}"
-                                            value="{{ old('dtNasc', $obj->dtNasc ?? '') }}">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="tipo_pessoa" id="pessoa_juridica" value="juridica">
+                                        <label class="form-check-label" for="pessoa_juridica">Pessoa Jurídica</label>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row mt-2">
                                 <div class="col-xxl-3 col-md-3">
                                     <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
@@ -85,35 +66,60 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-2">
-                                <div class="col-xxl-2 col-md-2">
-                                    <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
-                                        <label>{{ __('CPF') }}</label>
-                                        <input id="cpf" type="text" name="cpf"
-                                            class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('000.000.000-00') }}"
-                                            value="{{ old('cpf', $obj->cpf ?? '') }}">
-
+                            <!-- Informações de Pessoa Física -->
+                            <div id="dados_pessoa_fisica">
+                                <div class="row mt-2">
+                                    <div class="col-xxl-4 col-md-4">
+                                        <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
+                                            <label class="">{{ __('CPF') }}</label>
+                                            <input id="cpf" type="text" name="cpf"
+                                                class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }}"
+                                                placeholder="{{ __('CPF') }}" value="{{ old('cpf', $obj->cpf ?? '') }}"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-4 col-md-4">
+                                        <div class="form-group{{ $errors->has('dtNasc') ? ' has-danger' : '' }}">
+                                            <label>{{ __('Data de Nascimento') }}</label>
+                                            <input id="dtNasc" type="date" name="dtNasc"
+                                                class="form-control{{ $errors->has('dtNasc') ? ' is-invalid' : '' }}"
+                                                placeholder="{{ __('Data de Nascimento') }}" value="{{ old('dtNasc', $obj->dtNasc ?? '') }}"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-4 col-md-4">
+                                        <div class="form-group{{ $errors->has('profissao') ? ' has-danger' : '' }}">
+                                            <label>{{ __('Profissão') }}</label>
+                                            <input id="profissao" type="text" name="profissao"
+                                                class="form-control{{ $errors->has('profissao') ? ' is-invalid' : '' }}"
+                                                placeholder="{{ __('Profissão') }}" value="{{ old('profissao', $obj->profissao ?? '') }}"
+                                                required>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xxl-2 col-md-2">
-                                    <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
-                                        <label>{{ __('CNPJ') }}</label>
-                                        <input id="cnpj" type="text" name="cnpj"
-                                            class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('00.000.000/0000-00') }}"
-                                            value="{{ old('cnpj', $obj->cnpj ?? '') }}">
+                            </div>
 
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-md-3">
-                                    <div class="form-group{{ $errors->has('razaosocial') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Razão Social(Empresa)') }}</label>
-                                        <input id="razaosocial" type="text" name="razaosocial"
-                                            class="form-control{{ $errors->has('razaosocial') ? ' is-invalid' : '' }} text-decoration-none border rounded-2"
-                                            placeholder="{{ __('Empresa Teste Ltda') }}"
-                                            value="{{ old('razaosocial', $obj->razaosocial ?? '') }}">
-
+                                <!-- Informações de Pessoa Jurídica -->
+                                <div id="dados_pessoa_juridica" style="display: none;">
+                                    <div class="row mt-2">
+                                        <div class="col-xxl-6 col-md-6">
+                                            <div class="form-group{{ $errors->has('razao_social') ? ' has-danger' : '' }}">
+                                                <label>{{ __('Razão Social') }}</label>
+                                                <input id="razao_social" type="text" name="razao_social"
+                                                    class="form-control{{ $errors->has('razao_social') ? ' is-invalid' : '' }}"
+                                                    placeholder="{{ __('Razão Social') }}" value="{{ old('razao_social', $obj->razao_social ?? '') }}"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-2 col-md-2">
+                                            <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
+                                                <label>{{ __('CNPJ') }}</label>
+                                                <input id="cnpj" type="text" name="cnpj"
+                                                    class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
+                                                    placeholder="{{ __('00.000.000/0000-00') }}"
+                                                    value="{{ old('cnpj', $obj->cnpj ?? '') }}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -195,23 +201,14 @@
                             <div class="col-xxl-3 col-md-3 mt-2">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
                             </div>
-
                         </div>
                     </form>
                 </div>
-
-
-
-
             </div>
-
         </div>
 
 
 
-    </div>
-    <div class="row mt-3">
-        @livewire('clientes.ListClientes')
     </div>
     <script>
         //Mascara  para FONE, CPF e CNPJ
@@ -232,7 +229,5 @@
             mask: '99.999.999/9999-99'
         }).mask(document.getElementById('cnpj'));
     </script>
+</div>
 
-
-    </div>
-@endsection
