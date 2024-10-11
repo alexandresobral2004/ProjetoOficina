@@ -102,7 +102,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <span class="tw-text-base">Tem certeza que deseja deletar este cliente?</span>
+                            <span>Tem certeza que deseja deletar este cliente?</span>
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

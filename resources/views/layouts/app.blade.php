@@ -59,8 +59,6 @@
 
     //Livewire
     @livewireStyles
-    //taildwind
-    @vite('resources/css/app.css')
 </head>
 
 <body>
