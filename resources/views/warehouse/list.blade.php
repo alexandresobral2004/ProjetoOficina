@@ -21,7 +21,7 @@
                                     <th class="text-truncate" data-ordering="false">Preço de custo</th>
                                     <th class="text-truncate" data-ordering="false">Preço final</th>
                                     <th data-ordering="false">Compatibilidade</th>
-                                    <th>Action</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,14 +43,13 @@
                                             <!--redirecionamento para a pagina de cadastro porem com as informações preenchidas-->
 
                                             <button class="btn btn-soft-secondary btn-sm bg-danger text-dark"   type="button" aria-expanded="false">
-                                               <!--<a href="{{ route('warehouse.destroy', $warehouse_itens->id) }}">--> <i class="ri-delete-bin-fill bg-danger align-bottom "></i>Delete<!--</a>-->
+                                               <a href="{{ route('warehouse.destroy', $warehouse_itens->id) }}"> <i class="ri-delete-bin-fill bg-danger align-bottom "></i>Delete</a>
                                             </button>
-                                            <!--aviso de certeza e talvez um codigo de confirmação-->
+                                            <!--por um aviso de certeza e talvez um codigo de confirmação-->
                                         </td>
                                     </tr>
                                 @endforeach 
                             </tbody>
-                            
                         </table>
                     </div>
                 </div>

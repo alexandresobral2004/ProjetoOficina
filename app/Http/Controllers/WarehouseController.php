@@ -112,8 +112,16 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        
-    }
+    public function destroy($id){
+    // Busca o item no banco de dados pelo ID
+    $item = Warehouse_itens::find($id);
+
+    // Exclui o item do banco de dados
+    $item->delete();
+    Sweetalert::success('Item deletado com sucesso!', 'Sucesso!');
+
+    // Redireciona para a lista de itens com uma mensagem de sucesso
+    return redirect()->route('warehouse.index');
+}
+
 }

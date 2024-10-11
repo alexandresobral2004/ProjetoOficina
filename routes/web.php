@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::get('/warehouse/list', [\App\Http\Controllers\WarehouseController::class, 'index'])->name('warehouse.index');
     Route::get('/warehouse/edit/{id}', [\App\Http\Controllers\WarehouseController::class, 'edit'])->name('warehouse.edit');  //rota para editar
     Route::put('/warehouse/update/{id}', [\App\Http\Controllers\WarehouseController::class, 'update'])->name('warehouse.update');
-    Route::get('/warehouse/del/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy'])->name('warehouse.destroy');
+    Route::get('/warehouse/destroy/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy'])->name('warehouse.destroy');
     //rota para deletar
    
 
