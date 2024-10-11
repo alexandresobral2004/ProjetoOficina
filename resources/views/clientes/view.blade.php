@@ -1,5 +1,5 @@
 <div>
-    <h3 class="tw-text-lg tw-font-bold tw-text-center">Dados Pessoais</h4>
+    <h3>Dados Pessoais</h4>
     <strong>Nome:</strong> {{ $cliente->name }}<br>
     <strong>Email:</strong> {{ $cliente->email }}<br>
     <strong>Telefone:</strong> {{ $cliente->fone }}<br>
@@ -13,7 +13,7 @@
 
 @if($endereco)
     <div>
-        <h3 class="tw-text-lg tw-font-bold tw-text-center">Endereço</h4>
+        <h3>Endereço</h4>
         <div>
             <strong>Endereço:</strong> {{ $endereco->endereco }}<br>
             <strong>Cidade:</strong> {{ $endereco->cidade }}<br>
