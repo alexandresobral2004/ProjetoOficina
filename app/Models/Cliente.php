@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Notifications\Notifiable;
 
-class Employee extends EloquentModel
+class Cliente extends EloquentModel
 {
     use HasFactory, Notifiable;
+      protected $table = 'clientes';
 
     /**
      * The attributes that are mass assignable.

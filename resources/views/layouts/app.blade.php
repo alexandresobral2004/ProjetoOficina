@@ -39,6 +39,10 @@
     <!--datatable responsive css-->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
 
+    <!-- gridjs css -->
+    <link rel="stylesheet" href="assets/libs/gridjs/theme/mermaid.min.css">
+
+    <!-- datatable buttons css -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
     <!-- INPUT MASK -->
@@ -178,10 +182,14 @@
     </div>
 
     <div class="customizer-setting d-none d-md-block">
-        <div class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas"
-            data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+
+        <button id="ThemeSettings" class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas"
+            aria-controls="theme-settings-offcanvas">
             <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
-        </div>
+        </button>
+
+
     </div>
 
 
@@ -224,6 +232,17 @@
 
 </body>
 
+<script>
+    //PERSONALIZANDO A EXIBIÇÃO DO OFFCANVAS
+    document.getElementById('ThemeSettings').addEventListener('click', function() {
+        // Verifica se deseja exibir o offcanvas
+        var offcanvasElement = document.getElementById('theme-settings-offcanvas');
+        var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+
+        // Exibe o offcanvas
+        offcanvas.show();
+    });
+</script>
 
 <!-- Mirrored from themesbrand.com/velzon/html/modern/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Aug 2024 01:51:15 GMT -->
 

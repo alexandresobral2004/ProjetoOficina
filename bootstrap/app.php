@@ -13,10 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+         $middleware->alias([
+             'checkForTokenExpiration' => CheckForTokenExpiration::class,
+             
+         ]);
     })
-    ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(CheckForTokenExpiration::class);
-    })
+    
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
