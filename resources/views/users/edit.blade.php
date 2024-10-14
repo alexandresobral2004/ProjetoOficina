@@ -62,6 +62,9 @@
 
                                 </div>
                             </div>
+
+
+                            
                             <div class="col-xxl-4 col-md-4">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label>{{ __('E-mail') }}</label>

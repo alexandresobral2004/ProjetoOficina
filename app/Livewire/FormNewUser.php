@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Livewire;
-
 use Livewire\Component;
 
-class FormNewUser extends Component
-{
+class FormNewUser extends Component { 
+
     public function render()
     {
         return <<<'HTML'
