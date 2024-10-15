@@ -49,7 +49,7 @@ class UserController extends Controller
                 if($request->cpf){
                     $user->cpf = $request->cpf;
                 }
-                $user->cnpj = $request->cnpj;
+               
                 $user->role = $request->role;
                 $user->status = $request->status;
            

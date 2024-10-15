@@ -2,10 +2,10 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Tabela de Clientes</h5>
+                <h5 class="mb-0 card-title">Tabela de Clientes</h5>
             </div>
             <div class="card-body">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10px;">
@@ -15,8 +15,8 @@
                             </th>
                             <th data-ordering="false">Nome</th>
                             <th data-ordering="false">Email</th>
-                            <th data-ordering="false">Telefone</th>
-                            <th data-ordering="false">Telefone fixo</th>
+                            <th data-ordering="false">Fone</th>
+                            <th data-ordering="false">Fone fixo</th>
                             <th data-ordering="false">CPF</th>
                             <th data-ordering="false">CNPJ</th>
                             <th>Action</th>
@@ -39,22 +39,22 @@
                                 <td>
                                     <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
                                         <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-home align-middle"></i>...
+                                            <i class="align-middle fa fa-home"></i>...
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <button class="dropdown-item view-client-btn" data-id="{{ $cliente->id }}" data-bs-toggle="modal" data-bs-target="#viewClientModal">
-                                                    <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
+                                                    <i class="align-bottom ri-eye-fill me-2 text-muted"></i> View
                                                 </button>
                                             </li>
                                             <li>
                                                 <button class="dropdown-item edit-client-btn" data-id="{{ $cliente->id }}" data-bs-toggle="modal" data-bs-target="#editClientModal">
-                                                    <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
+                                                    <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Edit
                                                 </button>
                                             </li>
                                             <li>
                                                 <button class="dropdown-item delete-client-btn" data-id="{{ $cliente->id }}" data-bs-toggle="modal" data-bs-target="#deleteClientModal">
-                                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+                                                    <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Delete
                                                 </button>
                                             </li>
                                         </ul>
@@ -66,7 +66,7 @@
                 </table>
             </div>
             <!-- Modal para view de cliente especifico-->
-            <div class="modal fade mb-5" id="viewClientModal" tabindex="-1" aria-labelledby="viewClientModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="viewClientModal" tabindex="-1" aria-labelledby="viewClientModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -80,7 +80,7 @@
             </div>
 
             <!-- Modal para editar as informações do cliente -->
-            <div class="modal fade mb-5" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
