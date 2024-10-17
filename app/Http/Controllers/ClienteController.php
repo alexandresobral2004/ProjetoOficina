@@ -35,16 +35,16 @@ class ClienteController extends Controller
     {
         try{
 
-           
-            
-           
+
+
+
             //Validação dos dados de entrada
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|max:6',
             'confirm_password' => 'required|string|max:6',
-            'fone'=> 'required|string|max:15',  
+            'fone'=> 'required|string|max:15',
             'cpf'=> 'nullable|string|max:20|unique:clientes',
             'cnpj'=> 'nullable|string|max:20|unique:clientes',
             'dtNasc'=> 'nullable|date',
@@ -54,26 +54,26 @@ class ClienteController extends Controller
         ]);
 
 
-      
+
          if($validatedData['password'] == $validatedData['confirm_password']){
-           
+
             // Criptografando a senha
             $validatedData['password'] = bcrypt($validatedData['password']);
-             
+
             if($validatedData['cpf']  == null && $validatedData['cnpj'] == null ){
                  Sweetalert::error('CPF ou CNPJ obrigatorio!', 'Erro!');
-                
-                  return redirect()->route('cliente.add')->with("Erro", "CPF ou CNPJ obrigatorio");  
+
+                  return redirect()->route('cliente.add')->with("Erro", "CPF ou CNPJ obrigatorio");
             }
 
-           
-           
-            
+
+
+
          }
          else{
             Sweetalert::error('Senhas não conferem!', 'Erro!');
             return Redirect(route('clientes.add'));
-          
+
          }
 
             $validatedData2 = $request->validate([
@@ -82,26 +82,26 @@ class ClienteController extends Controller
             'state'=> 'required|string|max:100',
             'zip_code'=> 'required|string|max:15',
             ]);
-          
-       
+
+
            $cliente = Cliente::create($validatedData);
            $end = new Cliente_end();
            $end->fill($validatedData2);
            $end->cliente_id = $cliente->id;
-        
+
            $end->save();
            Sweetalert::success('Usuário criado com sucesso!', 'Sucesso!');
            return view('/clientes/new');
-        
-      
+
+
 
          }
          catch(QueryException $exception){
             // dd($exception->getMessage());
               return Redirect()->route('clientes.add')->with("Erro", $exception->getMessage());
-            
+
          }
-      
+
 //         Sweetalert::basic('Description', 'Title');
 // Sweetalert::info('Description', 'Title');
 // Sweetalert::success('Description', 'Title');
@@ -109,8 +109,8 @@ class ClienteController extends Controller
 // Sweetalert::warning('Description', 'Title');
 // Sweetalert::message('Description', 'Title');
 // Sweetalert::message('Description <h2>Custom HTML</h2>', 'Title')->html();
-        
-        
+
+
     }
 
     /**
@@ -134,11 +134,12 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+
+    public function edit($id)
     {
         $cliente = Cliente::find($id);
-        $endereco = Cliente_end::where('cliente_id', $id)->first();
-        return view('clientes.edit', compact('cliente', 'endereco'));
+        $endereco = Cliente_end::where('cliente_id', $id)->get();
+        return view('clientes.edit')->with('cliente', $cliente)->with('endereco', $endereco);
     }
 
     /**
@@ -190,7 +191,6 @@ class ClienteController extends Controller
     public function destroy(string $id)
     {
         try {
-            Log::info("Tentando deletar cliente com ID: $id");
             $cliente = Cliente::find($id);
             if ($cliente) {
                 // Deletar o endereço do cliente
