@@ -7,54 +7,11 @@ use Wavey\Sweetalert\Sweetalert;
 use Illuminate\Database\QueryException;
 
 class WarehouseController extends Controller{
-    /* Display a listing of the resource.*/
-    public function index(){
-          $warehouse = Warehouse_itens::all();
-          return view('/warehouse/list',['warehouse'=>$warehouse]);
-    }
 
-    /*Show the form for creating a new resource. */
-    public function add(){
-        return view('/warehouse/new',['obj'=>new Warehouse_itens()]);
-    }
-
-    public function edit($id) {
-        // Busca o objeto no banco de dados pelo ID
-        $obj = Warehouse_itens::find($id);
-        // Retorna a view com o objeto
-        return view('warehouse.edit', compact('obj'));
-        }
-
-    // Método responsável pela atualização do item
-    public function update(Request $request, $id){
-        // Validação dos dados enviados no formulário
-        $request->validate([
-            'cod' => 'required|integer',
-            'nome_peca' => 'required|string',
-            'qtde' => 'required|integer',
-            'modelo' => 'required|string',
-            'marca' => 'required|string',
-            'margem' => 'required|numeric',
-            'preco_custo' => 'required|numeric',
-            'compatibility' => 'required|string',
-        ]);
-
-        // Encontra o item no banco de dados usando o ID
-        $warehouse = Warehouse_itens::find($id);
-
-        // Atualiza os dados com as informações enviadas no formulário
-        $warehouse->update($request->all());
-
-        // Redireciona para a página de listagem com uma mensagem de sucesso
-        return redirect()->route('warehouse.index')->with('success', 'Peça atualizada com sucesso.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    /* Store a newly created resource in storage.*/
+    // CREATE
     public function store(Request $request){
         try{
-            //Validação dos dados de entrada
             $validatedData = $request->validate([
                 'cod' => 'required|string|max:50|unique:warehouse_itens',
                 'nome_peca' => 'required|string|max:255',
@@ -69,35 +26,62 @@ class WarehouseController extends Controller{
 
             $preco_final = $request->preco_custo + ($request->preco_custo * $request->margem);
             $validatedData['preco_final'] = $preco_final;
-        
             Warehouse_itens::create($validatedData);
             Sweetalert::success('Item cadastrado com sucesso!', 'Sucesso!');
             return redirect()->route('warehouse.index');
         }
-         catch(QueryException $exception){
+        catch(QueryException $exception){
             dd($exception->getMessage());
-         }
+        }
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id){
-        // Busca o item no banco de dados pelo ID
-        $item = Warehouse_itens::find($id);
+    /* Display a listing of the resource.*/
+    // READ
+    public function index(){
+        $warehouse = Warehouse_itens::all();
+        return view('/warehouse/list',['warehouse'=>$warehouse]);
+    }
 
-        // Exclui o item do banco de dados
+    /* Update the specified resource in storage.*/
+    // UPDATE
+    public function update(Request $request, $id){
+        $request->validate([
+            'cod' => 'required|integer',
+            'nome_peca' => 'required|string',
+            'qtde' => 'required|integer',
+            'modelo' => 'required|string',
+            'marca' => 'required|string',
+            'margem' => 'required|numeric',
+            'preco_custo' => 'required|numeric',
+            'compatibility' => 'required|string',
+        ]);
+
+        $warehouse = Warehouse_itens::find($id);
+        $warehouse->update($request->all());
+        return redirect()->route('warehouse.index')->with('success', 'Peça atualizada com sucesso.');
+    }
+
+    /* Remove the specified resource from storage.*/
+    // DELETE
+    public function destroy($id){
+        $item = Warehouse_itens::find($id);
         $item->delete();
         Sweetalert::success('Item deletado com sucesso!', 'Sucesso!');
-
-        // Redireciona para a lista de itens com uma mensagem de sucesso
         return redirect()->route('warehouse.index');
     }
 
+    /*Show the form for creating a new resource. */
+    public function add(){
+        return view('/warehouse/new',['obj'=>new Warehouse_itens()]);
+    }
 
+    /* Show the form for editing the specified resource.*/
+    public function edit($id) {
+        $obj = Warehouse_itens::find($id);
+        return view('warehouse.edit', compact('obj'));
+    }
 
-        
     // Sweetalert::basic('Description', 'Title');
     // Sweetalert::info('Description', 'Title');
     // Sweetalert::success('Description', 'Title');
@@ -106,9 +90,7 @@ class WarehouseController extends Controller{
     // Sweetalert::message('Description', 'Title');
     // Sweetalert::message('Description <h2>Custom HTML</h2>', 'Title')->html();
 
-    /**
-     * Display the specified resource.
-     */
+    /** Display the specified resource.*/
     public function show(string $id){
             //
     }
