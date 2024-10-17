@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckForTokenExpiration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\VeiculoController;
 use App\Models\Cliente;
 
 
@@ -26,9 +27,9 @@ return redirect()->route('auth.login')->with('message', 'Sua sessão expirou. Fa
 
 Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
 
-    //Dashboard 
+    //Dashboard
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('auth.dashboard');
-  
+
     //cliente
     Route::get('/clientes/index', function () {
     $clientes = Cliente::all();
@@ -45,7 +46,9 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
 
     Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
-    
+
+    Route::resource('veiculos', VeiculoController::class);
+
     // Rota para o almoxarifado ---------------
     Route::get('/warehouse/new', [\App\Http\Controllers\WarehouseController::class, "add"])->name('warehouse.add');
     Route::post('/warehouse/save', [\App\Http\Controllers\WarehouseController::class, 'store'])->name('warehouse.store');
@@ -67,7 +70,7 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
 
 //Rotas para admins
 Route::group(['middleware' => ['auth', 'admin']], function () {
-  
+
 });
 
 
