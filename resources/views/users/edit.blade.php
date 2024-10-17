@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Cadastro de Usuário</h4>
+                    <h4 class="mb-0 card-title flex-grow-1">Cadastro de Usuário</h4>
 
                 </div><!-- end card header -->
                 <div class="card-body">
@@ -16,7 +16,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $obj->id ?? '' }}">
 
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
 
                             <div class="col-xx-2 col-md-2">
                                 <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
@@ -51,7 +51,7 @@
 
                         </div>
 
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
                             <div class=" col-xxl-6 col-md-6">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label>{{ __('Nome') }}</label>
@@ -77,7 +77,7 @@
                             </div>
                         </div>
 
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
 
                             <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
@@ -110,7 +110,7 @@
                                         </div>
                                     </div> --}}
                         </div>
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
                             <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                     <label>{{ __('CPF') }}</label>
@@ -121,7 +121,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-xxl-3 col-md-3">
+                            {{-- <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
                                     <label>{{ __('CNPJ') }}</label>
                                     <input id="cnpj" type="text" name="cnpj"
@@ -130,9 +130,9 @@
                                         value="{{ old('cnpj', $obj->cnpj ?? '') }}">
 
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-xxl-3 col-md-3">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
                             </div>

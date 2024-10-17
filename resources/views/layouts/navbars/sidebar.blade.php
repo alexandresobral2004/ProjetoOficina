@@ -19,7 +19,7 @@
                     <img src="../assets/images/logo-light.png" alt="" height="17">
                 </span>
             </a> --}}
-        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+        <button type="button" class="p-0 btn btn-sm fs-20 header-item float-end btn-vertical-sm-hover"
             id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
@@ -32,6 +32,15 @@
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+
+
+                <li class="nav-item">
+                    <a href="{{ route('auth.dashboard') }}" class="nav-link"> <i
+                            class="las la-home"></i><span data-key="t-dashboards">Home</span>
+
+                    </a> </li>
+
+
 
                 <li class="nav-item">
                     <a href="{{ route('auth.dashboard') }}" class="nav-link">
@@ -49,6 +58,7 @@
                     <a class="nav-link menu-link" href="{{ route('clientes.index') }}">
                         <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Clientes</span>
                     </a>
+
                 </li>
         </div>
                 {{-- @if (auth()->check() && auth()->user()->role === 'admin')
@@ -78,6 +88,7 @@
                         </li>
                     @endif
                 @endauth
+
 
 
 
