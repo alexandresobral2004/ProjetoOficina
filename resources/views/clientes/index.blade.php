@@ -8,7 +8,9 @@
                 Cadastrar Novo Cliente
             </button>
         </div>
+
         @livewire('Clientes.list-clientes')
+
     </div>
 
         <!-- Modal -->
@@ -32,6 +34,8 @@
             const dadosPessoaFisica = document.getElementById('dados_pessoa_fisica');
             const dadosPessoaJuridica = document.getElementById('dados_pessoa_juridica');
 
+
+
             pessoaFisicaRadio.addEventListener('change', function () {
                 if (this.checked) {
                     dadosPessoaFisica.style.display = 'block';
@@ -45,6 +49,14 @@
                     dadosPessoaJuridica.style.display = 'block';
                 }
             });
+
+
+            clienteForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Impede o envio do formulário
+                // Aqui você pode adicionar a lógica para salvar os dados via AJAX, se necessário
+                newClientModal.hide(); // Fecha o modal
+            });
         });
     </script>
 @endsection
+

@@ -1,3 +1,4 @@
+
 @props(['cliente', 'endereco'])
     <div>
         <h3>Dados Pessoais</h4>
@@ -15,6 +16,7 @@
 @if($endereco)
     <div>
         <h3>Endereço</h4>
+
         <div>
             <strong>Endereço:</strong> {{ $endereco->endereco }}<br>
             <strong>Cidade:</strong> {{ $endereco->cidade }}<br>
@@ -32,4 +34,6 @@
             <strong>CEP:</strong> Não disponível<br>
         </div>
     </div>
+
 @endif
+

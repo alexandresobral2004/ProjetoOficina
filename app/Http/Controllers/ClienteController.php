@@ -140,6 +140,7 @@ class ClienteController extends Controller
         $cliente = Cliente::find($id);
         $endereco = Cliente_end::where('cliente_id', $id)->get();
         return view('clientes.edit')->with('cliente', $cliente)->with('endereco', $endereco);
+
     }
 
     /**
@@ -191,6 +192,7 @@ class ClienteController extends Controller
     public function destroy(string $id)
     {
         try {
+
             $cliente = Cliente::find($id);
             if ($cliente) {
                 // Deletar o endereço do cliente

@@ -103,11 +103,13 @@
                                 <div id="dados_pessoa_juridica" style="display: none;">
                                     <div class="row mt-2">
                                         <div class="col-xxl-6 col-md-6">
+
                                             <div class="form-group{{ $errors->has('razaoSocial') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Razão Social') }}</label>
                                                 <input id="razaoSocial" type="text" name="razaoSocial"
                                                     class="form-control{{ $errors->has('razaoSocial') ? ' is-invalid' : '' }}"
                                                     placeholder="{{ __('Razão Social') }}" value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}"
+
                                                     required>
                                             </div>
                                         </div>

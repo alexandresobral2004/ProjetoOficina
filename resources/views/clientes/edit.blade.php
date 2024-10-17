@@ -1,4 +1,6 @@
+
 @props(['cliente', 'endereco'])
+
 <div class="row">
     <form action="{{ route('clientes.update', $cliente->id) }}" method="POST">
         @csrf
@@ -10,8 +12,10 @@
             </div>
             <div class="col-xxl-6 col-md-6">
                 <label for="email" class="form-label">Email</label>
+
                 <input type="email" class="form-control" id="email" name="email" value="{{ $cliente->email }}" required>
             </div>
+
         </div>
 
         <div class="row mt-2">
@@ -67,6 +71,7 @@
             <div class="col-xxl-4 col-md-4">
                 <label for="zip_code" class="form-label">CEP</label>
                 <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ old('zip_code', $endereco->zip_code ?? '') }}" required>
+
             </div>
         </div>
 
@@ -77,4 +82,6 @@
             </div>
         </div>
     </form>
+
 </div>
+
