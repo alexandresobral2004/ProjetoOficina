@@ -13,7 +13,11 @@ class Veiculo extends Model
         'modelo',
         'marca',
         'placa',
-        'ano',
+        'ano_fabricacao',
+        'cor',
+        'chassi',
+        'tipo_veiculo',
+        'quilometragem',
         'cliente_id'
     ];
 

@@ -10,9 +10,8 @@ class VeiculoController extends Controller
 {
     public function index()
     {
+        $veiculos = Veiculo::with('cliente')->get();
         $clientes = Cliente::all();
-        // Busca todos os veículos
-        $veiculos = Veiculo::all();
 
         // Retorna a view 'veiculos.index' com a variável $veiculos
         return view('veiculos.index', compact('veiculos', 'clientes'));
@@ -20,11 +19,8 @@ class VeiculoController extends Controller
 
     public function create()
     {
-        // Busca todos os clientes do banco de dados
-        $clientes = Cliente::all();
-
         // Passa a lista de clientes para a view de criação de veículos
-        return view('veiculos.create', compact("clientes"));
+        return view('veiculos.create');
     }
 
 
@@ -34,8 +30,13 @@ class VeiculoController extends Controller
         $validatedData = $request->validate([
             'modelo' => 'required|string|max:255',
             'marca' => 'required|string|max:255',
-            'placa' => 'required|string|max:10|unique:veiculos,placa',
-            'ano' => 'required|integer|min:1900|max:' . date('Y'),
+            'placa' => 'required|string|size:7|unique:veiculos,placa', // Valida o tamanho da placa (padrão Mercosul)
+            'chassi' => 'required|string|size:17|unique:veiculos,chassi', // Valida o tamanho do chassi
+            'tipo_veiculo' => 'required|string', // Valida o tipo de veículo
+            'cor' => 'required|string|max:50',
+            'quilometragem' => 'required|integer|min:0', // Valida que a quilometragem seja um número inteiro positivo
+            'ano_fabricacao' => 'required|integer|min:1900|max:' . date('Y'), // Ano de fabricação deve estar entre 1900 e o ano atual
+            'observacoes' => 'nullable|string|max:1000', // Observações opcionais, máximo de 1000 caracteres
             'cliente_id' => 'required|exists:clientes,id', // Valida se o cliente existe
         ]);
 
@@ -45,49 +46,60 @@ class VeiculoController extends Controller
         return redirect()->route('veiculos.index')->with('success', 'Veículo cadastrado com sucesso!');
     }
 
-
-    public function show(string $id)
+    public function edit($id)
     {
-        $veiculo = Veiculo::find($id);
+        // Busca o veículo pelo id
+        $veiculo = Veiculo::findOrFail($id);
+        $clientes = Cliente::all();
 
-        if (!$veiculo) {
-            return response()->json(['error' => 'Veículo não encontrado'], 404);
-        }
-
-        return response()->json($veiculo);
+        // Retorna a view com o formulário de edição
+        return view('veiculos.partials.edit', compact('veiculo', 'clientes'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
+        // Valida os dados enviados
         $request->validate([
             'modelo' => 'required|string|max:255',
             'marca' => 'required|string|max:255',
-            'placa' => 'required|string|max:10|unique:veiculos,placa,' . $id,
-            'ano' => 'required|integer|min:1900|max:' . date('Y'),
+            'placa' => 'required|string|max:10',
+            'ano_fabricacao' => 'required|integer|min:1900|max:' . date('Y'),
+            'cor' => 'required|string|max:50',
+            'chassi' => 'required|string|max:50',
+            'tipo_veiculo' => 'required|string|max:50',
+            'quilometragem' => 'required|integer|min:0',
             'cliente_id' => 'required|exists:clientes,id',
         ]);
 
-        $veiculo = Veiculo::find($id);
+        // Busca o veículo pelo id
+        $veiculo = Veiculo::findOrFail($id);
 
-        if (!$veiculo) {
-            return response()->json(['error' => 'Veículo não encontrado'], 404);
-        }
-
+        // Atualiza os dados do veículo
         $veiculo->update($request->all());
 
-        return response()->json($veiculo);
+        // Redireciona para a página de listagem com uma mensagem de sucesso
+        return redirect()->route('veiculos.index')->with('success', 'Veículo atualizado com sucesso!');
     }
 
-    public function destroy(string $id)
+    public function show($id)
     {
-        $veiculo = Veiculo::find($id);
+        // Busca o veículo pelo id
+        $veiculo = Veiculo::with('cliente')->findOrFail($id);
 
-        if (!$veiculo) {
-            return response()->json(['error' => 'Veículo não encontrado'], 404);
-        }
 
+        // Retorna a view de detalhes do veículo (sem o layout geral)
+        return view('veiculos.partials.details', compact('veiculo'));
+    }
+
+    public function destroy($id)
+    {
+        // Busca o veículo pelo id
+        $veiculo = Veiculo::findOrFail($id);
+
+        // Deleta o veículo
         $veiculo->delete();
 
-        return response()->json(null, 204);
+        // Redireciona para a página de listagem com uma mensagem de sucesso
+        return redirect()->route('veiculos.index')->with('success', 'Veículo deletado com sucesso!');
     }
 }

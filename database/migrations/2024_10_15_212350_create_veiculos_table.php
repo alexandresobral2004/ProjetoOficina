@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('modelo');
             $table->string('marca');
-            $table->string('placa', 7)->unique();
-            $table->year('ano');
+            $table->string('placa', 7)->unique(); // padrão mercosul
+            $table->string('chassi', 17)->unique();
+            $table->string('tipo_veiculo');
+            $table->string('cor');
+            $table->integer('quilometragem');
+            $table->year('ano_fabricacao');
+            $table->text('observacoes')->nullable();
             $table->timestamps();
         });
     }

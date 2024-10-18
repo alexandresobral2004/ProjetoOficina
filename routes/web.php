@@ -47,7 +47,15 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
 
     Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
 
-    Route::resource('veiculos', VeiculoController::class);
+    // Rotas para veiculo:
+    // Obs: poderia ser resumido a: Route::resource('veiculos', VeiculoController::class);
+    Route::get('/veiculos', [VeiculoController::class, 'index'])->name('veiculos.index');
+    Route::get('/veiculos/create', [VeiculoController::class, 'create'])->name('veiculos.create');
+    Route::post('/veiculos', [VeiculoController::class, 'store'])->name('veiculos.store');
+    Route::get('/veiculos/{veiculo}', [VeiculoController::class, 'show'])->name('veiculos.show');
+    Route::get('/veiculos/{veiculo}/edit', [VeiculoController::class, 'edit'])->name('veiculos.edit');
+    Route::put('/veiculos/{veiculo}', [VeiculoController::class, 'update'])->name('veiculos.update');
+    Route::delete('/veiculos/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
 
     // Rota para o almoxarifado ---------------
     Route::get('/warehouse/new', [\App\Http\Controllers\WarehouseController::class, "add"])->name('warehouse.add');
