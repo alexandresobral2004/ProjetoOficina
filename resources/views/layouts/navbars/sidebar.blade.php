@@ -72,6 +72,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('servicos.index') }}">
+                        <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Serviços</span>
+                    </a>
+                </li>
+
                 {{-- @if (auth()->check() && auth()->user()->role === 'admin')
                 <!-- Conteúdo para administradores -->
                 <p>Bem-vindo, Administrador!</p> --}}
