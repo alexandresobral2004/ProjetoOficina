@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('data_inicio'); // Data de início do serviço
             $table->date('data_termino')->nullable(); // Data de término (opcional)
             $table->enum('status', ['Pendente', 'Em andamento', 'Concluído']); // Status do serviço
-            $table->text('observacoes')->nullable(); // Observações sobre o serviço
+            $table->text('descricao')->nullable(); // Observações sobre o serviço
             $table->decimal('valor_total', 10, 2)->nullable(); // Valor total do serviço
             $table->timestamps(); // Created_at e Updated_at
         });
