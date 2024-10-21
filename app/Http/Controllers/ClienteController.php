@@ -137,9 +137,9 @@ class ClienteController extends Controller
 
     public function edit($id)
     {
-        $cliente = Cliente::find($id);
-        $endereco = Cliente_end::where('cliente_id', $id)->get();
-        return view('clientes.edit')->with('cliente', $cliente)->with('endereco', $endereco);
+        $cliente = Cliente::with('endereco')->find($id);
+
+        return view('clientes.edit', compact('cliente'));
 
     }
 
