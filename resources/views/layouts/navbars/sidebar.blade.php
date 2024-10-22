@@ -60,7 +60,7 @@
                     </a>
 
                 </li>
-        </div>
+      
                 {{-- @if (auth()->check() && auth()->user()->role === 'admin')
                 <!-- Conteúdo para administradores -->
                 <p>Bem-vindo, Administrador!</p> --}}
@@ -78,12 +78,11 @@
                                         <a href="{{ route('user.add') }}" class="nav-link">Novo
                                         </a>
                                     </li>
-                                    {{-- <li class="nav-item">
-                                        <a href="{{ route('user.index') }}" class="nav-link">Lista
-                                        </a>
-                                    </li> --}}
+                                 
 
                                 </ul>
+                            </div>
+                            
 
                         </li>
                     @endif
