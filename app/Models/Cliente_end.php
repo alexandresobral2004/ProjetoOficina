@@ -15,10 +15,14 @@ class Cliente_end extends Model
         'city',
         'state',
         'zip_code',
-        'employee_id',
-        
+        'cliente_id',
 
 
      ];
+
+     public function cliente()
+     {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+     }
 
 }

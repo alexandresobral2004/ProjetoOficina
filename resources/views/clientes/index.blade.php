@@ -4,7 +4,7 @@
     <div class="row gap-3">
         <div class="d-flex justify-content-between ">
             <h1 class="h3 mb-3">Clientes</h1>
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newClientModal">
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newClientModal" :data='null'>
                 Cadastrar Novo Cliente
             </button>
         </div>
@@ -13,8 +13,9 @@
 
     </div>
 
-        <!-- Modal -->
-    <div class="modal fade" id="newClientModal" tabindex="-1" aria-labelledby="newClientModalLabel" aria-hidden="true">
+    <!-- Modal -->
+    <x-modal id="newClientModal" labelledby="newClientModalLabel" title="Cadastrar Novo Cliente" content="clientes.new"/>
+    {{-- <div class="modal fade" id="newClientModal" tabindex="-1" aria-labelledby="newClientModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content w-auto">
                 <div class="modal-header">
@@ -26,7 +27,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const pessoaFisicaRadio = document.getElementById('pessoa_fisica');
