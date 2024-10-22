@@ -1,3 +1,6 @@
+
+@props(['cliente', 'endereco'])
+
 <div class="row">
     <form action="{{ route('clientes.update', $cliente->id) }}" method="POST">
         @csrf
@@ -9,8 +12,10 @@
             </div>
             <div class="col-xxl-6 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $cliente->email }}" required>  
-            </div>        
+
+                <input type="email" class="form-control" id="email" name="email" value="{{ $cliente->email }}" required>
+            </div>
+
         </div>
 
         <div class="row mt-2">
@@ -50,30 +55,23 @@
             </div>
         </div>
 
-        <div class="row mt-2">
+                <div class="row mt-2">
             <div class="col-xxl-12 col-md-12">
-                <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
-                    <label>{{ __('Endereço') }}</label>
-                    <input id="address" type="text" name="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="{{ __('Rua e Número') }}" value="{{ old('address', $endereco->address ?? '') }}" required>
-                </div>
+                <label for="address" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ old('address', $endereco->address ?? '') }}" required>
             </div>
             <div class="col-xxl-4 col-md-4">
-                <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
-                    <label>{{ __('Cidade') }}</label>
-                    <input id="city" type="text" name="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" placeholder="{{ __('Cidade') }}" value="{{ old('city', $endereco->city ?? '') }}" required>
-                </div>
+                <label for="city" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="city" name="city" value="{{ old('city', $endereco->city ?? '') }}" required>
             </div>
             <div class="col-xxl-4 col-md-4">
-                <div class="form-group{{ $errors->has('state') ? ' has-danger' : '' }}">
-                    <label>{{ __('UF') }}</label>
-                    <input id="state" type="text" name="state" class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" placeholder="{{ __('UF') }}" value="{{ old('state', $endereco->state ?? '') }}" required>
-                </div>
+                <label for="state" class="form-label">UF</label>
+                <input type="text" class="form-control" id="state" name="state" value="{{ old('state', $endereco->state ?? '') }}" required>
             </div>
             <div class="col-xxl-4 col-md-4">
-                <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
-                    <label>{{ __('Zip Code') }}</label>
-                    <input id="zip_code" type="text" name="zip_code" class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}" placeholder="{{ __('Zip Code') }}" value="{{ old('zip_code', $endereco->zip_code ?? '') }}" required>
-                </div>
+                <label for="zip_code" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ old('zip_code', $endereco->zip_code ?? '') }}" required>
+
             </div>
         </div>
 
@@ -84,4 +82,6 @@
             </div>
         </div>
     </form>
+
 </div>
+

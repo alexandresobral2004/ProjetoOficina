@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Livewire;
-
 use Livewire\Component;
 
-class FormNewUser extends Component
-{
+class FormNewUser extends Component { 
+
     public function render()
     {
         return <<<'HTML'
@@ -15,7 +14,7 @@ class FormNewUser extends Component
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h3 class="card-title mb-0 flex-grow-1">Cadastro de Usuário</h3>
+                            
                             <span>(*) Campos obrigatórios</span>
 
                         </div>
@@ -26,12 +25,11 @@ class FormNewUser extends Component
                                     value="{{ $obj->id ?? '' }}">
                             <div class="live-preview">
 
-                                    <div class="row  mt-1">
-                                        <div class="col-xx-2 col-md-2">
-                                            <div
-                                                class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
+                                    <div class="mt-2 row">
+                                        <div class="col-xx-4 col-md-4">
+                                            <div class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Tipo de Usuário*') }}</label>
-                                                <select name="role" id="role" class="form-control">
+                                                <select name="role" id="role" class="form-select">
                                                     <option value=" ">Selecione</option>
                                                     <option value="user">User</option>
                                                     <option value="admin">Admin</option>
@@ -39,11 +37,11 @@ class FormNewUser extends Component
 
                                             </div>
                                         </div>
-                                        <div class="col-xx-2 col-md-2">
-                                            <div
-                                                class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
+                                       
+                                        <div class="col-xx-4 col-md-4">
+                                            <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Status do Usuário*') }}</label>
-                                                <select name="role" id="role" class="form-control">
+                                                <select name="status"  class="form-select">
                                                     <option value=" ">Selecione</option>
                                                     <option value="1">Ativo</option>
                                                     <option value="0">Inativo</option>
@@ -53,8 +51,8 @@ class FormNewUser extends Component
                                         </div> 
 
                                     </div>
-                                    <div class="row  mt-2">
-                                        <div class=" col-xxl-4 col-md-4">
+                                    <div class="mt-2 row">
+                                        <div class=" col-xxl-8 col-md-8">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Nome*') }}</label>
                                                 <input id="name" type="text" name="name"
@@ -66,8 +64,8 @@ class FormNewUser extends Component
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row  mt-2">
-                                        <div class=" col-xxl-2 col-md-2">
+                                    <div class="mt-2 row">
+                                        <div class="col-xxl-4 col-md-4">
                                             <div
                                                 class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                                 <label>{{ __('CPF') }}</label>
@@ -78,20 +76,24 @@ class FormNewUser extends Component
 
                                             </div>
                                         </div>
-                                        <div class=" col-xxl-2 col-md-2">
-                                            <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
-                                                <label>{{ __('CNPJ') }}</label>
-                                                <input id="cnpj" type="text" name="cnpj"
-                                                    class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
-                                                    placeholder="{{ __('CNPJ (Para empresas)') }}"
-                                                    value="{{ old('name', $obj->cpf ?? '') }}">
+                                   
 
-                                            </div>
-                                        </div>
+                                   
+                                      <div class="col-xxl-4 col-md-4">
+                                          <div
+                                              class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
+                                              <label>{{ __('Fone*') }}</label>
+                                              <input id="fone" type="text" name="fone"
+                                                  class="form-control{{ $errors->has('fone') ? ' is-invalid' : '' }}"
+                                                  placeholder="{{ __('(00) 00000-0000)') }}"
+                                                  value="{{ old('fone', $obj->fone ?? '') }}"
+                                                  required>
 
+                                          </div>
+                                      </div>
                                     </div>
-                                    <div class="row  mt-2">
-                                        <div class="col-xxl-3 col-md-3">
+                                    <div class="mt-2 row">
+                                        <div class="col-xxl-8 col-md-8">
                                                 <div
                                                     class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                                     <label>{{ __('E-mail*') }}</label>
@@ -104,23 +106,13 @@ class FormNewUser extends Component
                                                 </div>
 
                                         </div>
-                                        <div class="col-xxl-2 col-md-2">
-                                            <div
-                                                class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
-                                                <label>{{ __('Fone*') }}</label>
-                                                <input id="fone" type="text" name="fone"
-                                                    class="form-control{{ $errors->has('fone') ? ' is-invalid' : '' }}"
-                                                    placeholder="{{ __('(00) 00000-0000)') }}"
-                                                    value="{{ old('fone', $obj->fone ?? '') }}"
-                                                    required>
-
-                                            </div>
-                                        </div>
+                                      
                                     </div>
-                                    <div class="row  mt-2">
-                                        <div class="col-xxl-2 col-md-2">
-                                            <div
-                                                class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                    <div class="mt-2 row ">
+                                      
+                                            <div 
+                                                class="col-md-4 col-xxl-4
+                                                form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Senha*') }}</label>
                                                 <input id="password" type="password" name="password"
                                                 class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
@@ -129,10 +121,11 @@ class FormNewUser extends Component
                                                 required>
 
                                             </div>
-                                        </div>
-                                        <div class="col-xxl-2 col-md-2">
+                                    
+                                        
                                             <div
-                                                class="form-group{{ $errors->has('confirm_password') ? ' has-danger' : '' }}">
+                                                class="col-md-4 col-xxl-4
+                                                form-group{{ $errors->has('confirm_password') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Confirme a senha*') }}</label>
                                                 <input id="confirm_password" type="password" name="confirm_password"
                                                     class="form-control{{ $errors->has('confirm_password') ? ' is-invalid' : '' }}"
@@ -140,7 +133,7 @@ class FormNewUser extends Component
                                                     value="{{ old('confirm_password', $obj->confirm_password ?? '') }}"
                                                     required>
                                             </div>
-                                        </div>
+                                       
 
                                     </div>
                                     
@@ -151,8 +144,8 @@ class FormNewUser extends Component
 
                                 </div>
 
-                                   <div class="row gy-4 mt-2">
-                                       <div class="col-xxl-3 col-md-3">
+                                   <div class="mt-4 row">
+                                       <div class="col-xxl-6 col-md-6">
                                            <button type="submit" class="btn btn-primary">Salvar</button>
                                        </div>
 
@@ -166,9 +159,7 @@ class FormNewUser extends Component
                    </div>
 
                </div>
-                 <div class="row  mt-2">
-                     <livewire:dataTable />
-                 </div>
+              
                </div>
                
                </div>
