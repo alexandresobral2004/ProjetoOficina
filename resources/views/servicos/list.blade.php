@@ -1,8 +1,11 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex flex-row align-items-center justify-content-between">
                 <h5 class="card-title mb-0">Tabela de Serviços</h5>
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newServiceModal">
+                    Novo Serviço
+                </button>
             </div>
             <div class="card-body">
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">

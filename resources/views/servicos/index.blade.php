@@ -4,9 +4,7 @@
     <div class="row gap-3">
         <div class="d-flex justify-content-between">
             <h1 class="h3 mb-3">Serviços</h1>
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newServiceModal">
-                Novo Serviço
-            </button>
+           
         </div>
         @include('servicos.list') <!-- Listagem dos serviços -->
     </div>
