@@ -3,14 +3,16 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex flex-row align-items-center justify-content-between">
                     <h5 class="card-title mb-0">Almoxarifado</h5>
+
+                    <button class="btn btn-primary mb-3" type="button" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                        Adicionar Peça
+                    </button>
                 </div>
                 <div class="card-body">
 
-                    <button class="btn btn-primary mb-3" type="button" data-bs-toggle="modal" data-bs-target="#cadastroModal">
-                            Adicionar Peça
-                    </button>
+                   
 
                     <div class="table-responsive">
                         <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
@@ -18,11 +20,11 @@
                             <thead>
                                 <tr>
                                     <th class="text-truncate cursor-pointer" data-ordering="false">SKU</th>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">Nome da peça</th>
-                                    <th class="cursor-pointer" data-ordering="false" >Quantidade</th>
+                                    <th class="text-truncate cursor-pointer" data-ordering="false">Peça</th>
+                                    <th class="cursor-pointer" data-ordering="false" >Qtde</th>
                                     <th class="cursor-pointer" data-ordering="false">Modelo</th>
                                     <th class="text-truncate cursor-pointer" data-ordering="false">Marca</th>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">Margem de lucro (%)</th>
+                                    <th class="text-truncate cursor-pointer" data-ordering="false">Margem(%)</th>
                                     <th class="text-truncate cursor-pointer" data-ordering="false">Preço de custo</th>
                                     <th class="text-truncate cursor-pointer" data-ordering="false">Preço final</th>
                                     <th class="cursor-pointer text-center" colspan="2" data-ordering="false">Compatibilidade</th>
