@@ -52,4 +52,10 @@ class Cliente extends EloquentModel
 
         ];
     }
+
+    // Relacionamento de Cliente para Veiculo (um-para-muitos)
+    public function veiculos()
+    {
+        return $this->hasMany(Veiculo::class);
+    }
 }
