@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Tabela de Clientes</h5>
+                <h5 class="card-title mb-0">Lista de Clientes</h5>
             </div>
             <div class="card-body">
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
@@ -87,8 +87,8 @@
                                 labelledby="editClientModalLabel"
                                 title="Editar Cliente"
                                 content="clientes.edit"
-                                :data="['cliente' => $cliente]"
-                            /> --}}
+                                :attributes="$cliente"
+                                >@include('clientes.edit', ['cliente' => $cliente]) </x-modal>--}}
                             <div class="modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -143,6 +143,7 @@
         const editClientDetails = document.getElementById('editClientDetails');
         const deleteClientForm = document.getElementById('deleteClientForm');
 
+        // Ver cliente
         viewButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const clientId = this.getAttribute('data-id');
@@ -155,27 +156,27 @@
             });
         });
 
+        // Editar cliente
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const clientId = this.getAttribute('data-id');
-                const url = `/clientes/edit/${clientId}`;
+                const url = `/clientes/edit/${clientId}`; // Corrigido
                 fetch(url)
                     .then(response => response.text())
                     .then(data => {
                         editClientDetails.innerHTML = data;
+                        const editModal = new bootstrap.Modal(document.getElementById('editClientModal'));
+                        editModal.show();
                     });
             });
         });
 
+        // Deletar cliente
         deleteButtons.forEach(button => {
             button.addEventListener('click', function () {
-                console.log('entrou no evento do botão do delete');
                 const clientId = this.getAttribute('data-id');
-                console.log('clientId', clientId);
                 const actionUrl = `/clientes/delete/${clientId}`;
-                console.log('actionUrl', actionUrl);
                 deleteClientForm.setAttribute('action', actionUrl);
-                console.log('execultou o delete')
             });
         });
     });

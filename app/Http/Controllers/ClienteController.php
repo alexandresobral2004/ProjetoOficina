@@ -15,7 +15,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-          $Clientes = Cliente::all();
+          $Clientes = Cliente::with('endereco')->all();
           return view('/clientes/list',['clientes'=>$Clientes]);
     }
 

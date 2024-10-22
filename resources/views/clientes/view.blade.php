@@ -1,32 +1,84 @@
 @props(['cliente'])
+<div class="row gap-2">
+    <div class="d-flex align-content-center justify-content-center m-0 p-0">
+        <h5>Dados Pessoais</h5>
+    </div>
+    <div class="row mt-2">
+        <div class="col-xxl-6 col-md-6">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ $cliente->name }}" readonly>
+        </div>
+        <div class="col-xxl-6 col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ $cliente->email }}" readonly>
+        </div>
+    </div>
 
-<div>
-    <h3>Dados Pessoais</h3>
-    <strong>Nome:</strong> {{ $cliente->name }}<br>
-    <strong>Email:</strong> {{ $cliente->email }}<br>
-    <strong>Telefone:</strong> {{ $cliente->fone }}<br>
-    <strong>Telefone Fixo:</strong> {{ $cliente->foneFixo }}<br>
-    <strong>CPF:</strong> {{ $cliente->cpf }}<br>
-    <strong>CNPJ:</strong> {{ $cliente->cnpj }}<br>
-    <strong>Data de Nascimento:</strong> {{ $cliente->dtNasc }}<br>
-    <strong>Profissão:</strong> {{ $cliente->profissao }}<br>
-    <strong>Razão Social:</strong> {{ $cliente->razaoSocial }}<br>
+    <div class="row mt-2">
+        <div class="col-xxl-4 col-md-4">
+            <label for="fone" class="form-label">Telefone</label>
+            <input type="text" class="form-control" id="fone" name="fone" value="{{ $cliente->fone }}" readonly>
+        </div>
+        <div class="col-xxl-4 col-md-4">
+            <label for="foneFixo" class="form-label">Telefone Fixo</label>
+            <input type="text" class="form-control" id="foneFixo" name="foneFixo" value="{{ $cliente->foneFixo }}"
+                readonly>
+        </div>
+        <div class="col-xxl-4 col-md-4">
+            <label for="dtNasc" class="form-label">Data de Nascimento</label>
+            <input type="date" class="form-control" id="dtNasc" name="dtNasc" value="{{ $cliente->dtNasc }}" readonly>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label for="profissao" class="form-label">Profissão</label>
+            <input type="text" class="form-control" id="profissao" name="profissao" value="{{ $cliente->profissao }}"
+                readonly>
+        </div>
+        <div class="col-md-6">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" name="cpf" value="{{ $cliente->cpf }}" readonly>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label for="razaoSocial" class="form-label">Razão Social</label>
+            <input type="text" class="form-control" id="razaoSocial" name="razaoSocial"
+                value="{{ $cliente->razaoSocial }}" readonly>
+        </div>
+        <div class="col-md-6">
+            <label for="cnpj" class="form-label">CNPJ</label>
+            <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{ $cliente->cnpj }}" readonly>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="d-flex align-content-center justify-content-center m-0 p-0">
+        <h5>Endereço</h5>
+    </div>
+    <div class="row mt-2">
+        <div class="col-xxl-12 col-md-12">
+            <label for="address" class="form-label">Endereço</label>
+            <input type="text" class="form-control" id="address" name="address"
+                value="{{ old('address', $cliente->endereco->address ?? '') }}" readonly>
+        </div>
+        <div class="col-xxl-4 col-md-4">
+            <label for="city" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="city" name="city"
+                value="{{ old('city', $cliente->endereco->city ?? '') }}" readonly>
+        </div>
+        <div class="col-xxl-4 col-md-4">
+            <label for="state" class="form-label">UF</label>
+            <input type="text" class="form-control" id="state" name="state"
+                value="{{ old('state', $cliente->endereco->state ?? '') }}" readonly>
+        </div>
+        <div class="col-xxl-4 col-md-4">
+            <label for="zip_code" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="zip_code" name="zip_code"
+                value="{{ old('zip_code', $cliente->endereco->zip_code ?? '') }}" readonly>
+        </div>
+    </div>
 </div>
-
-@if($cliente->endereco)
-    <div>
-        <h3>Endereço</h3>
-        <strong>Endereço:</strong> {{ $cliente->endereco->address }}<br>
-        <strong>Cidade:</strong> {{ $cliente->endereco->city }}<br>
-        <strong>Estado:</strong> {{ $cliente->endereco->state }}<br>
-        <strong>CEP:</strong> {{ $cliente->endereco->zip_code }}<br>
-    </div>
-@else
-    <div>
-        <h3>Endereço</h3>
-        <strong>Endereço:</strong> Não disponível<br>
-        <strong>Cidade:</strong> Não disponível<br>
-        <strong>Estado:</strong> Não disponível<br>
-        <strong>CEP:</strong> Não disponível<br>
-    </div>
-@endif
