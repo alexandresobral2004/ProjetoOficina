@@ -57,7 +57,7 @@
         }
     </style>
 
-    //Livewire
+ 
     @livewireStyles
 </head>
 
@@ -81,12 +81,12 @@
                         <div class="mt-2 text-center">
                             <lord-icon src="{{ asset('assets/libs/lottie-player/lottie-player.js') }}" trigger="loop"
                                 colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                            <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                            <div class="pt-2 mx-4 mt-4 fs-15 mx-sm-5">
                                 <h4>Are you sure ?</h4>
-                                <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Notification ?</p>
+                                <p class="mx-4 mb-0 text-muted">Are you sure you want to remove this Notification ?</p>
                             </div>
                         </div>
-                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                        <div class="gap-2 mt-4 mb-2 d-flex justify-content-center">
                             <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn w-sm btn-danger" id="delete-notification">Yes, Delete
                                 It!</button>
@@ -183,7 +183,7 @@
 
     <div class="customizer-setting d-none d-md-block">
 
-        <button id="ThemeSettings" class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" type="button"
+        <button id="ThemeSettings" class="p-2 shadow-lg btn-info rounded-pill btn btn-icon btn-lg" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas"
             aria-controls="theme-settings-offcanvas">
             <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
@@ -194,7 +194,7 @@
 
 
 
-    //Livewire
+   
     @livewireScripts
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <!-- JAVASCRIPT -->

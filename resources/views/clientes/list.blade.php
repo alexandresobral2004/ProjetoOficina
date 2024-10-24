@@ -1,12 +1,17 @@
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Lista de Clientes</h5>
+            <div class="flex-row card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0 card-title">Lista de Clientes</h5>
+                <button type="button" class="p-2 d-flex btn btn-primary align-content-center btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#newClientModal">
+            
+                        <span>Novo Cliente</span>
+                 
+                </button>
             </div>
-            <div class="card-body">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+            <div class="card-body table-responsive">
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10px;">
@@ -42,22 +47,22 @@
                                 <td>
                                     <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
                                         <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-home align-middle"></i>...
+                                            <i class="align-middle fa fa-home"></i>...
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <button class="dropdown-item view-client-btn" data-id="{{ $cliente->id }}" data-bs-toggle="modal" data-bs-target="#viewClientModal">
-                                                    <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
+                                                    <i class="align-bottom ri-eye-fill me-2 text-muted"></i> View
                                                 </button>
                                             </li>
                                             <li>
                                                 <button class="dropdown-item edit-client-btn" data-id="{{ $cliente->id }}" data-bs-toggle="modal" data-bs-target="#editClientModal">
-                                                    <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
+                                                    <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Edit
                                                 </button>
                                             </li>
                                             <li>
                                                 <button class="dropdown-item delete-client-btn" data-id="{{ $cliente->id }}" data-bs-toggle="modal" data-bs-target="#deleteClientModal">
-                                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+                                                    <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Delete
                                                 </button>
                                             </li>
                                         </ul>
