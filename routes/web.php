@@ -4,6 +4,8 @@ use App\Http\Middleware\CheckForTokenExpiration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\VeiculoController;
 use App\Models\Cliente;
 
 
@@ -42,6 +44,25 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::get('/clientes/edit/{id}', [\App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
     Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
+
+    // Rotas para veiculo:
+    // Obs: poderia ser resumido a: Route::resource('veiculos', VeiculoController::class);
+    Route::get('/veiculos', [VeiculoController::class, 'index'])->name('veiculos.index');
+    Route::get('/veiculos/create', [VeiculoController::class, 'create'])->name('veiculos.create');
+    Route::post('/veiculos', [VeiculoController::class, 'store'])->name('veiculos.store');
+    Route::get('/veiculos/{veiculo}', [VeiculoController::class, 'show'])->name('veiculos.show');
+    Route::get('/veiculos/{veiculo}/edit', [VeiculoController::class, 'edit'])->name('veiculos.edit');
+    Route::put('/veiculos/{veiculo}', [VeiculoController::class, 'update'])->name('veiculos.update');
+    Route::delete('/veiculos/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
+
+    // Rotas para serviço:
+    Route::get('/servicos', [ServicoController::class, 'index'])->name('servicos.index');
+    Route::get('/servicos/create', [ServicoController::class, 'create'])->name('servicos.create');
+    Route::post('/servicos', [ServicoController::class, 'store'])->name('servicos.store');
+    Route::get('/servicos/{veiculo}', [ServicoController::class, 'show'])->name('servicos.show');
+    Route::get('/servicos/{veiculo}/edit', [ServicoController::class, 'edit'])->name('servicos.edit');
+    Route::put('/servicos/{veiculo}', [ServicoController::class, 'update'])->name('servicos.update');
+    Route::delete('/servicos/{veiculo}', [ServicoController::class, 'destroy'])->name('servicos.destroy');
 
     // Rota para o almoxarifado ---------------
     Route::get('/warehouse/new', [\App\Http\Controllers\WarehouseController::class, "add"])->name('warehouse.add');

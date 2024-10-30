@@ -22,8 +22,12 @@ class DataTable extends Component
         <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex flex-row align-items-center justify-content-between">
                 <h3 class="card-title mb-0">Lista de Usuários</h3>
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                      data-bs-target="#newClientModal">
+                      Novo Usuário
+                  </button>
             </div>
             <div class="card-body">
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
