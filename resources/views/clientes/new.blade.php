@@ -14,7 +14,7 @@
                                     <input id="name" type="text" name="name"
                                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('Nome') }}" value="{{ old('name', $obj->name ?? '') }}"
-                                        required>
+                                        >
 
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                                     <input id="email" type="mail" name="email"
                                         class="form-control{{ $errors->has('Email') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('seuemail@email.com.br') }}"
-                                        value="{{ old('email', $obj->email ?? '') }}" required>
+                                        value="{{ old('email', $obj->email ?? '') }}" >
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                         <input id="dtNasc" type="date" name="dtNasc"
                                             class="form-control{{ $errors->has('dtNasc') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Data de Nascimento') }}"
-                                            value="{{ old('dtNasc', $obj->dtNasc ?? '') }}" required>
+                                            value="{{ old('dtNasc', $obj->dtNasc ?? '') }}" >
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-md-4">
@@ -95,7 +95,7 @@
                                         <input id="profissao" type="text" name="profissao"
                                             class="form-control{{ $errors->has('profissao') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Profissão') }}"
-                                            value="{{ old('profissao', $obj->profissao ?? '') }}" required>
+                                            value="{{ old('profissao', $obj->profissao ?? '') }}" >
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                         <input id="razaoSocial" type="text" name="razaoSocial"
                                             class="form-control{{ $errors->has('razaoSocial') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Razão Social') }}"
-                                            value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}" required>
+                                            value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}" >
                                     </div>
                                 </div>
                                 <div class="col-xxl-2 col-md-2">
@@ -126,29 +126,9 @@
                             </div>
                         </div>
                     </div>
-            </div>
+        
 
-            {{-- <div class="mt-2 row">
-                <div class="col-xxl-2 col-md-2">
-                    <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                        <label>{{ __('Senha') }}</label>
-                        <input id="password" type="password" name="password"
-                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} text-decoration-none border rounded-2"
-                            placeholder="{{ __('Senha') }}" value="{{ old('password', $obj->password ?? '') }}" required
-                            maxlength="6">
-
-                    </div>
-                </div>
-                <div class="col-xxl-2 col-md-2">
-                    <div class="form-group{{ $errors->has('confirm_password') ? ' has-danger' : '' }}">
-                        <label>{{ __('Confirme a senha') }}</label>
-                        <input id="confirm_password" type="password" name="confirm_password"
-                            class="form-control{{ $errors->has('confirm_password') ? ' is-invalid' : '' }} text-decoration-none border rounded-2"
-                            placeholder="{{ __('Confirme a senha') }}"
-                            value="{{ old('confirm_password', $obj->confirm_password ?? '') }}" required maxlength="6">
-                    </div>
-                </div>
-            </div> --}}
+            
 
             <div class="mt-5 row">
                 <div class="col-xxl-6 col-md-6">
@@ -173,7 +153,7 @@
                             <input id="address" type="text" name="address"
                                 class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
                                 placeholder="{{ __('Rua e Número') }}" value="{{ old('address', $end->address ?? '') }}"
-                                required>
+                                >
                         </div>
                     </div>
                 </div>
@@ -184,7 +164,7 @@
                             <label>{{ __('Cidade') }}</label>
                             <input id="city" type="text" name="city"
                                 class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
-                                placeholder="{{ __('Cidade') }}" value="{{ old('city', $end->city ?? '') }}" required>
+                                placeholder="{{ __('Cidade') }}" value="{{ old('city', $end->city ?? '') }}" >
                         </div>
                     </div>
                     <div class="col-xxl-1 col-md-1">
@@ -192,7 +172,7 @@
                             <label>{{ __('UF') }}</label>
                             <input id="state" type="text" name="state"
                                 class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}"
-                                placeholder="{{ __('UF') }}" value="{{ old('state', $end->state ?? '') }}" required>
+                                placeholder="{{ __('UF') }}" value="{{ old('state', $end->state ?? '') }}" >
                         </div>
                     </div>
                 </div>

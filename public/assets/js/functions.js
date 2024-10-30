@@ -25,7 +25,7 @@ function calcularPrecoFinal() {
 }
 
 // limpa os campos de cadastro
-function ClearInputs(){
+function ClearInputs() {
     document.getElementsByTagName('texarea', 'input').value = "";
 }
 
@@ -42,7 +42,7 @@ function sortTable(columnIndex) {
     rows.sort((rowA, rowB) => {
         const cellA = rowA.cells[columnIndex].textContent.trim().toLowerCase();
         const cellB = rowB.cells[columnIndex].textContent.trim().toLowerCase();
-        
+
         if (!isNaN(cellA) && !isNaN(cellB)) {
             return isAscending ? cellA - cellB : cellB - cellA;
         } else {
@@ -52,21 +52,21 @@ function sortTable(columnIndex) {
     rows.forEach(row => table.querySelector('tbody').appendChild(row));
     table.dataset.sortOrder = isAscending ? 'desc' : 'asc';
 
-    const headers = table.querySelectorAll('th');headers.forEach(header => {
+    const headers = table.querySelectorAll('th'); headers.forEach(header => {
         header.classList.remove('bg-primary');
-        header.style.color = ""; 
+        header.style.color = "";
     });
-    
+
     headers[columnIndex].classList.add('bg-primary');
     headers[columnIndex].style.color = "white";
-    
-    
+
+
 }
 
 
 // Funcão de pesquisa, barra de pesquisa da tabela
-document.getElementById('search').addEventListener('input', function() {
-    const query = this.value.trim().toLowerCase(); 
+document.getElementById('search').addEventListener('input', function () {
+    const query = this.value.trim().toLowerCase();
     const rows = document.querySelectorAll('#table-body tr');
     if (query === '') {
         rows.forEach(row => {
