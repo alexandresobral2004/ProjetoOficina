@@ -37,16 +37,16 @@
         <div class="row mt-2 ">
             <div class="col-md-12 d-flex justify-content-center align-content-center gap-2">
                 <label class="form-check-label">
-                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked> Pessoa Física
+                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisicaEdit" checked> Pessoa Física
                 </label>
                 <label class="form-check-label ml-2">
-                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa Jurídica
+                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridicaEdit"> Pessoa Jurídica
                 </label>
             </div>
         </div>
 
         <!-- Dados Pessoa Física -->
-        <div id="dados_pessoa_fisica">
+        <div id="dados_pessoa_fisica_edit">
             <div class="row mt-2">
                 <div class="col-md-6">
                     <label for="profissao" class="form-label">Profissão</label>
@@ -61,7 +61,7 @@
         </div>
 
         <!-- Dados Pessoa Jurídica -->
-        <div id="dados_pessoa_juridica" style="display: none;">
+        <div id="dados_pessoa_juridica_edit_edit" style="display: none;">
             <div class="row mt-2">
                 <div class="col-md-6">
                     <label for="razaoSocial" class="form-label">Razão Social</label>
@@ -81,44 +81,61 @@
             <h5>Endereço</h5>
         </div>
         <div class="row mt-2">
-            <div class="col-xxl-12 col-md-12">
-                <label for="address" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="address" name="address"
-                    value="{{ old('address', $cliente->endereco->address ?? '') }}" required>
+            <div class="col-xxl-4 col-md-4">
+                <label for="zip_code" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="zip_code_edit" name="zip_code"
+                    value="{{ old('zip_code', $cliente->endereco->zip_code ?? '') }}" required>
+            </div>
+            <div class="col-xxl-6 col-md-6">
+                <label for="street" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="street_edit" name="street"
+                    value="{{ old('street', $cliente->endereco->street ?? '') }}" required>
+            </div>
+
+            <div class="col-xxl-2 col-md-2">
+                <label for="number" class="form-label">Numero</label>
+                <input type="text" class="form-control" id="number_edit" name="number"
+                    value="{{ old('number', $cliente->endereco->number ?? '') }}" required>
+            </div>
+            <div class="col-xxl-4 col-md-4">
+                <label for="neighborhood">Bairro</label>
+                <input type="text" class="form-control" id="neighborhood_edit" name="neighborhood"
+                    value="{{ old('neighborhood', $cliente->endereco->neighborhood ?? '') }}" required>
             </div>
             <div class="col-xxl-4 col-md-4">
                 <label for="city" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="city" name="city"
+                <input type="text" class="form-control" id="city_edit" name="city"
                     value="{{ old('city', $cliente->endereco->city ?? '') }}" required>
             </div>
             <div class="col-xxl-4 col-md-4">
                 <label for="state" class="form-label">UF</label>
-                <input type="text" class="form-control" id="state" name="state"
+                <input type="text" class="form-control" id="state_edit" name="state"
                     value="{{ old('state', $cliente->endereco->state ?? '') }}" required>
-            </div>
-            <div class="col-xxl-4 col-md-4">
-                <label for="zip_code" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="zip_code" name="zip_code"
-                    value="{{ old('zip_code', $cliente->endereco->zip_code ?? '') }}" required>
             </div>
         </div>
 
         <div class="row mt-2">
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-warning">Editar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </form>
 </div>
+
+<script type="text/javascript" src="{{ asset('assets/js/cep.js') }}"></script>
 <script>
-    document.getElementById('pessoaFisica').addEventListener('change', function() {
-        document.getElementById('dados_pessoa_fisica').style.display = 'block';
-        document.getElementById('dados_pessoa_juridica').style.display = 'none';
+    document.getElementById('pessoaFisicaEdit').addEventListener('change', function() {
+        document.getElementById('dados_pessoa_fisica_edit').style.display = 'block';
+        document.getElementById('dados_pessoa_juridica_edit_edit').style.display = 'none';
     });
 
-    document.getElementById('pessoaJuridica').addEventListener('change', function() {
-        document.getElementById('dados_pessoa_fisica').style.display = 'none';
-        document.getElementById('dados_pessoa_juridica').style.display = 'block';
+    document.getElementById('pessoaJuridicaEdit').addEventListener('change', function() {
+        document.getElementById('dados_pessoa_fisica_edit').style.display = 'none';
+        document.getElementById('dados_pessoa_juridica_edit_edit').style.display = 'block';
     });
+    function clearInputs() {
+        const inputs = document.querySelectorAll('textarea, input');
+        inputs.forEach(input => input.value = "");
+    }
 </script>

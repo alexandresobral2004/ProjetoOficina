@@ -1,23 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row gap-3">
+<div class="row gap-3">
+    <div>
+        <div class="d-flex justify-content-between mb-3">
+            <h1 class="h3 mb-3">Clientes</h1>
+            <button type="button" class="d-flex btn btn-primary align-content-center p-2 btn-sm" data-bs-toggle="modal"
+                data-bs-target="#newClientModal">
+                <i class="ri-add-line fs-16">
+                    <span>cliente</span>
+                </i>
+            </button>
+        </div>
         <div>
-            <div class="d-flex justify-content-between mb-3">
-                <h1 class="h3 mb-3">Clientes</h1>
-                <button type="button" class="d-flex btn btn-primary align-content-center p-2 btn-sm" data-bs-toggle="modal" data-bs-target="#newClientModal">
-                    <i class="ri-add-line fs-16">
-                        <span>cliente</span>
-                    </i>
-                </button>
-            </div>
-
             @livewire('Clientes.list-clientes')
         </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="newClientModal" tabindex="-1" aria-labelledby="newClientModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
-            <div class="modal-content w-auto">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="newClientModalLabel">Cadastrar Novo Cliente</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -28,10 +30,10 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
             const pessoaFisicaRadio = document.getElementById('pessoa_fisica');
             const pessoaJuridicaRadio = document.getElementById('pessoa_juridica');
             const dadosPessoaFisica = document.getElementById('dados_pessoa_fisica');
@@ -60,6 +62,5 @@
                 newClientModal.hide(); // Fecha o modal
             });
         });
-    </script>
+</script>
 @endsection
-
