@@ -7,7 +7,7 @@
                 <form action="{{ route('clientes.store') }}" method="POST">
                     @csrf
                     <div class="live-preview">
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
                             <div class="col-xxl-6 col-md-6">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label>{{ __('Nome') }}</label>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
                             <div class="col-xxl-6 col-md-6">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="tipo_pessoa" id="pessoa_fisica"
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
                             <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                     <label>{{ __('Fone') }}</label>
@@ -70,7 +70,7 @@
 
                         <!-- Informações de Pessoa Física -->
                         <div id="dados_pessoa_fisica">
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                         <label class="">{{ __('CPF') }}</label>
@@ -103,7 +103,7 @@
 
                         <!-- Informações de Pessoa Jurídica -->
                         <div id="dados_pessoa_juridica" style="display: none;">
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-6 col-md-6">
 
                                     <div class="form-group{{ $errors->has('razaoSocial') ? ' has-danger' : '' }}">
@@ -128,7 +128,7 @@
                     </div>
             </div>
 
-            <div class="row mt-2">
+            {{-- <div class="mt-2 row">
                 <div class="col-xxl-2 col-md-2">
                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                         <label>{{ __('Senha') }}</label>
@@ -148,16 +148,16 @@
                             value="{{ old('confirm_password', $obj->confirm_password ?? '') }}" required maxlength="6">
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="row mt-5">
+            <div class="mt-5 row">
                 <div class="col-xxl-6 col-md-6">
                     <h3>Endereço</h3>
                 </div>
             </div>
 
             <div>
-                <div class="row mt-2">
+                <div class="mt-2 row">
                     <div class="col-xxl-2 col-md-2">
                         <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
                             <label>{{ __('Zip Code') }}</label>
@@ -178,7 +178,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-2">
+                <div class="mt-2 row">
                     <div class="col-xxl-2 col-md-2">
                         <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
                             <label>{{ __('Cidade') }}</label>
@@ -197,8 +197,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="col-xxl-3 col-md-3 mt-2">
+            <div class="mt-2 row">
+                <div class="mt-2 col-xxl-3 col-md-3">
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </div>
