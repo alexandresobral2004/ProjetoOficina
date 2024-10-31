@@ -1,7 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
-**/public/assets
+# /public/assets/*
+# !/public/assets/css
+# !/public/assets/js
+# !/public/assets/images
 /storage/*.key
 /vendor
 .env
@@ -13,5 +16,4 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 /.idea
-
 /.vscode
