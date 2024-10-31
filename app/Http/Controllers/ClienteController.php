@@ -6,7 +6,6 @@ use App\Models\Cliente_end;
 use Illuminate\Http\Request;
 use Wavey\Sweetalert\Sweetalert;
 use Illuminate\Database\QueryException;
-use App\Models\Address_Cliente;
 use Illuminate\Support\Facades\Log;
 
 class ClienteController extends Controller
@@ -14,10 +13,18 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-          $Clientes = Cliente::all();
-          return view('/clientes/list',['clientes'=>$Clientes]);
+        $search = $request->input('search');
+        $query = Cliente::with('endereco');
+
+        if ($request -> has('search')) {
+            $query = $query -> where('name', 'like', "%{$search}%");
+        }
+
+        $clientes = $query->get();
+
+        return view('/clientes/list', ['clientes' => $clientes]);
     }
 
     /**
@@ -34,24 +41,28 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         try{
-
-
-
-
             //Validação dos dados de entrada
-        $validatedData = $request->validate([
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|max:6',
-            'confirm_password' => 'required|string|max:6',
+            // 'password' => 'required|string|max:6',
+            // 'confirm_password' => 'required|string|max:6',
             'fone'=> 'required|string|max:15',
-            'cpf'=> 'nullable|string|max:20|unique:clientes',
-            'cnpj'=> 'nullable|string|max:20|unique:clientes',
             'dtNasc'=> 'nullable|date',
             'profissao'=> 'nullable|string|max:30',
             'razaoSocial'=> 'nullable|string|max:60',
             'foneFixo'=> 'nullable|string|max:15',
-        ]);
+        ];
+
+        if($request->input('tipo_pessoa') == 'fisica') {
+            $rules['cpf'] = 'required|string|max:20|unique:clientes';
+            $rules['cnpj'] = 'nullable|string|max:20';
+        } elseif ($request->input('tipo_pessoa') == 'juridica') {
+            $rules['cnpj'] = 'required|string|max:20|unique:clientes';
+            $rules['cpf'] = 'nullable|string|max:20';
+        }
+
+        $validatedData = $request->validate($rules);
 
 
 
@@ -63,21 +74,21 @@ class ClienteController extends Controller
             if($validatedData['cpf']  == null && $validatedData['cnpj'] == null ){
                  Sweetalert::error('CPF ou CNPJ obrigatorio!', 'Erro!');
 
-                  return redirect()->route('cliente.add')->with("Erro", "CPF ou CNPJ obrigatorio");
+                  return redirect()->route('cliente.index')->with("Erro", "CPF ou CNPJ obrigatorio");
             }
-
-
 
 
          }
          else{
             Sweetalert::error('Senhas não conferem!', 'Erro!');
-            return Redirect(route('clientes.add'));
+            return Redirect(route('clientes.index'));
 
          }
 
             $validatedData2 = $request->validate([
-            'address'=> 'required|string|max:255',
+            'number'=> 'required|string|max:100',
+            'street'=> 'required|string|max:255',
+            'neighborhood'=> 'required|string|max:100',
             'city'=> 'required|string|max:100',
             'state'=> 'required|string|max:100',
             'zip_code'=> 'required|string|max:15',
@@ -90,9 +101,8 @@ class ClienteController extends Controller
            $end->cliente_id = $cliente->id;
 
            $end->save();
-           Sweetalert::success('Usuário criado com sucesso!', 'Sucesso!');
-           return view('/clientes/new');
 
+            return redirect()->route('clientes.index')->with('success', 'Cliente salvo com sucesso!');
 
 
          }
@@ -118,17 +128,16 @@ class ClienteController extends Controller
      */
     public function show(string $id)
     {
-        $cliente = Cliente::find($id);
+        $cliente = Cliente::with('endereco')->find($id);
+
         if (!$cliente) {
             return redirect()->route('clientes.index')->with('error', 'Cliente não encontrado.');
         }
 
-        $endereco = Cliente_end::where('cliente_id', $id)->first();
-        if (!$endereco) {
-            return redirect()->route('clientes.index')->with('error', 'Endereço não encontrado.');
-        }
-
-        return view('clientes.view', compact('cliente', 'endereco'));
+        return view('clientes.view', [
+            'cliente' => $cliente,
+            'endereco' => $cliente->endereco,
+        ]);
     }
 
     /**
@@ -137,11 +146,16 @@ class ClienteController extends Controller
 
     public function edit($id)
     {
-        $cliente = Cliente::find($id);
-        $endereco = Cliente_end::where('cliente_id', $id)->get();
-        return view('clientes.edit')->with('cliente', $cliente)->with('endereco', $endereco);
+        $cliente = Cliente::with('endereco')->find($id);
 
+        if (!$cliente) {
+            return redirect()->route('clientes.index')->with('error', 'Cliente não encontrado.');
+        }
+        return view('clientes.edit', [
+        'cliente' => $cliente,
+        'endereco' => $cliente->endereco,]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -160,7 +174,9 @@ class ClienteController extends Controller
                 'dtNasc' => 'nullable|date',
                 'profissao' => 'nullable|string|max:100',
                 'razaoSocial' => 'nullable|string|max:255',
-                'address' => 'required|string|max:255',
+                'number' => 'required|string|max:100',
+                'street' => 'required|string|max:255',
+                'neighborhood' => 'required|string|max:100',
                 'city' => 'required|string|max:100',
                 'state' => 'required|string|max:100',
                 'zip_code' => 'required|string|max:15',

@@ -3,29 +3,31 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Almoxarifado</h5>
-                </div>
-                <div class="card-body">
+                <div class="flex-row card-header d-flex align-items-center justify-content-between">
+                    <h5 class="mb-0 card-title">Almoxarifado</h5>
 
-                    <button class="btn btn-primary mb-3" type="button" data-bs-toggle="modal" data-bs-target="#cadastroModal">
-                            Adicionar Peça
+                    <button class="mb-3 btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                        Adicionar Peça
                     </button>
+                </div>
+                <div class="card-body table-responsive">
 
-                    <div class="table-responsive">
-                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                   
+
+                 
+                        <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
                             style="width:100%;">
                             <thead>
                                 <tr>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">SKU</th>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">Nome da peça</th>
-                                    <th class="cursor-pointer" data-ordering="false" >Quantidade</th>
+                                    <th class="cursor-pointer text-truncate" data-ordering="false">SKU</th>
+                                    <th class="cursor-pointer text-truncate" data-ordering="false">Peça</th>
+                                    <th class="cursor-pointer" data-ordering="false" >Qtde</th>
                                     <th class="cursor-pointer" data-ordering="false">Modelo</th>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">Marca</th>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">Margem de lucro (%)</th>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">Preço de custo</th>
-                                    <th class="text-truncate cursor-pointer" data-ordering="false">Preço final</th>
-                                    <th class="cursor-pointer text-center" colspan="2" data-ordering="false">Compatibilidade</th>
+                                    <th class="cursor-pointer text-truncate" data-ordering="false">Marca</th>
+                                    <th class="cursor-pointer text-truncate" data-ordering="false">Margem(%)</th>
+                                    <th class="cursor-pointer text-truncate" data-ordering="false">Preço de custo</th>
+                                    <th class="cursor-pointer text-truncate" data-ordering="false">Preço final</th>
+                                    <th class="text-center cursor-pointer" colspan="2" data-ordering="false">Compatibilidade</th>
                                     <th class="text-center">Ações</th>
                                 </tr>
                             </thead>
@@ -45,7 +47,7 @@
                                             
                                         </td>
                                         <td>
-                                            <button onclick="atualizarModal('{{ $warehouse_itens->compatibility }}')" type="button" class="btn btn-sm bg-secondary text-white" style="margin-left: auto;" data-toggle="modal" data-target="#CompatibilidadeModal">
+                                            <button onclick="atualizarModal('{{ $warehouse_itens->compatibility }}')" type="button" class="text-white btn btn-sm bg-secondary" style="margin-left: auto;" data-toggle="modal" data-target="#CompatibilidadeModal">
                                                 <i class="ri-eye-line"></i>
                                             </button>
                                         </td>
@@ -53,12 +55,12 @@
                                         <td class="text-truncate">
                                             <button class="btn btn-soft-secondary btn-sm" type="button" aria-expanded="false">
                                                 <a href="{{ route('warehouse.edit', $warehouse_itens->id) }}">
-                                                    <i class="ri-pencil-fill align-bottom"></i>Editar
+                                                    <i class="align-bottom ri-pencil-fill"></i>Editar
                                                 </a>
                                             </button>
 
                                             <button class="btn btn-soft-secondary btn-sm bg-danger text-dark" type="button" onclick="confirmDelete({{ $warehouse_itens->id }})" aria-expanded="false">
-                                                <i class="ri-delete-bin-fill bg-danger align-bottom"></i>Deletar
+                                                <i class="align-bottom ri-delete-bin-fill bg-danger"></i>Deletar
                                             </button>
 
                                         </td>
@@ -66,7 +68,7 @@
                                 @endforeach 
                             </tbody>
                         </table>
-                    </div>
+                   
                 </div>
             </div>
         </div><!--end col-->
@@ -74,7 +76,7 @@
 
     <!-- Modal de compatibilidade -->
     <div class="modal fade" id="CompatibilidadeModal" tabindex="-1" aria-labelledby="CompatibilidadeModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="CompatibilidadeModalLabel">Compatibilidade</h5>
@@ -126,7 +128,7 @@
                             <!-- Todo o conteúdo do formulário de cadastro -->
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row mt-2">
+                                    <div class="mt-2 row">
                                         <!-- Primeira célula de cadastro: cod -->
                                         <div class="col-xxl-3 col-md-3">
                                             <div class="form-group{{ $errors->has('cod') ? ' has-danger' : '' }}">
@@ -161,7 +163,7 @@
                                     </div>
                                             
                                     <!-- Linha de divisão 2º -->
-                                    <div class="row mt-2">
+                                    <div class="mt-2 row">
                                         <!-- oitava celula de cadastro: modelo -->
                                         <div class="col-xxl-3 col-md-3">
                                             <div class="form-group{{ $errors->has('modelo') ? ' has-danger' : '' }}">
@@ -186,7 +188,7 @@
                                             
                                     
                                     <!-- Linha de divisão 3º -->
-                                    <div class="row mt-2">
+                                    <div class="mt-2 row">
                                         <!-- sexta celula de cadastro: menor_preco -->
                                         <div class="col-xxl-3 col-md-3">
                                             <div class="form-group{{ $errors->has('margem') ? ' has-danger' : '' }}">
@@ -222,7 +224,7 @@
                                         </div>
                                         
                                         <!-- Linha de divisão 4º -->
-                                        <div class="row mt-2">
+                                        <div class="mt-2 row">
                                             <!-- decima celula de cadastro: compatibilidade -->
                                             <div class="container mt-1">
                                                 <div class="form-group{{ $errors->has('compatibility') ? ' has-danger' : '' }}">
@@ -235,7 +237,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mt-4">
+                                        <div class="mt-4 row">
                                             <div class="col-xxl-3 col-md-3">
                                                 <button type="submit" class="btn btn-primary" onclick="ClearInputs()">Salvar</button>
                                             </div>

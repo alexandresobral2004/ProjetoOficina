@@ -4,9 +4,9 @@
     <div class="row gap-3">
         <div class="d-flex justify-content-between ">
             <h1 class="h3 mb-3">Veículos</h1>
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newVehicleModal">
+            {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newVehicleModal">
                 Novo Veículo
-            </button>
+            </button> --}}
         </div>
         @include('veiculos.list')
     </div>

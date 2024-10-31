@@ -53,9 +53,15 @@ class Cliente extends EloquentModel
         ];
     }
 
+    public function endereco()
+    {
+        return $this->hasOne(Cliente_end::class, 'cliente_id');
+    }
+
     // Relacionamento de Cliente para Veiculo (um-para-muitos)
     public function veiculos()
     {
         return $this->hasMany(Veiculo::class);
+
     }
 }
