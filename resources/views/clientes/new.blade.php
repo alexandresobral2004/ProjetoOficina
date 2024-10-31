@@ -5,15 +5,19 @@
                 <h4 class="d-flex justify-content-center align-content-center gap-2">Dados Pessoais</h4>
                 <form action="{{ route('clientes.store') }}" method="POST">
                     @csrf
+
                     <div class="live-preview p-0 custom-width">
                         <div class="row mt-2">
+
                             <div class="col-xxl-6 col-md-6">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label>{{ __('Nome') }}</label>
                                     <input id="name" type="text" name="name"
                                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('Nome') }}" value="{{ old('name', $obj->name ?? '') }}"
+
                                         required>
+
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-md-6">
@@ -22,13 +26,14 @@
                                     <input id="email" type="mail" name="email"
                                         class="form-control{{ $errors->has('Email') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('seuemail@email.com.br') }}"
-                                        value="{{ old('email', $obj->email ?? '') }}" required>
+                                        value="{{ old('email', $obj->email ?? '') }}" >
                                 </div>
                             </div>
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-xxl-4 col-md-4">
+
                                 <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                     <label>{{ __('Fone') }}</label>
                                     <input id="fone" type="text" name="fone"
@@ -75,8 +80,10 @@
 
                         <!-- Informações de Pessoa Física -->
                         <div id="dados_pessoa_fisica">
+
                             <div class="row mt-2">
                                 <div class="col-xxl-6 col-md-6">
+
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                         <label>{{ __('CPF') }}</label>
                                         <input id="cpf" type="text" name="cpf"
@@ -86,13 +93,17 @@
                                     </div>
                                 </div>
 
+
                                 <div class="col-xxl-6 col-md-6">
+
                                     <div class="form-group{{ $errors->has('profissao') ? ' has-danger' : '' }}">
                                         <label>{{ __('Profissão') }}</label>
                                         <input id="profissao" type="text" name="profissao"
                                             class="form-control{{ $errors->has('profissao') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Profissão') }}"
+
                                             value="{{ old('profissao', $obj->profissao ?? '') }}">
+
                                     </div>
                                 </div>
                             </div>
@@ -100,14 +111,16 @@
 
                         <!-- Informações de Pessoa Jurídica -->
                         <div id="dados_pessoa_juridica" style="display: none;">
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('razaoSocial') ? ' has-danger' : '' }}">
                                         <label>{{ __('Razão Social') }}</label>
                                         <input id="razaoSocial" type="text" name="razaoSocial"
                                             class="form-control{{ $errors->has('razaoSocial') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Razão Social') }}"
+
                                             value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}">
+
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-md-6">
@@ -121,6 +134,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                         <!-- Outros campos do formulário -->
 
@@ -221,6 +235,7 @@
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

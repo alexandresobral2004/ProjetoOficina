@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
+
             <div class="card-header d-flex justify-content-between align-content-center">
                 <h3 class="card-title mb-0 align-content-center">Lista de Clientes</h5>
                     <form method="GET" action="{{ route('clientes.index') }}" id="searchForm">
@@ -11,6 +12,7 @@
             <div class="card-body">
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                     style="width:100%">
+
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10px;">
@@ -35,6 +37,7 @@
 
                                     <input class="form-check-input fs-15" type="checkbox" name="checkAll"
                                         value="option1">
+
 
                                 </div>
                             </th>
@@ -74,6 +77,7 @@
                             </td>
                         </tr>
                         <!-- Modal Area -->
+
 
                         <!-- View Modal -->
                         <div class="modal fade" id="viewClientModal" tabindex="-1"

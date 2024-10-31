@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row gap-3">
     <div>
         <div class="d-flex justify-content-between mb-3">
@@ -13,16 +14,19 @@
             </button>
         </div>
         <div>
+
             @livewire('Clientes.list-clientes')
         </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="newClientModal" tabindex="-1" aria-labelledby="newClientModalLabel" aria-hidden="true">
+
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="newClientModalLabel">Cadastrar Novo Cliente</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
                 <div class="modal-body">
                     @include('clientes.new')
@@ -63,4 +67,5 @@
             });
         });
 </script>
+
 @endsection

@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                <h5 class="card-title mb-0">Tabela de Serviços</h5>
+            <div class="flex-row card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0 card-title">Tabela de Serviços</h5>
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newServiceModal">
                     Novo Serviço
                 </button>
             </div>
-            <div class="card-body">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+            <div class="card-body table-responsive">
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10px;">
@@ -41,22 +41,22 @@
                                 <td>
                                     <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
                                         <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-cog align-middle"></i>...
+                                            <i class="align-middle fa fa-cog"></i>...
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <button class="dropdown-item view-service-btn" data-id="{{ $servico->id }}" data-bs-toggle="modal" data-bs-target="#viewServiceModal">
-                                                    <i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver
+                                                    <i class="align-bottom ri-eye-fill me-2 text-muted"></i> Ver
                                                 </button>
                                             </li>
                                             <li>
                                                 <button class="dropdown-item edit-service-btn" data-id="{{ $servico->id }}" data-bs-toggle="modal" data-bs-target="#editServiceModal">
-                                                    <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Editar
+                                                    <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Editar
                                                 </button>
                                             </li>
                                             <li>
                                                 <button class="dropdown-item delete-service-btn" data-id="{{ $servico->id }}" data-bs-toggle="modal" data-bs-target="#deleteServiceModal">
-                                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Excluir
+                                                    <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Excluir
                                                 </button>
                                             </li>
                                         </ul>
@@ -69,7 +69,7 @@
             </div>
 
             <!-- Modal para visualização de serviço específico -->
-            <div class="modal fade mb-5" id="viewServiceModal" tabindex="-1" aria-labelledby="viewServiceModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="viewServiceModal" tabindex="-1" aria-labelledby="viewServiceModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -84,7 +84,7 @@
             </div>
 
             <!-- Modal para edição de serviço -->
-            <div class="modal fade mb-5" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">

@@ -40,6 +40,33 @@
                             class="las la-home"></i><span data-key="t-dashboards">Home</span>
 
                     </a> </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#user" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                        aria-controls="user">
+                        <i class="las la-user-circle"></i> <span data-key="t-dashboards">Cadastros</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="user">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('clientes.index') }}" class="nav-link">Clientes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('veiculos.index') }}" class="nav-link">Veiculos
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a href="{{ route('servicos.index') }}" class="nav-link">Serviços
+                                </a>
+                            </li>
+                
+                
+                        </ul>
+                    </div>
+                
+                
+                </li>
 
 
                 <li class="nav-item">
@@ -49,13 +76,13 @@
                 </li>
      
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('clientes.index') }}">
                         <i class="las la-address-book"></i> <span data-key="t-dashboards">Clientes</span>
                     </a>
 
-                </li>
-
+                </li> --}}
+{{-- 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('veiculos.index') }}">
                         <i class="las la-car"></i> <span data-key="t-dashboards">Veículos</span>
@@ -66,7 +93,7 @@
                     <a class="nav-link menu-link" href="{{ route('servicos.index') }}">
                         <i class="bx bxs-wrench"></i> <span data-key="t-dashboards">Serviços</span>
                     </a>
-                </li>
+                </li> --}}
 
 
                 {{-- @if (auth()->check() && auth()->user()->role === 'admin')
@@ -74,8 +101,8 @@
                 <p>Bem-vindo, Administrador!</p> --}}
                 @auth
                     @if (auth()->check() && auth()->user()->role === 'admin')
-                        {{-- Exibe o link de cadastro de usuários --}}
-                        {{-- <li class="nav-item">
+                        {{-- Exibe o link de cadastro de usuários  --}}
+                        <li class="nav-item">
                             <a class="nav-link menu-link" href="#user" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="user">
                                 <i class="las la-user-circle"></i> <span data-key="t-dashboards">Usuários</span>
@@ -92,7 +119,7 @@
                             </div>
                             
 
-                        </li> --}}
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{ route('user.add') }}">
