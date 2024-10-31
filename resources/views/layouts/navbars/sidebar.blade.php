@@ -36,65 +36,36 @@
 
 
                 <li class="nav-item">
-                    <a href="{{ route('auth.dashboard') }}" class="nav-link"> <i
-                            class="las la-home"></i><span data-key="t-dashboards">Home</span>
-
-                    </a> </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#user" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                        aria-controls="user">
-                        <i class="las la-user-circle"></i> <span data-key="t-dashboards">Cadastros</span>
+                    <a href="{{ route('auth.dashboard') }}" class="nav-link">
+                        <i class="las la-home"></i>
+                        <span data-key="t-dashboards">Home</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="user">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#registration-section" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="user">
+                        <i class="las la-user-circle"></i>
+                        <span data-key="t-dashboards">Cadastros</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="registration-section">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('clientes.index') }}" class="nav-link">Clientes
-                                </a>
+                                <a href="{{ route('clientes.index') }}" class="nav-link">Clientes</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('veiculos.index') }}" class="nav-link">Veiculos
-                                </a>
+                                <a href="{{ route('veiculos.index') }}" class="nav-link">Veiculos</a>
                             </li>
-                            
                             <li class="nav-item">
-                                <a href="{{ route('servicos.index') }}" class="nav-link">Serviços
-                                </a>
+                                <a href="{{ route('servicos.index') }}" class="nav-link">Serviços</a>
                             </li>
-                
-                
                         </ul>
                     </div>
-                
-                
                 </li>
-
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('warehouse.index') }}">
                         <i class="bx bx-cabinet"></i> <span data-key="t-dashboards">Almoxarifado</span>
                     </a>
                 </li>
-     
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('clientes.index') }}">
-                        <i class="las la-address-book"></i> <span data-key="t-dashboards">Clientes</span>
-                    </a>
-
-                </li> --}}
-{{-- 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('veiculos.index') }}">
-                        <i class="las la-car"></i> <span data-key="t-dashboards">Veículos</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('servicos.index') }}">
-                        <i class="bx bxs-wrench"></i> <span data-key="t-dashboards">Serviços</span>
-                    </a>
-                </li> --}}
-
 
                 {{-- @if (auth()->check() && auth()->user()->role === 'admin')
                 <!-- Conteúdo para administradores -->
@@ -113,12 +84,8 @@
                                         <a href="{{ route('user.add') }}" class="nav-link">Novo
                                         </a>
                                     </li>
-                                 
-
                                 </ul>
                             </div>
-                            
-
                         </li>
 
                         <li class="nav-item">
@@ -128,10 +95,6 @@
                         </li>
                     @endif
                 @endauth
-
-
-
-
             </ul>
         </div>
         <!-- Sidebar -->
