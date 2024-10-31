@@ -39,7 +39,9 @@ class DatabaseSeeder extends Seeder
 
         // Adiciona um endereço para o cliente
         Cliente_end::create([
-            'address' => 'Rua Teste, 123',
+            'number' => '123',
+            'street' => 'Rua Teste',
+            'neighborhood' => 'Teste Neighborhood',
             'city' => 'Teste City',
             'state' => 'TS',
             'zip_code' => '00000-000',

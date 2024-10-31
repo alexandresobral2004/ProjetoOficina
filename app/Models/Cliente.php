@@ -57,6 +57,7 @@ class Cliente extends EloquentModel
     {
         return $this->hasOne(Cliente_end::class, 'cliente_id');
     }
+
     // Relacionamento de Cliente para Veiculo (um-para-muitos)
     public function veiculos()
     {

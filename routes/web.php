@@ -39,13 +39,10 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
 
     Route::get('/clientes/add', [\App\Http\Controllers\ClienteController::class, "add"])->name('clientes.add');
     Route::post('/clientes/save', [\App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store');
-
     Route::get('/clientes/list', [\App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.list');
     Route::get('/clientes/show/{id}', [\App\Http\Controllers\ClienteController::class, 'show'])->name('clientes.show');
-
     Route::get('/clientes/edit/{id}', [\App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
     Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
-
     Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
 
     // Rotas para veiculo:
@@ -75,7 +72,7 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::put('/warehouse/update/{id}', [\App\Http\Controllers\WarehouseController::class, 'update'])->name('warehouse.update');
     Route::delete('/warehouse/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy']);
     Route::get('/warehouse/destroy/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy'])->name('warehouse.destroy');
-   
+
 
     //user
     Route::get('/user/add', [\App\Http\Controllers\UserController::class, "add"])->name('user.add');

@@ -13,10 +13,18 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-          $Clientes = Cliente::with('endereco')->all();
-          return view('/clientes/list',['clientes'=>$Clientes]);
+        $search = $request->input('search');
+        $query = Cliente::with('endereco');
+
+        if ($request -> has('search')) {
+            $query = $query -> where('name', 'like', "%{$search}%");
+        }
+
+        $clientes = $query->get();
+
+        return view('/clientes/list', ['clientes' => $clientes]);
     }
 
     /**
@@ -66,19 +74,21 @@ class ClienteController extends Controller
             if($validatedData['cpf']  == null && $validatedData['cnpj'] == null ){
                  Sweetalert::error('CPF ou CNPJ obrigatorio!', 'Erro!');
 
-                  return redirect()->route('cliente.add')->with("Erro", "CPF ou CNPJ obrigatorio");
+                  return redirect()->route('cliente.index')->with("Erro", "CPF ou CNPJ obrigatorio");
             }
 
 
          }
          else{
             Sweetalert::error('Senhas não conferem!', 'Erro!');
-            return Redirect(route('clientes.add'));
+            return Redirect(route('clientes.index'));
 
          }
 
             $validatedData2 = $request->validate([
-            'address'=> 'required|string|max:255',
+            'number'=> 'required|string|max:100',
+            'street'=> 'required|string|max:255',
+            'neighborhood'=> 'required|string|max:100',
             'city'=> 'required|string|max:100',
             'state'=> 'required|string|max:100',
             'zip_code'=> 'required|string|max:15',
@@ -91,9 +101,8 @@ class ClienteController extends Controller
            $end->cliente_id = $cliente->id;
 
            $end->save();
-           Sweetalert::success('Usuário criado com sucesso!', 'Sucesso!');
-           return view('/clientes/index');
 
+            return redirect()->route('clientes.index')->with('success', 'Cliente salvo com sucesso!');
 
 
          }
@@ -165,7 +174,9 @@ class ClienteController extends Controller
                 'dtNasc' => 'nullable|date',
                 'profissao' => 'nullable|string|max:100',
                 'razaoSocial' => 'nullable|string|max:255',
-                'address' => 'required|string|max:255',
+                'number' => 'required|string|max:100',
+                'street' => 'required|string|max:255',
+                'neighborhood' => 'required|string|max:100',
                 'city' => 'required|string|max:100',
                 'state' => 'required|string|max:100',
                 'zip_code' => 'required|string|max:15',
