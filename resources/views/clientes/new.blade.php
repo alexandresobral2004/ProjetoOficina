@@ -63,27 +63,27 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
-                        <div class="row mt-2">
+                        
+                            <!-- Check-box para selecionar Pessoa Física ou Jurídica-->
+                             <div class="row mt-2">
                             <div class="col-md-12 d-flex justify-content-center align-content-center gap-2">
                                 <label class="form-check-label">
-                                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked>
+                                    <input id="pessoaFisica_new" name="tipo_pessoa_new"  onclick="ShowORHide('dados_pessoa_fisica_new','dados_pessoa_juridica_new', 'tipo_pessoa_new')" type="radio" value="fisica" checked>
                                     Pessoa Física
                                 </label>
                                 <label class="form-check-label ml-2">
-                                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa
+                                    <input id="pessoaJuridica_new" name="tipo_pessoa_new" onclick="ShowORHide('dados_pessoa_fisica_new','dados_pessoa_juridica_new', 'tipo_pessoa_new')" type="radio" value="juridica"> Pessoa
                                     Jurídica
                                 </label>
-                            </div>
+                            </div> 
                         </div>
+                        <!-- -->
+
 
                         <!-- Informações de Pessoa Física -->
-                        <div id="dados_pessoa_fisica">
-
+                        <div id="dados_pessoa_fisica_new">
                             <div class="row mt-2">
                                 <div class="col-xxl-6 col-md-6">
-
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                         <label>{{ __('CPF') }}</label>
                                         <input id="cpf" type="text" name="cpf"
@@ -92,41 +92,32 @@
                                             required>
                                     </div>
                                 </div>
-
-
                                 <div class="col-xxl-6 col-md-6">
-
                                     <div class="form-group{{ $errors->has('profissao') ? ' has-danger' : '' }}">
                                         <label>{{ __('Profissão') }}</label>
                                         <input id="profissao" type="text" name="profissao"
                                             class="form-control{{ $errors->has('profissao') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Profissão') }}"
-
-                                            value="{{ old('profissao', $obj->profissao ?? '') }}">
-
+                                            placeholder="{{ __('Profissão') }}" value="{{ old('profissao', $obj->profissao ?? '') }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Informações de Pessoa Jurídica -->
-                        <div id="dados_pessoa_juridica" style="display: none;">
+                        <div id="dados_pessoa_juridica_new" class="d-none">
                             <div class="mt-2 row">
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('razaoSocial') ? ' has-danger' : '' }}">
                                         <label>{{ __('Razão Social') }}</label>
-                                        <input id="razaoSocial" type="text" name="razaoSocial"
+                                        <input id="razaoSocial_new" type="text" name="razaoSocial"
                                             class="form-control{{ $errors->has('razaoSocial') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Razão Social') }}"
-
-                                            value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}">
-
+                                            placeholder="{{ __('Razão Social') }}" value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}">
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
                                         <label>{{ __('CNPJ') }}</label>
-                                        <input id="cnpj" type="text" name="cnpj"
+                                        <input  onblur="buscarDadosCNPJ('cnpj_new', ['razaoSocial_new', 'zip_code_new']) " id="cnpj_new" type="text" name="cnpj"
                                             class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('00.000.000/0000-00') }}"
                                             value="{{ old('cnpj', $obj->cnpj ?? '') }}">
@@ -242,56 +233,6 @@
 </div>
 
 <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-        const pessoaFisicaRadio = document.getElementById('pessoaFisica');
-        const pessoaJuridicaRadio = document.getElementById('pessoaJuridica');
-        const cpfInput = document.getElementById('cpf');
-        const cnpjInput = document.getElementById('cnpj');
-        const dadosPessoaFisica = document.getElementById('dados_pessoa_fisica');
-        const dadosPessoaJuridica = document.getElementById('dados_pessoa_juridica');
 
-        function toggleRequiredFields() {
-            if (pessoaFisicaRadio.checked) {
-                cpfInput.setAttribute('required', 'required');
-                cnpjInput.removeAttribute('required');
-                dadosPessoaFisica.style.display = 'block';
-                dadosPessoaJuridica.style.display = 'none';
-            } else if (pessoaJuridicaRadio.checked) {
-                cnpjInput.setAttribute('required', 'required');
-                cpfInput.removeAttribute('required');
-                dadosPessoaFisica.style.display = 'none';
-                dadosPessoaJuridica.style.display = 'block';
-            }
-        }
-
-        // Evento inicial para definir o estado correto ao carregar a página
-        toggleRequiredFields();
-
-        // Eventos de mudança nos radio buttons
-        pessoaFisicaRadio.addEventListener('change', toggleRequiredFields);
-        pessoaJuridicaRadio.addEventListener('change', toggleRequiredFields);
-
-        function clearInputs() {
-            const inputs = document.querySelectorAll('textarea, input');
-            inputs.forEach(input => input.value = "");
-        }
-
-        // Máscaras para FONE, CPF e CNPJ
-        Inputmask({
-            mask: '(99) 99999-9999'
-        }).mask(document.getElementById('fone'));
-
-        Inputmask({
-            mask: '999.999.999-99'
-        }).mask(document.getElementById('cpf'));
-
-        Inputmask({
-            mask: '(99) 9999-9999'
-        }).mask(document.getElementById('foneFixo'));
-
-        Inputmask({
-            mask: '99.999.999/9999-99'
-        }).mask(document.getElementById('cnpj'));
-    });
 </script>
 <script type="text/javascript" src="{{ asset('assets/js/cep.js') }}"></script>

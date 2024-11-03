@@ -9,40 +9,43 @@
         <div class="row mt-2">
             <div class="col-xxl-6 col-md-6">
                 <label for="name" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $cliente->name }}" required>
+                <input type="text" class="form-control" id="name_edit" name="name" value="{{ $cliente->name }}" required>
             </div>
             <div class="col-xxl-6 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $cliente->email }}" required>
+                <input type="email" class="form-control" id="email_edit" name="email" value="{{ $cliente->email }}" required>
             </div>
         </div>
 
         <div class="row mt-2">
             <div class="col-xxl-4 col-md-4">
                 <label for="fone" class="form-label">Telefone</label>
-                <input type="text" class="form-control" id="fone" name="fone" value="{{ $cliente->fone }}">
+                <input type="text" class="form-control" id="fone_edit" name="fone" value="{{ $cliente->fone }}">
             </div>
             <div class="col-xxl-4 col-md-4">
                 <label for="foneFixo" class="form-label">Telefone Fixo</label>
-                <input type="text" class="form-control" id="foneFixo" name="foneFixo" value="{{ $cliente->foneFixo }}">
+                <input type="text" class="form-control" id="foneFixo_edit" name="foneFixo" value="{{ $cliente->foneFixo }}">
             </div>
             <div class="col-xxl-4 col-md-4">
                 <label for="dtNasc" class="form-label">Data de Nascimento</label>
-                <input type="date" class="form-control" id="dtNasc" name="dtNasc" value="{{ $cliente->dtNasc }}">
+                <input type="date" class="form-control" id="dtNasc_edit" name="dtNasc" value="{{ $cliente->dtNasc }}">
             </div>
         </div>
 
-        <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
-
-        <div class="row mt-2 ">
+        
+    
+        <!-- Check-box para selecionar Pessoa Física ou Jurídica-->
+        <div class="row mt-2">
             <div class="col-md-12 d-flex justify-content-center align-content-center gap-2">
                 <label class="form-check-label">
-                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisicaEdit" checked> Pessoa Física
+                    <input  id="pessoaFisica_edit" name="tipo_pessoa_new_edit" onclick="ShowORHide('dados_pessoa_fisica_edit','dados_pessoa_juridica_edit', 'tipo_pessoa_new_edit')" type="radio" name="tipo_pessoa" value="fisica" checked>
+                    Pessoa Física
                 </label>
                 <label class="form-check-label ml-2">
-                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridicaEdit"> Pessoa Jurídica
+                    <input  id="pessoaJuridica_edit" name="tipo_pessoa_new_edit" onclick="ShowORHide('dados_pessoa_fisica_edit','dados_pessoa_juridica_edit', 'tipo_pessoa_new_edit')" type="radio" name="tipo_pessoa" value="juridica"> Pessoa
+                    Jurídica
                 </label>
-            </div>
+            </div> 
         </div>
 
         <!-- Dados Pessoa Física -->
@@ -50,27 +53,27 @@
             <div class="row mt-2">
                 <div class="col-md-6">
                     <label for="profissao" class="form-label">Profissão</label>
-                    <input type="text" class="form-control" id="profissao" name="profissao"
+                    <input type="text" class="form-control" id="profissao_edit" name="profissao"
                         value="{{ $cliente->profissao }}">
                 </div>
                 <div class="col-md-6">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" value="{{ $cliente->cpf }}">
+                    <input type="text" class="form-control" id="cpf_edit" name="cpf" value="{{ $cliente->cpf }}">
                 </div>
             </div>
         </div>
 
         <!-- Dados Pessoa Jurídica -->
-        <div id="dados_pessoa_juridica_edit_edit" style="display: none;">
+        <div id="dados_pessoa_juridica_edit" class="d-none">
             <div class="row mt-2">
                 <div class="col-md-6">
-                    <label for="razaoSocial" class="form-label">Razão Social</label>
-                    <input type="text" class="form-control" id="razaoSocial" name="razaoSocial"
+                    <label for="razaoSocial_edit" class="form-label">Razão Social</label>
+                    <input type="text" class="form-control" id="razaoSocial_edit" name="razaoSocial"
                         value="{{ $cliente->razaoSocial }}">
                 </div>
                 <div class="col-md-6">
                     <label for="cnpj" class="form-label">CNPJ</label>
-                    <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{ $cliente->cnpj }}">
+                    <input id="cnpj_edit" onblur="buscarDadosCNPJ('cnpj_edit', ['razaoSocial_edit','zip_code_edit'])" type="text" class="form-control" name="cnpj" value="{{ $cliente->cnpj }}">
                 </div>
             </div>
         </div>
@@ -124,18 +127,3 @@
 </div>
 
 <script type="text/javascript" src="{{ asset('assets/js/cep.js') }}"></script>
-<script>
-    document.getElementById('pessoaFisicaEdit').addEventListener('change', function() {
-        document.getElementById('dados_pessoa_fisica_edit').style.display = 'block';
-        document.getElementById('dados_pessoa_juridica_edit_edit').style.display = 'none';
-    });
-
-    document.getElementById('pessoaJuridicaEdit').addEventListener('change', function() {
-        document.getElementById('dados_pessoa_fisica_edit').style.display = 'none';
-        document.getElementById('dados_pessoa_juridica_edit_edit').style.display = 'block';
-    });
-    function clearInputs() {
-        const inputs = document.querySelectorAll('textarea, input');
-        inputs.forEach(input => input.value = "");
-    }
-</script>
