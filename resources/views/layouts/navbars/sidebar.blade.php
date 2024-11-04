@@ -102,7 +102,7 @@
                 @auth
                     @if (auth()->check() && auth()->user()->role === 'admin')
                         {{-- Exibe o link de cadastro de usuários  --}}
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link menu-link" href="#user" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="user">
                                 <i class="las la-user-circle"></i> <span data-key="t-dashboards">Usuários</span>
@@ -119,7 +119,7 @@
                             </div>
                             
 
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{ route('user.add') }}">
