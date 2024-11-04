@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckForTokenExpiration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\VeiculoController;
 use App\Models\Cliente;
@@ -44,6 +45,15 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::get('/clientes/edit/{id}', [\App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
     Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
+
+    // Rotas para Funcionario
+    Route::get('funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
+    Route::get('funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
+    Route::post('funcionarios', [FuncionarioController::class, 'store'])->name('funcionarios.store');
+    Route::get('funcionarios/{funcionario}', [FuncionarioController::class, 'show'])->name('funcionarios.show');
+    Route::get('funcionarios/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+    Route::put('funcionarios/{funcionario}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+    Route::delete('funcionarios/{funcionario}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
 
     // Rotas para veiculo:
     // Obs: poderia ser resumido a: Route::resource('veiculos', VeiculoController::class);
