@@ -26,7 +26,7 @@ class FormNewUser extends Component {
                             <div class="live-preview">
 
                                     <div class="mt-2 row">
-                                        <div class="col-xx-3 col-md-3">
+                                        <div class="col-xx-4 col-md-4">
                                             <div class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Tipo de Usuário*') }}</label>
                                                 <select name="role" id="role" class="form-select">
@@ -38,7 +38,7 @@ class FormNewUser extends Component {
                                             </div>
                                         </div>
                                        
-                                        <div class="col-xx-3 col-md-3">
+                                        <div class="col-xx-4 col-md-4">
                                             <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Status do Usuário*') }}</label>
                                                 <select name="status"  class="form-select">
@@ -52,7 +52,7 @@ class FormNewUser extends Component {
 
                                     </div>
                                     <div class="mt-2 row">
-                                        <div class=" col-xxl-6 col-md-6">
+                                        <div class=" col-xxl-8 col-md-8">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                                 <label>{{ __('Nome*') }}</label>
                                                 <input id="name" type="text" name="name"
@@ -65,7 +65,7 @@ class FormNewUser extends Component {
                                         </div>
                                     </div>
                                     <div class="mt-2 row">
-                                        <div class=" col-xxl-3 col-md-3">
+                                        <div class="col-xxl-4 col-md-4">
                                             <div
                                                 class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                                 <label>{{ __('CPF') }}</label>
@@ -78,8 +78,8 @@ class FormNewUser extends Component {
                                         </div>
                                    
 
-                                    </div>
-                                      <div class="col-xxl-3 col-md-3">
+                                   
+                                      <div class="col-xxl-4 col-md-4">
                                           <div
                                               class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                               <label>{{ __('Fone*') }}</label>
@@ -91,8 +91,9 @@ class FormNewUser extends Component {
 
                                           </div>
                                       </div>
+                                    </div>
                                     <div class="mt-2 row">
-                                        <div class="col-xxl-4 col-md-4">
+                                        <div class="col-xxl-8 col-md-8">
                                                 <div
                                                     class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                                     <label>{{ __('E-mail*') }}</label>
@@ -107,7 +108,7 @@ class FormNewUser extends Component {
                                         </div>
                                       
                                     </div>
-                                    <div class="flex-row mt-2 row col-md-8 col-xxl-8 d-flex">
+                                    <div class="mt-2 row ">
                                       
                                             <div 
                                                 class="col-md-4 col-xxl-4
@@ -143,8 +144,8 @@ class FormNewUser extends Component {
 
                                 </div>
 
-                                   <div class="mt-2 row gy-4">
-                                       <div class="col-xxl-3 col-md-3">
+                                   <div class="mt-4 row">
+                                       <div class="col-xxl-6 col-md-6">
                                            <button type="submit" class="btn btn-primary">Salvar</button>
                                        </div>
 
