@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EmployeeRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,16 +12,24 @@ class Funcionario extends Model
 
     protected $fillable = [
         'nome',
+        'sobrenome',
         'cpf',
+        'data_nascimento',
         'telefone',
-        'endereco',
+        'email',
         'cargo',
         'is_user',
-        'user_id'
     ];
 
-    public function user()
+    protected $casts = [
+        'cargo' => EmployeeRole::class,
+    ];
+
+     /**
+     * Relacionamento polimórfico com endereço
+     */
+    public function endereco()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphOne(Endereco::class, 'enderecavel');
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\EmployeeRole;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class FuncionarioController extends Controller
 {
@@ -12,8 +14,9 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
+        $cargos = EmployeeRole::cases();
         $funcionarios = Funcionario::all();
-        return view('funcionarios.index', compact('funcionarios'));
+        return view('funcionarios.index', compact('funcionarios', 'cargos'));
     }
 
     /**
@@ -21,6 +24,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
+        // Passe os cargos para a view
         return view('funcionarios.create');
     }
 
@@ -31,14 +35,35 @@ class FuncionarioController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'email' => 'required|email|unique:funcionarios,email',
+            'email' => 'required|email|unique:funcionarios,email,',
+            'cpf' => 'required|string|max:14|unique:funcionarios,cpf',
             'telefone' => 'nullable|string|max:20',
-            // Outros campos de validação que deseja adicionar...
+            'cargo' => ['required', Rule::enum(EmployeeRole::class)],
+            'data_nascimento' => 'date',
+            'endereco.rua' => 'required|string|max:255',
+            'endereco.numero' => 'required|string|max:10',
+            'endereco.bairro' => 'required|string|max:100',
+            'endereco.cidade' => 'required|string|max:100',
+            'endereco.estado' => 'required|string|max:2',
+            'endereco.cep' => 'required|string|max:10',
         ]);
 
-        Funcionario::create($request->all());
+        // Cria o funcionário
+        $funcionario = Funcionario::create($request->only([
+            'nome',
+            'sobrenome',
+            'cpf',
+            'email',
+            'telefone',
+            'data_nascimento',
+            'cargo',
+            'is_user' => false, // Define is_user como false durante o cadastro
+        ]));
 
-        return redirect()->route('funcionarios.index')->with('success', 'Funcionário criado com sucesso!');
+        // Cria o endereço associado ao funcionário
+        $funcionario->endereco()->create($request->input('endereco'));
+
+        return redirect()->route('funcionarios.index')->with('success', 'Funcionário e endereço criados com sucesso!');
     }
 
     /**
@@ -47,7 +72,7 @@ class FuncionarioController extends Controller
     public function show($id)
     {
         $funcionario = Funcionario::findOrFail($id);
-        return view('funcionarios.show', compact('funcionario'));
+        return view('funcionarios.partials.details', compact('funcionario'));
     }
 
     /**
@@ -56,7 +81,8 @@ class FuncionarioController extends Controller
     public function edit($id)
     {
         $funcionario = Funcionario::findOrFail($id);
-        return view('funcionarios.edit', compact('funcionario'));
+        $cargos = EmployeeRole::cases();
+        return view('funcionarios.partials.edit', compact('funcionario', 'cargos'));
     }
 
     /**
@@ -66,15 +92,40 @@ class FuncionarioController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'email' => 'required|email|unique:funcionarios,email,' . $id,
+            'email' => 'required|email|unique:funcionarios,email,' .$id,
+            'cpf' => 'required|string|max:14|unique:funcionarios,cpf,' .$id,
             'telefone' => 'nullable|string|max:20',
-            // Outros campos de validação que desejar adicionar...
+            'cargo' => ['required', Rule::enum(EmployeeRole::class)],
+            'data_nascimento' => 'date',
+            'endereco.rua' => 'required|string|max:255',
+            'endereco.numero' => 'required|string|max:10',
+            'endereco.bairro' => 'required|string|max:100',
+            'endereco.cidade' => 'required|string|max:100',
+            'endereco.estado' => 'required|string|max:2',
+            'endereco.cep' => 'required|string|max:10',
         ]);
 
+        // Atualiza o funcionário
         $funcionario = Funcionario::findOrFail($id);
-        $funcionario->update($request->all());
+        $funcionario->update($request->only([
+            'nome',
+            'sobrenome',
+            'cpf',
+            'email',
+            'telefone',
+            'data_nascimento',
+            'cargo',
+            'is_user'
+        ]));
 
-        return redirect()->route('funcionarios.index')->with('success', 'Funcionário atualizado com sucesso!');
+        // Atualiza o endereço associado
+        if ($funcionario->endereco) {
+            $funcionario->endereco->update($request->input('endereco'));
+        } else {
+            $funcionario->endereco()->create($request->input('endereco'));
+        }
+
+        return redirect()->route('funcionarios.index')->with('success', 'Funcionário e endereço atualizados com sucesso!');
     }
 
     /**
