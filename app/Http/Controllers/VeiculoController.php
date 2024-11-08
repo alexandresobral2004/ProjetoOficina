@@ -102,4 +102,11 @@ class VeiculoController extends Controller
         // Redireciona para a página de listagem com uma mensagem de sucesso
         return redirect()->route('veiculos.index')->with('success', 'Veículo deletado com sucesso!');
     }
+
+    public function getVeiculosByCliente($clienteId)
+    {
+        $veiculos = Veiculo::where('cliente_id', $clienteId)->get();
+        return response()->json($veiculos);
+    }
+
 }

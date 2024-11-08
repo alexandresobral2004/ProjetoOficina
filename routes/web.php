@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
 
+    Route::get('/clientes/veiculos/{clienteId}', [VeiculoController::class, 'getVeiculosByCliente']);
+
     // Rotas para Funcionario
     Route::get('funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
     Route::get('funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');

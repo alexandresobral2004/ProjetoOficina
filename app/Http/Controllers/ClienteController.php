@@ -45,8 +45,8 @@ class ClienteController extends Controller
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            // 'password' => 'required|string|max:6',
-            // 'confirm_password' => 'required|string|max:6',
+            'password' => 'required|string|max:6',
+            'confirm_password' => 'required|string|max:6',
             'fone'=> 'required|string|max:15',
             'dtNasc'=> 'nullable|date',
             'profissao'=> 'nullable|string|max:30',
