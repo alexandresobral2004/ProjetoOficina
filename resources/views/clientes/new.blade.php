@@ -1,15 +1,31 @@
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg">
         <div class="card">
             <div class="card-body">
-                <h4 class="d-flex justify-content-center align-content-center gap-2">Dados Pessoais</h4>
+                <h4 class="gap-2 d-flex ">Dados Pessoais</h4>
                 <form action="{{ route('clientes.store') }}" method="POST">
                     @csrf
 
-                    <div class="live-preview p-0 custom-width">
-                        <div class="row mt-2">
+                    <div class="p-0 live-preview custom-width">
 
-                            <div class="col-xxl-6 col-md-6">
+
+                        <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
+                        <div class="mt-4 mb-4 row">
+                            <div class="gap-2 col-md-12 d-flex ">
+                                <label>{{ __('Tipo de Cliente:') }}</label>
+                                <label class="form-check-label">
+                                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked>
+                                    Pessoa Física
+                                </label>
+                                <label class="ml-2 form-check-label">
+                                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa
+                                    Jurídica
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-2 row">
+
+                            <div class="col-xxl-5 col-md-5">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label>{{ __('Nome') }}</label>
                                     <input id="name" type="text" name="name"
@@ -20,7 +36,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-xxl-6 col-md-6">
+                            <div class="col-xxl-5 col-md-5">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label>{{ __('E-mail') }}</label>
                                     <input id="email" type="mail" name="email"
@@ -31,8 +47,8 @@
                             </div>
                         </div>
 
-                        <div class="row mt-2">
-                            <div class="col-xxl-4 col-md-4">
+                        <div class="mt-2 row">
+                            <div class="col-xxl-3 col-md-3">
 
                                 <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                     <label>{{ __('Fone') }}</label>
@@ -43,7 +59,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xxl-4 col-md-4">
+                            <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('foneFixo') ? ' has-danger' : '' }}">
                                     <label>{{ __('Fone Fixo') }}</label>
                                     <input id="foneFixo" type="text" name="foneFixo"
@@ -53,7 +69,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xxl-4 col-md-4">
+                            <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('dtNasc') ? ' has-danger' : '' }}">
                                     <label>{{ __('Data de Nascimento') }}</label>
                                     <input id="dtNasc" type="date" name="dtNasc"
@@ -64,24 +80,12 @@
                             </div>
                         </div>
 
-                        <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
-                        <div class="row mt-2">
-                            <div class="col-md-12 d-flex justify-content-center align-content-center gap-2">
-                                <label class="form-check-label">
-                                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked>
-                                    Pessoa Física
-                                </label>
-                                <label class="form-check-label ml-2">
-                                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa
-                                    Jurídica
-                                </label>
-                            </div>
-                        </div>
+                        
 
                         <!-- Informações de Pessoa Física -->
                         <div id="dados_pessoa_fisica">
 
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-6 col-md-6">
 
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
@@ -138,7 +142,7 @@
 
                         <!-- Outros campos do formulário -->
 
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
                             <div class="col-xxl-4 col-md-4">
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label>{{ __('Senha') }}</label>
@@ -162,12 +166,12 @@
 
                         <hr class="my-4">
 
-                        <div class="d-flex justify-content-center align-content-center gap-2">
+                        <div class="gap-2 d-flex justify-content-center align-content-center">
                             <h3>Endereço</h3>
                         </div>
 
                         <div>
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-5 col-md-5">
                                     <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
                                         <label>{{ __('CEP') }}</label>
@@ -197,7 +201,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-5 col-md-5">
                                     <div class="form-group{{ $errors->has('neighborhood') ? ' has-danger' : '' }}">
                                         <label>{{ __('Bairro') }}</label>
@@ -228,8 +232,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="modal-footer justify-content-between mb-0 mt-1">
+                    <div class="mt-2 row">
+                        <div class="mt-1 mb-0 modal-footer justify-content-between">
                             <button type="submit" class="btn btn-success">Salvar</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
                         </div>
