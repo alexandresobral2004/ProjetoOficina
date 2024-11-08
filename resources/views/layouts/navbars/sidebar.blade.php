@@ -42,7 +42,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#registration-section" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="user">
+                    <a class="nav-link menu-link" href="#registration-section" data-bs-toggle="collapse"
+                       id="cadastrosDropdownLink" role="button"
+                       aria-expanded="false" aria-controls="registration-section">
                         <i class="las la-user-circle"></i>
                         <span data-key="t-dashboards">Cadastros</span>
                     </a>
@@ -55,7 +57,7 @@
                                 <a href="{{ route('funcionarios.index') }}" class="nav-link">Funcionários</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('veiculos.index') }}" class="nav-link">Veiculos</a>
+                                <a href="{{ route('veiculos.index') }}" class="nav-link">Veículos</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('servicos.index') }}" class="nav-link">Serviços</a>
@@ -63,6 +65,7 @@
                         </ul>
                     </div>
                 </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('warehouse.index') }}">
@@ -108,3 +111,31 @@
 <!-- Left Sidebar End -->
 <!-- Vertical Overlay-->
 <div class="vertical-overlay"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Seleciona o link de "Cadastros" e o dropdown
+        const cadastrosDropdownLink = document.getElementById("cadastrosDropdownLink");
+        const registrationSection = document.getElementById("registration-section");
+
+        // Lista de URLs das rotas que mantêm o dropdown aberto
+        const cadastrosRoutes = ["/clientes", "/funcionarios", "/veiculos", "/servicos"];
+
+        // Verifica se a URL atual contém alguma das rotas especificadas
+        const currentUrl = window.location.pathname;
+        const shouldKeepOpen = cadastrosRoutes.some(route => currentUrl.includes(route));
+
+        if (shouldKeepOpen) {
+            // Define o atributo `aria-expanded` para `true` e adiciona a classe `show` para manter aberto
+            cadastrosDropdownLink.setAttribute("aria-expanded", "true");
+            registrationSection.classList.add("show");
+        }
+
+        // Alterna o dropdown quando o link de "Cadastros" é clicado novamente
+        cadastrosDropdownLink.addEventListener("click", function() {
+            const isExpanded = cadastrosDropdownLink.getAttribute("aria-expanded") === "true";
+            cadastrosDropdownLink.setAttribute("aria-expanded", !isExpanded);
+            registrationSection.classList.toggle("show");
+        });
+    });
+</script>
