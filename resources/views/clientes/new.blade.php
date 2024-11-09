@@ -117,7 +117,7 @@
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
                                         <label>{{ __('CNPJ') }}</label>
-                                        <input  onblur="buscarDadosCNPJ('cnpj_new', ['razaoSocial_new', 'zip_code_new']) " id="cnpj_new" type="text" name="cnpj"
+                                        <input onblur="buscarDadosCNPJ('cnpj_new', ['razaoSocial_new', 'zip_code_new','street_new','number_new', 'neighborhood_new',  'state_new', 'city_new']) " id="cnpj_new" type="text" name="cnpj"
                                             class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('00.000.000/0000-00') }}"
                                             value="{{ old('cnpj', $obj->cnpj ?? '') }}">
@@ -222,7 +222,7 @@
                     <div class="row mt-2">
                         <div class="modal-footer justify-content-between mb-0 mt-1">
                             <button type="submit" class="btn btn-success">Salvar</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                            <button onclick="clearInputs()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </form>

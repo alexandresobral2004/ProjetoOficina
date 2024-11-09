@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="cnpj" class="form-label">CNPJ</label>
-                    <input id="cnpj_edit" onblur="buscarDadosCNPJ('cnpj_edit', ['razaoSocial_edit','zip_code_edit'])" type="text" class="form-control" name="cnpj" value="{{ $cliente->cnpj }}">
+                    <input id="cnpj_edit" onblur="buscarDadosCNPJ('cnpj_edit', ['razaoSocial_edit', 'zip_code_edit','street_edit','number_edit', 'neighborhood_edit', 'state_edit', 'city_edit']) type="text" class="form-control" name="cnpj" value="{{ $cliente->cnpj }}">
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
         <div class="row mt-2">
             <div class="modal-footer justify-content-between">
                 <button type="submit" class="btn btn-warning">Editar</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button onclick="clearInputs()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </form>

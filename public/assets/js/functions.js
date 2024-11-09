@@ -1,4 +1,4 @@
-// Função para atualizar o conteúdo de dentro do modal
+// Função para atualizar o conteúdo de dentro do modal, Ex: modal de compatibilidade
 function ModalRefresh(conteudo, modalId) {
     document.getElementById(modalId).innerText = conteudo;
 }
@@ -29,7 +29,7 @@ function ClearInputs() {
     document.getElementsByTagName('texarea', 'input').value = "";
 }
 
-// identifica o titulo da coluna e adiciona o evento de click
+// identifica os THs da tabela e adiciona o evento de click em cada um
 document.querySelectorAll('th').forEach((th, index) => {
     th.addEventListener('click', () => sortTable(index));
 });
@@ -59,31 +59,33 @@ function sortTable(columnIndex) {
 
     headers[columnIndex].classList.add('bg-primary');
     headers[columnIndex].style.color = "white";
-
-
 }
 
 
 // Funcão de pesquisa, barra de pesquisa da tabela
-document.getElementById('search').addEventListener('input', function () {
-    const query = this.value.trim().toLowerCase();
-    const rows = document.querySelectorAll('#table-body tr');
-    if (query === '') {
+document.getElementById('search').addEventListener('input', function () { 
+    // separa por caracteres e põe em caixa baixa
+    const query = this.value.trim().toLowerCase(); 
+    // resgata todos os dados que estão dentro das tags TR
+    const rows = document.querySelectorAll('#table-body tr'); 
+
+    if (query === '') { // se o valor não for digitado exibe todas as linhas
         rows.forEach(row => {
-            row.style.display = '';
+            row.style.display = ''; // a linha será exibida
         });
         return;
     }
-    rows.forEach(row => {
+    rows.forEach(row => { // percorre todas as linhas
         const cells = Array.from(row.cells);
         const match = cells.some(cell => cell.textContent.toLowerCase().includes(query));
-        row.style.display = match ? '' : 'none';
+        row.style.display = match ? '' : 'none'; // se for encontrado exibe a linha, caso contrario oculta
     });
 });
 
 
+// API para buscar dados do CNPJ
 
-// não está funcionando como deveria
+ // recebe o id do input cnpj e o id do campus q vão ser preenchidos
 function buscarDadosCNPJ(cnpj , campus = []) {
     const cnpjValue = document.getElementById(cnpj).value.replace(/\D/g, "");
     if (cnpjValue.length === 14) {
@@ -96,6 +98,7 @@ function buscarDadosCNPJ(cnpj , campus = []) {
                 }
                 return response.json();
             })
+            // passar os dados para a função preencherDadosCNPJ
             .then(data => preencherDadosCNPJ(data, campus))
             .catch(error => alert(error.message));
     } 
@@ -104,45 +107,29 @@ function buscarDadosCNPJ(cnpj , campus = []) {
     }
 }
 
+// preencher dados, referente a função buscarDadosCNPJ
 function preencherDadosCNPJ(data, campus = []) {
     if(data.descricao_situacao_cadastral.toLowerCase() == 'ativa'){
         document.getElementById(campus[0]).value = data.razao_social || "";
         document.getElementById(campus[1]).value = data.cep || "";
+        document.getElementById(campus[2]).value = data.logradouro || "";
+        document.getElementById(campus[3]).value = data.numero || "";
+        document.getElementById(campus[4]).value = data.bairro || "";
+        document.getElementById(campus[5]).value = data.uf || "";
+        document.getElementById(campus[6]).value = data.municipio || "";
     }
     else {alert('CNPJ inativo, digite um CNPJ ativo ou Cadastre-se com CPF');}
 }
 
 
 // limpar botões inputs
-
-function clearInputs(classe) {
-    const inputs = document.querySelectorAll(classe+' , input');
+function clearInputs() {
+    const inputs = document.querySelectorAll('input');
     inputs.forEach(input => input.value = "");
 }
 
-// função para mostrar ou/e esconder campos
-/*
-function toggleSwitch(divs = [], btns = []) {
-    const button = document.getElementById("toggleButton");
-    const pessoaFisica = document.getElementById("dados_pessoa_fisica_new");
-    const pessoaJuridica = document.getElementById("dados_pessoa_juridica_new");
 
-    if (button.classList.contains("btn-secondary")) {
-        button.classList.remove("btn-secondary");
-        button.classList.add("btn-success");
-        button.textContent = " Pessoa Júridica";
-        pessoaFisica.classList.add("d-none");
-        pessoaJuridica.classList.remove("d-none");
-    } else {
-        button.classList.remove("btn-success");
-        button.classList.add("btn-secondary");
-        button.textContent = " Pessoa Fisica";
-        pessoaFisica.classList.remove("d-none");
-        pessoaJuridica.classList.add("d-none");
-    }
-}*/
-
-
+// função para mostrar e ocultar campos de acordo com o radio button
 function ShowORHide(div1, div2, radioInputId) {
     const radios = document.getElementsByName(radioInputId);
     let valorSelecionado;
@@ -151,28 +138,11 @@ function ShowORHide(div1, div2, radioInputId) {
             valorSelecionado = radio.value; break;
         }
     }
-    if (valorSelecionado === 'fisica') {
+    if (valorSelecionado === 'fisica') { // se pessoa fisica for selecionada
         document.getElementById(div1).classList.remove('d-none');
         document.getElementById(div2).classList.add('d-none');
-    } else {
+    } else { // caso nao seja pessoa fisica	=> pessoa juridica
         document.getElementById(div1).classList.add('d-none');
         document.getElementById(div2).classList.remove('d-none');
     }
 }
-
-
-// Máscaras para FONE, CPF e CNPJ - MULTIPLOS E REPETIDOS INPUTS
-// a função FUNCIONA, mas o console retorna inputmask como undefined
-function aplicarMascaras() {
-    let inputs = ['','_edit'];
-    for (let i = 0; i < inputs.length; i++) {
-        $('#fone'+inputs[i]).inputmask('(99) 9 9999-9999');
-        $('#foneFixo'+inputs[i]).inputmask('(99) 9999-9999');
-        $('#cpf'+inputs[i]).inputmask('999.999.999-99');
-        $('#cnpj'+inputs[i]).inputmask('99.999.999/9999-99');
-    }
-}
-
-$(document).ready(function() {
-    aplicarMascaras();
-});
