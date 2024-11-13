@@ -9,7 +9,6 @@
                    
                 <div class="d-flex justify-content-between mb-3 mt-3">
                     <!-- barra de pesquisa -->
-                    
                         <div class="input-group input-group w-50 w-sm-75 border-secondary border-bottom">
                             <div class="input-group-prepend d-none d-md-block">
                                 <button id="searchBtn" class="btn input-group-text rounded-0 rounded-start border-0 ">

@@ -73,6 +73,9 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::delete('/warehouse/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy']);
     Route::get('/warehouse/destroy/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy'])->name('warehouse.destroy');
 
+    // Rota para ordem de serviço ---------------
+    Route::get('/service_order/list', [\App\Http\Controllers\ServicesOrderController::class, 'index'])->name('services_order.index');
+
 
     //user
     Route::get('/user/add', [\App\Http\Controllers\UserController::class, "add"])->name('user.add');
