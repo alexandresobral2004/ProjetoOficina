@@ -31,7 +31,6 @@
                                     <input id="name" type="text" name="name"
                                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('Nome') }}" value="{{ old('name', $obj->name ?? '') }}"
-
                                         required>
 
                                 </div>
@@ -42,7 +41,7 @@
                                     <input id="email" type="mail" name="email"
                                         class="form-control{{ $errors->has('Email') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('seuemail@email.com.br') }}"
-                                        value="{{ old('email', $obj->email ?? '') }}" >
+                                        value="{{ old('email', $obj->email ?? '') }}">
                                 </div>
                             </div>
                         </div>
@@ -80,7 +79,7 @@
                             </div>
                         </div>
 
-                        
+
 
                         <!-- Informações de Pessoa Física -->
                         <div id="dados_pessoa_fisica">
@@ -105,7 +104,6 @@
                                         <input id="profissao" type="text" name="profissao"
                                             class="form-control{{ $errors->has('profissao') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Profissão') }}"
-
                                             value="{{ old('profissao', $obj->profissao ?? '') }}">
 
                                     </div>
@@ -122,7 +120,6 @@
                                         <input id="razaoSocial" type="text" name="razaoSocial"
                                             class="form-control{{ $errors->has('razaoSocial') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Razão Social') }}"
-
                                             value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}">
 
                                     </div>
@@ -175,7 +172,7 @@
                                 <div class="col-xxl-5 col-md-5">
                                     <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
                                         <label>{{ __('CEP') }}</label>
-                                        <input id="zip_code_new" type="text" name="zip_code"
+                                        <input id="zip_code_new" type="text" name="zip_code" onblur="searchCep('new')"
                                             class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('CEP') }}"
                                             value="{{ old('zip_code', $end->zip_code ?? '') }}" required>
