@@ -15,7 +15,7 @@
         </div>
         <div>
 
-            @livewire('Clientes.list-clientes')
+            @livewire('Clientes.listClientes')
         </div>
     </div>
     <!-- Modal -->

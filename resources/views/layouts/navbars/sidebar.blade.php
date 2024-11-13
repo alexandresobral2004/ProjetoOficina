@@ -36,36 +36,34 @@
 
 
                 <li class="nav-item">
-                    <a href="{{ route('auth.dashboard') }}" class="nav-link"> <i
-                            class="las la-home"></i><span data-key="t-dashboards">Home</span>
-
-                    </a> </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#user" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                        aria-controls="user">
-                        <i class="las la-user-circle"></i> <span data-key="t-dashboards">Cadastros</span>
+                    <a href="{{ route('auth.dashboard') }}" class="nav-link">
+                        <i class="las la-home"></i>
+                        <span data-key="t-dashboards">Home</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="user">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#registration-section" data-bs-toggle="collapse"
+                       id="cadastrosDropdownLink" role="button"
+                       aria-expanded="false" aria-controls="registration-section">
+                        <i class="las la-user-circle"></i>
+                        <span data-key="t-dashboards">Cadastros</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="registration-section">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('clientes.index') }}" class="nav-link">Clientes
-                                </a>
+                                <a href="{{ route('clientes.index') }}" class="nav-link">Clientes</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('veiculos.index') }}" class="nav-link">Veiculos
-                                </a>
+                                <a href="{{ route('funcionarios.index') }}" class="nav-link">Funcionários</a>
                             </li>
-                            
                             <li class="nav-item">
-                                <a href="{{ route('servicos.index') }}" class="nav-link">Serviços
-                                </a>
+                                <a href="{{ route('veiculos.index') }}" class="nav-link">Veículos</a>
                             </li>
-                
-                
+                            <li class="nav-item">
+                                <a href="{{ route('servicos.index') }}" class="nav-link">Serviços</a>
+                            </li>
                         </ul>
                     </div>
-                
-                
                 </li>
 
 
@@ -74,27 +72,6 @@
                         <i class="bx bx-cabinet"></i> <span data-key="t-dashboards">Almoxarifado</span>
                     </a>
                 </li>
-     
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('clientes.index') }}">
-                        <i class="las la-address-book"></i> <span data-key="t-dashboards">Clientes</span>
-                    </a>
-
-                </li> --}}
-{{-- 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('veiculos.index') }}">
-                        <i class="las la-car"></i> <span data-key="t-dashboards">Veículos</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('servicos.index') }}">
-                        <i class="bx bxs-wrench"></i> <span data-key="t-dashboards">Serviços</span>
-                    </a>
-                </li> --}}
-
 
                 {{-- @if (auth()->check() && auth()->user()->role === 'admin')
                 <!-- Conteúdo para administradores -->
@@ -102,7 +79,7 @@
                 @auth
                     @if (auth()->check() && auth()->user()->role === 'admin')
                         {{-- Exibe o link de cadastro de usuários  --}}
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link menu-link" href="#user" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="user">
                                 <i class="las la-user-circle"></i> <span data-key="t-dashboards">Usuários</span>
@@ -113,13 +90,9 @@
                                         <a href="{{ route('user.add') }}" class="nav-link">Novo
                                         </a>
                                     </li>
-                                 
-
                                 </ul>
                             </div>
-                            
-
-                        </li> --}}
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{ route('user.add') }}">
@@ -128,10 +101,6 @@
                         </li>
                     @endif
                 @endauth
-
-
-
-
             </ul>
         </div>
         <!-- Sidebar -->
@@ -142,3 +111,31 @@
 <!-- Left Sidebar End -->
 <!-- Vertical Overlay-->
 <div class="vertical-overlay"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Seleciona o link de "Cadastros" e o dropdown
+        const cadastrosDropdownLink = document.getElementById("cadastrosDropdownLink");
+        const registrationSection = document.getElementById("registration-section");
+
+        // Lista de URLs das rotas que mantêm o dropdown aberto
+        const cadastrosRoutes = ["/clientes", "/funcionarios", "/veiculos", "/servicos"];
+
+        // Verifica se a URL atual contém alguma das rotas especificadas
+        const currentUrl = window.location.pathname;
+        const shouldKeepOpen = cadastrosRoutes.some(route => currentUrl.includes(route));
+
+        if (shouldKeepOpen) {
+            // Define o atributo `aria-expanded` para `true` e adiciona a classe `show` para manter aberto
+            cadastrosDropdownLink.setAttribute("aria-expanded", "true");
+            registrationSection.classList.add("show");
+        }
+
+        // Alterna o dropdown quando o link de "Cadastros" é clicado novamente
+        cadastrosDropdownLink.addEventListener("click", function() {
+            const isExpanded = cadastrosDropdownLink.getAttribute("aria-expanded") === "true";
+            cadastrosDropdownLink.setAttribute("aria-expanded", !isExpanded);
+            registrationSection.classList.toggle("show");
+        });
+    });
+</script>
