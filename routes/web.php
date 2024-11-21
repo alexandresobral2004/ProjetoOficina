@@ -84,6 +84,7 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::put('/warehouse/update/{id}', [\App\Http\Controllers\WarehouseController::class, 'update'])->name('warehouse.update');
     Route::delete('/warehouse/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy']);
     Route::get('/warehouse/destroy/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy'])->name('warehouse.destroy');
+    Route::get('/warehouse/view/{id}', [\App\Http\Controllers\WarehouseController::class, 'show'])->name('warehouse.show');
 
 
     //user

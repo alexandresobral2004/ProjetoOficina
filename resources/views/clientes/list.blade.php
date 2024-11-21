@@ -2,12 +2,12 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-content-center">
-                <h3 class="card-title mb-0 align-content-center">Lista de Clientes</h3>
+                <h3 class="mb-0 card-title align-content-center">Lista de Clientes</h3>
                 <input class="form-control me-2 input-group-sm w-25" type="search" placeholder="Search"
                     aria-label="Search" id="search_clientes" oninput="searchList('clientes')">
             </div>
             <div class="card-body">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
                     style="width:100%">
                     <thead>
                         <tr>
@@ -44,33 +44,36 @@
                                 <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-home align-middle"></i>...
+                                        <i class="align-middle fa fa-home"></i>...
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
                                             <button class="dropdown-item view-client-btn" data-id="{{ $cliente->id }}"
                                                 wire:click="confirmView({{ $cliente->id }})">
-                                                <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
+                                                <i class="align-bottom ri-eye-fill me-2 text-muted"></i> View
                                             </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item edit-client-btn" data-id="{{ $cliente->id }}"
                                                 wire:click="confirmEdit({{ $cliente->id }})">
-                                                <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
+                                                <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Edit
                                             </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item delete-client-btn" data-id="{{ $cliente->id }}"
                                                 wire:click="confirmDelete({{ $cliente->id }})">
-                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+                                                <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Delete
                                             </button>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
+                      
                         @endforeach
                     </tbody>
+                    
                 </table>
+                {{-- {{ $clientes->links() }} --}}
             </div>
         </div>
     </div>

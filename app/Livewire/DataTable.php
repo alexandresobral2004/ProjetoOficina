@@ -34,6 +34,7 @@ class DataTable extends Component
                     style="width:100%">
                     <thead>
                         <tr>
+                            
                             <th scope="col" style="width: 10px;">
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
