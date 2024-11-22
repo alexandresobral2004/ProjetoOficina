@@ -3,19 +3,17 @@
         <div class="card">
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
                 <h5 class="mb-0 card-title">Tabela de Serviços</h5>
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newServiceModal">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#newServiceModal">
                     Novo Serviço
                 </button>
             </div>
             <div class="card-body table-responsive">
-                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped" style="width:100%">
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
+                    style="width:100%">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 10px;">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
-                                </div>
-                            </th>
+
                             <th>Cliente</th>
                             <th>Veículo</th>
                             <th>Data de Início</th>
@@ -26,50 +24,52 @@
                     </thead>
                     <tbody>
                         @foreach ($servicos as $servico)
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check">
-                                        <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                    </div>
-                                </th>
-                                <td>{{ $servico->cliente->name ?? 'N/A' }}</td>
-                                <td>{{ $servico->veiculo->modelo ?? 'N/A' }}</td>
-                                <td>{{ $servico->data_inicio }}</td>
-                                <td>{{ $servico->data_termino ? $servico->data_termino : 'N/A' }}</td>
-                                <td>{{ $servico->status }}</td>
-                                <td>R$ {{ number_format($servico->valor_total, 2, ',', '.') }}</td>
-                                <td>
-                                    <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
-                                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="align-middle fa fa-cog"></i>...
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li>
-                                                <button class="dropdown-item view-service-btn" data-id="{{ $servico->id }}" data-bs-toggle="modal" data-bs-target="#viewServiceModal">
-                                                    <i class="align-bottom ri-eye-fill me-2 text-muted"></i> Ver
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item edit-service-btn" data-id="{{ $servico->id }}" data-bs-toggle="modal" data-bs-target="#editServiceModal">
-                                                    <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Editar
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item delete-service-btn" data-id="{{ $servico->id }}" data-bs-toggle="modal" data-bs-target="#deleteServiceModal">
-                                                    <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Excluir
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+
+                            <td>{{ $servico->cliente->name ?? 'N/A' }}</td>
+                            <td>{{ $servico->veiculo->modelo ?? 'N/A' }}</td>
+                            <td>{{ $servico->data_inicio }}</td>
+                            <td>{{ $servico->data_termino ? $servico->data_termino : 'N/A' }}</td>
+                            <td>{{ $servico->status }}</td>
+                            <td>R$ {{ number_format($servico->valor_total, 2, ',', '.') }}</td>
+                            <td>
+                                <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="align-middle fa fa-cog"></i>...
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <button class="dropdown-item view-service-btn" data-id="{{ $servico->id }}"
+                                                data-bs-toggle="modal" data-bs-target="#viewServiceModal">
+                                                <i class="align-bottom ri-eye-fill me-2 text-muted"></i> Ver
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item edit-service-btn" data-id="{{ $servico->id }}"
+                                                data-bs-toggle="modal" data-bs-target="#editServiceModal">
+                                                <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Editar
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item delete-service-btn"
+                                                data-id="{{ $servico->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#deleteServiceModal">
+                                                <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Excluir
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
 
             <!-- Modal para visualização de serviço específico -->
-            <div class="mb-5 modal fade" id="viewServiceModal" tabindex="-1" aria-labelledby="viewServiceModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="viewServiceModal" tabindex="-1" aria-labelledby="viewServiceModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -84,7 +84,8 @@
             </div>
 
             <!-- Modal para edição de serviço -->
-            <div class="mb-5 modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -99,7 +100,8 @@
             </div>
 
             <!-- Modal para confirmação de exclusão de serviço -->
-            <div class="modal fade" id="deleteServiceModal" tabindex="-1" aria-labelledby="deleteServiceModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteServiceModal" tabindex="-1" aria-labelledby="deleteServiceModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

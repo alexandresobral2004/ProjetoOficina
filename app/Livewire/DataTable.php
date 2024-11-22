@@ -19,7 +19,7 @@ class DataTable extends Component
     public function render()
     {
         return <<<'HTML'
-        <div class="row">
+        <!-- <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
@@ -121,7 +121,7 @@ class DataTable extends Component
 
     </div>
 
-</div>
+</div> -->
 HTML;
     }
 

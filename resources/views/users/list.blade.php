@@ -3,24 +3,22 @@
 
 <div class="row">
   <div class="col-lg-12">
+    <h2 class="mb-3 h3">Lista de Usuários</h2>
     <div class="card">
-      <div class="flex-row card-header d-flex align-items-center justify-content-between">
-        <h3 class="mb-0 card-title">Lista de Usuários</h3>
-        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newClientModal">
+      <div class="flex-row card-header d-flex align-content-center justify-content-between">
+
+        <input class="form-control me-2 input-group-sm w-25" type="search" placeholder="Search" aria-label="Search"
+          id="search_users" oninput="searchList('users')">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalUser">
           Novo Usuário
         </button>
+
       </div>
       <div class="card-body table-responsive">
         <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
           style="width:100%">
           <thead>
             <tr>
-
-              <th scope="col" style="width: 10px;">
-                <div class="form-check">
-                  <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
-                </div>
-              </th>
               <th>ID</th>
               <th data-ordering="false">Name</th>
               <th data-ordering="false">E-mail</th>
@@ -35,11 +33,7 @@
             @if($users->isNotEmpty())
             @foreach($users as $user)
             <tr>
-              <th scope="row">
-                <div class="form-check">
-                  <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                </div>
-              </th>
+
               <td>{{ $user->id }}</td>
 
               <td>{{ $user->name }}</td>
@@ -86,6 +80,7 @@
               </td>
             </tr>
             @include('layouts.modal.modalUser')
+            @include('users.new')
 
           </tbody>
           @endforeach

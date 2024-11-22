@@ -4,19 +4,21 @@
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
                 <h5 class="mb-0 card-title">Tabela de Funcionarios</h5>
 
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newEmployeeModal">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#newEmployeeModal">
                     Novo Funcionário
                 </button>
             </div>
             <div class="card-body table-responsive">
-                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped" style="width:100%">
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
+                    style="width:100%">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 10px;">
+                            <!-- <th scope="col" style="width: 10px;">
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
-                            </th>
+                            </th> -->
                             <th data-ordering="false">Nome</th>
                             <th data-ordering="false">CPF</th>
                             <th data-ordering="false">data de nascimento</th>
@@ -26,53 +28,64 @@
                     </thead>
                     <tbody>
                         @foreach ($funcionarios as $funcionario)
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check">
-                                        <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                    </div>
-                                </th>
-                                <td>{{ $funcionario->nome . ' ' . $funcionario->sobrenome }}</td>
-                                <td>{{ $funcionario->cpf}}</td>
-                                <td>{{ old('data_nascimento', \Carbon\Carbon::parse($funcionario->data_nascimento)->format('d/m/Y')) }}</td>
-                                <td>{{ $funcionario->telefone }}</td>
-                                <td>{{ $funcionario->cargo }}</td>
-                                <td>
-                                    <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
-                                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="align-middle fa fa-home"></i>...
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li>
-                                                <button class="dropdown-item view-employee-btn" data-id="{{ $funcionario->id }}" data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">
-                                                    <i class="align-bottom ri-eye-fill me-2 text-muted"></i> View
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item edit-employee-btn" data-id="{{ $funcionario->id }}" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">
-                                                    <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Edit
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item delete-employee-btn" data-id="{{ $funcionario->id }}" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal">
-                                                    <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Delete
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <!-- <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll"
+                                        value="option1">
+                                </div>
+                            </th> -->
+                            <td>{{ $funcionario->nome . ' ' . $funcionario->sobrenome }}</td>
+                            <td>{{ $funcionario->cpf}}</td>
+                            <td>{{ old('data_nascimento', \Carbon\Carbon::parse($funcionario->data_nascimento)->format('d/m/Y')) }}
+                            </td>
+                            <td>{{ $funcionario->telefone }}</td>
+                            <td>{{ $funcionario->cargo }}</td>
+                            <td>
+                                <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="align-middle fa fa-home"></i>...
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <button class="dropdown-item view-employee-btn"
+                                                data-id="{{ $funcionario->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#viewEmployeeModal">
+                                                <i class="align-bottom ri-eye-fill me-2 text-muted"></i> View
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item edit-employee-btn"
+                                                data-id="{{ $funcionario->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#editEmployeeModal">
+                                                <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Edit
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item delete-employee-btn"
+                                                data-id="{{ $funcionario->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#deleteEmployeeModal">
+                                                <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Delete
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
             <!-- Modal para visualização de funcionário específico -->
-            <div class="mb-5 modal fade" id="viewEmployeeModal" tabindex="-1" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="viewEmployeeModal" tabindex="-1" aria-labelledby="viewEmployeeModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h2 class="modal-title" id="viewEmployeeModalLabel">Detalhes do funcionário</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                         </div>
                         <div class="modal-body" id="employeeDetails">
                             <!-- Os detalhes do funcionário serão carregados aqui via AJAX -->
@@ -81,7 +94,8 @@
                 </div>
             </div>
             <!-- Modal para edição de funcionário -->
-            <div class="mb-5 modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+            <div class="mb-5 modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -95,7 +109,8 @@
                 </div>
             </div>
             <!-- Modal para confirmação de exclusão de funcionário -->
-            <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="deleteEmployeeModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="deleteEmployeeModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

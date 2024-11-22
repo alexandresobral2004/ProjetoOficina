@@ -11,11 +11,11 @@
                     style="width:100%">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 10px;">
+                            <!-- <th scope="col" style="width: 10px;">
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
-                            </th>
+                            </th> -->
                             <th data-ordering="false">Nome</th>
                             <th data-ordering="false">Email</th>
                             <th data-ordering="false">Telefone</th>
@@ -28,12 +28,12 @@
                     <tbody id="table-body-clientes">
                         @foreach ($clientes as $cliente)
                         <tr>
-                            <th scope="row">
+                            <!-- <th scope="row">
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" name="checkAll"
                                         value="option1">
                                 </div>
-                            </th>
+                            </th> -->
                             <td>{{ $cliente->name }}</td>
                             <td>{{ $cliente->email }}</td>
                             <td>{{ $cliente->fone }}</td>
@@ -68,10 +68,10 @@
                                 </div>
                             </td>
                         </tr>
-                      
+
                         @endforeach
                     </tbody>
-                    
+
                 </table>
                 {{-- {{ $clientes->links() }} --}}
             </div>

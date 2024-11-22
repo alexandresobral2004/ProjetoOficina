@@ -43,8 +43,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#registration-section" data-bs-toggle="collapse"
-                       id="cadastrosDropdownLink" role="button"
-                       aria-expanded="false" aria-controls="registration-section">
+                        id="cadastrosDropdownLink" role="button" aria-expanded="false"
+                        aria-controls="registration-section">
                         <i class="las la-user-circle"></i>
                         <span data-key="t-dashboards">Cadastros</span>
                     </a>
@@ -77,9 +77,9 @@
                 <!-- Conteúdo para administradores -->
                 <p>Bem-vindo, Administrador!</p> --}}
                 @auth
-                    @if (auth()->check() && auth()->user()->role === 'admin')
-                        {{-- Exibe o link de cadastro de usuários  --}}
-                        <li class="nav-item">
+                @if (auth()->check() && auth()->user()->role === 'admin')
+                {{-- Exibe o link de cadastro de usuários  --}}
+                <!-- <li class="nav-item">
                             <a class="nav-link menu-link" href="#user" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="user">
                                 <i class="las la-user-circle"></i> <span data-key="t-dashboards">Usuários</span>
@@ -92,14 +92,14 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('user.add') }}">
-                                <i class="ri-account-circle-line"></i> <span data-key="t-dashboards">Usuários</span>
-                            </a>
-                        </li>
-                    @endif
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('user.index') }}">
+                        <i class="ri-account-circle-line"></i> <span data-key="t-dashboards">Usuários</span>
+                    </a>
+                </li>
+                @endif
                 @endauth
             </ul>
         </div>
@@ -113,7 +113,7 @@
 <div class="vertical-overlay"></div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // Seleciona o link de "Cadastros" e o dropdown
         const cadastrosDropdownLink = document.getElementById("cadastrosDropdownLink");
         const registrationSection = document.getElementById("registration-section");
@@ -132,7 +132,7 @@
         }
 
         // Alterna o dropdown quando o link de "Cadastros" é clicado novamente
-        cadastrosDropdownLink.addEventListener("click", function() {
+        cadastrosDropdownLink.addEventListener("click", function () {
             const isExpanded = cadastrosDropdownLink.getAttribute("aria-expanded") === "true";
             cadastrosDropdownLink.setAttribute("aria-expanded", !isExpanded);
             registrationSection.classList.toggle("show");

@@ -17,6 +17,7 @@
                     style="width:100%;">
                     <thead>
                         <tr>
+
                             <th class="cursor-pointer text-truncate" data-ordering="false">SKU</th>
                             <th class="cursor-pointer text-truncate" data-ordering="false">Peça</th>
                             <th class="cursor-pointer" data-ordering="false">Qtde</th>
@@ -25,7 +26,7 @@
                             <th class="cursor-pointer text-truncate" data-ordering="false">Margem(%)</th>
                             <th class="cursor-pointer text-truncate" data-ordering="false">Preço de custo</th>
                             <th class="cursor-pointer text-truncate" data-ordering="false">Preço final</th>
-                            <th class="text-center cursor-pointer" colspan="2" data-ordering="false">Compatibilidade
+                            <th class="text-center cursor-pointer" data-ordering="false">Compatibilidade
                             </th>
                             <th class="text-center">Ações</th>
                         </tr>
@@ -33,6 +34,7 @@
                     <tbody>
                         @foreach ($warehouse as $warehouse_itens)
                         <tr>
+
                             <td class="text-truncate">{{ $warehouse_itens->cod }}</td>
                             <td class="text-truncate">{{ $warehouse_itens->nome_peca }}</td>
                             <td class="text-truncate">{{ $warehouse_itens->qtde }}</td>
@@ -45,13 +47,7 @@
                                 {{ $warehouse_itens->compatibility }}
 
                             </td>
-                            <td>
-                                <button onclick="atualizarModal('{{ $warehouse_itens->compatibility }}')" type="button"
-                                    class="text-white btn btn-sm bg-secondary" style="margin-left: auto;"
-                                    data-toggle="modal" data-target="#CompatibilidadeModal">
-                                    <i class="ri-eye-line"></i>
-                                </button>
-                            </td>
+
 
 
                             <td>
