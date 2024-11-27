@@ -19,7 +19,7 @@ class DataTable extends Component
     public function render()
     {
         return <<<'HTML'
-        <div class="row">
+        <!-- <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
@@ -34,6 +34,7 @@ class DataTable extends Component
                     style="width:100%">
                     <thead>
                         <tr>
+                            
                             <th scope="col" style="width: 10px;">
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
@@ -120,7 +121,7 @@ class DataTable extends Component
 
     </div>
 
-</div>
+</div> -->
 HTML;
     }
 

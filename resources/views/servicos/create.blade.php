@@ -12,9 +12,9 @@
                                 <div class="form-group">
                                     <label for="cliente_id">{{ __('Cliente') }}</label>
                                     <select name="cliente_id" id="cliente_id" class="form-control" required>
+                                        <option value="" selected >Selecione o Cliente</option>
                                         @foreach ($clientes as $cliente)
-                                            <option value="{{ $cliente->id }}"
-                                                    {{ old('cliente_id') == $cliente->id ? 'selected' : '' }}>
+                                            <option value="{{ $cliente->id }}">
                                                 {{ $cliente->name }}
                                             </option>
                                         @endforeach
@@ -27,20 +27,16 @@
 
                             <div class="col-xxl-6 col-md-6 mb-3">
                                 <div class="form-group">
-                                    <label for="veiculo_id">{{ __('Veiculo') }}</label>
+                                    <label for="veiculo_id">{{ __('Veículo') }}</label>
                                     <select id="veiculo" name="veiculo_id" class="form-control" required>
-                                        @foreach ($veiculos as $veiculo)
-                                            <option value="{{ $veiculo->id }}"
-                                                    {{ old('veiculo_id') == $veiculo->id ? 'selected' : '' }}>
-                                                {{ $veiculo->modelo }}
-                                            </option>
-                                        @endforeach
+                                        <option value="">Selecione o Veículo</option> <!-- Placeholder para o JavaScript preencher -->
                                     </select>
                                     @error('veiculo_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- Linha 2: Data de Início, Data de Término e Status -->
@@ -71,8 +67,9 @@
 
                             <div class="col-xxl-4 col-md-4 mb-3">
                                 <div class="form-group">
-                                    <label for="status">{{ __('Status do Serviço') }}</label>
-                                    <select name="status" id="status" class="form-control" required>
+                                    <label for="status">{{ __('Status') }}</label>
+                                    <select id="status_id" name="status"  class="form-control" required>
+                                        <option value="">Selecione o status</option> <!-- Placeholder para o JavaScript preencher -->
                                         <option value="Pendente" {{ old('status') == 'Pendente' ? 'selected' : '' }}>
                                             Pendente
                                         </option>
@@ -83,7 +80,7 @@
                                             Concluído
                                         </option>
                                     </select>
-                                    @error('status')
+                                    @error('veiculo_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -134,10 +131,29 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const serviceForm = document.getElementById('serviceForm');
-        serviceForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            // Adicionar lógica de envio via AJAX se necessário
+        const clienteDropdown = document.getElementById('cliente_id');
+        const veiculoDropdown = document.getElementById('veiculo');
+
+        clienteDropdown.addEventListener('change', function () {
+            const clienteId = clienteDropdown.value;
+
+            // Limpa o dropdown de veículos
+            veiculoDropdown.innerHTML = '<option value="">Selecione o Veículo</option>';
+
+            // Realiza a requisição AJAX
+            if (clienteId) {
+                fetch(`/clientes/veiculos/${clienteId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(veiculo => {
+                            const option = document.createElement('option');
+                            option.value = veiculo.id;
+                            option.textContent = veiculo.modelo;
+                            veiculoDropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Erro ao buscar veículos:', error));
+            }
         });
     });
 </script>

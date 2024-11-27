@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div class="row gap-3">
+<div class="gap-3 row">
     <div>
-        <div class="d-flex justify-content-between mb-3">
-            <h1 class="h3 mb-3">Clientes</h1>
-            <button type="button" class="d-flex btn btn-primary align-content-center p-2 btn-sm" data-bs-toggle="modal"
+        <div class="mb-3 d-flex justify-content-between">
+            <h1 class="mb-3 h3">Clientes</h1>
+            <button type="button" class="p-2 d-flex btn btn-primary align-content-center btn-sm" data-bs-toggle="modal"
                 data-bs-target="#newClientModal">
                 <i class="ri-add-line fs-16">
                     <span>cliente</span>
@@ -15,16 +15,16 @@
         </div>
         <div>
 
-            @livewire('Clientes.list-clientes')
+            @livewire('Clientes.listClientes')
         </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="newClientModal" tabindex="-1" aria-labelledby="newClientModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="newClientModalLabel">Cadastrar Novo Cliente</h4>
+                    <h4 class="modal-title d-flex justify-content-between" id="newClientModalLabel ">Novo Cliente</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 </div>

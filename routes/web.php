@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckForTokenExpiration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\VeiculoController;
 use App\Models\Cliente;
@@ -47,7 +48,6 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
 
-
     // Rotas para veiculo:
     // Obs: poderia ser resumido a: Route::resource('veiculos', VeiculoController::class);
     Route::get('/veiculos', [VeiculoController::class, 'index'])->name('veiculos.index');
@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::put('/warehouse/update/{id}', [\App\Http\Controllers\WarehouseController::class, 'update'])->name('warehouse.update');
     Route::delete('/warehouse/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy']);
     Route::get('/warehouse/destroy/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy'])->name('warehouse.destroy');
+    Route::get('/warehouse/view/{id}', [\App\Http\Controllers\WarehouseController::class, 'show'])->name('warehouse.show');
 
 
     //user

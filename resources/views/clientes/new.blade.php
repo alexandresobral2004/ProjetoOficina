@@ -1,38 +1,53 @@
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg">
         <div class="card">
             <div class="card-body">
-                <h4 class="d-flex justify-content-center align-content-center gap-2">Dados Pessoais</h4>
+                <h4 class="gap-2 d-flex ">Dados Pessoais</h4>
                 <form action="{{ route('clientes.store') }}" method="POST">
                     @csrf
 
-                    <div class="live-preview p-0 custom-width">
-                        <div class="row mt-2">
+                    <div class="p-0 live-preview custom-width">
 
-                            <div class="col-xxl-6 col-md-6">
+
+                        <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
+                        <div class="mt-4 mb-4 row">
+                            <div class="gap-2 col-md-12 d-flex ">
+                                <label>{{ __('Tipo de Cliente:') }}</label>
+                                <label class="form-check-label">
+                                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked>
+                                    Pessoa Física
+                                </label>
+                                <label class="ml-2 form-check-label">
+                                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa
+                                    Jurídica
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-2 row">
+
+                            <div class="col-xxl-5 col-md-5">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label>{{ __('Nome') }}</label>
                                     <input id="name" type="text" name="name"
                                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('Nome') }}" value="{{ old('name', $obj->name ?? '') }}"
-
                                         required>
 
                                 </div>
                             </div>
-                            <div class="col-xxl-6 col-md-6">
+                            <div class="col-xxl-5 col-md-5">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label>{{ __('E-mail') }}</label>
                                     <input id="email" type="mail" name="email"
                                         class="form-control{{ $errors->has('Email') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('seuemail@email.com.br') }}"
-                                        value="{{ old('email', $obj->email ?? '') }}" >
+                                        value="{{ old('email', $obj->email ?? '') }}">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row mt-2">
-                            <div class="col-xxl-4 col-md-4">
+                        <div class="mt-2 row">
+                            <div class="col-xxl-3 col-md-3">
 
                                 <div class="form-group{{ $errors->has('fone') ? ' has-danger' : '' }}">
                                     <label>{{ __('Fone') }}</label>
@@ -43,7 +58,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xxl-4 col-md-4">
+                            <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('foneFixo') ? ' has-danger' : '' }}">
                                     <label>{{ __('Fone Fixo') }}</label>
                                     <input id="foneFixo" type="text" name="foneFixo"
@@ -53,7 +68,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xxl-4 col-md-4">
+                            <div class="col-xxl-3 col-md-3">
                                 <div class="form-group{{ $errors->has('dtNasc') ? ' has-danger' : '' }}">
                                     <label>{{ __('Data de Nascimento') }}</label>
                                     <input id="dtNasc" type="date" name="dtNasc"
@@ -63,25 +78,24 @@
                                 </div>
                             </div>
                         </div>
-                        
-                            <!-- Check-box para selecionar Pessoa Física ou Jurídica-->
-                             <div class="row mt-2">
+
+                        <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
+                        <div class="row mt-2">
                             <div class="col-md-12 d-flex justify-content-center align-content-center gap-2">
                                 <label class="form-check-label">
-                                    <input id="pessoaFisica_new" name="tipo_pessoa_new"  onclick="ShowORHide('dados_pessoa_fisica_new','dados_pessoa_juridica_new', 'tipo_pessoa_new')" type="radio" value="fisica" checked>
+                                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked>
                                     Pessoa Física
                                 </label>
                                 <label class="form-check-label ml-2">
-                                    <input id="pessoaJuridica_new" name="tipo_pessoa_new" onclick="ShowORHide('dados_pessoa_fisica_new','dados_pessoa_juridica_new', 'tipo_pessoa_new')" type="radio" value="juridica"> Pessoa
+                                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa
                                     Jurídica
                                 </label>
-                            </div> 
+                            </div>
                         </div>
-                        <!-- -->
-
 
                         <!-- Informações de Pessoa Física -->
-                        <div id="dados_pessoa_fisica_new">
+                        <div id="dados_pessoa_fisica">
+
                             <div class="row mt-2">
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
@@ -97,7 +111,10 @@
                                         <label>{{ __('Profissão') }}</label>
                                         <input id="profissao" type="text" name="profissao"
                                             class="form-control{{ $errors->has('profissao') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Profissão') }}" value="{{ old('profissao', $obj->profissao ?? '') }}">
+                                            placeholder="{{ __('Profissão') }}"
+
+                                            value="{{ old('profissao', $obj->profissao ?? '') }}">
+
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +128,10 @@
                                         <label>{{ __('Razão Social') }}</label>
                                         <input id="razaoSocial_new" type="text" name="razaoSocial"
                                             class="form-control{{ $errors->has('razaoSocial') ? ' is-invalid' : '' }}"
-                                            placeholder="{{ __('Razão Social') }}" value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}">
+                                            placeholder="{{ __('Razão Social') }}"
+
+                                            value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}">
+
                                     </div>
                                 </div>
                                 <div class="col-xxl-6 col-md-6">
@@ -129,7 +149,7 @@
 
                         <!-- Outros campos do formulário -->
 
-                        <div class="row mt-2">
+                        <div class="mt-2 row">
                             <div class="col-xxl-4 col-md-4">
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label>{{ __('Senha') }}</label>
@@ -153,16 +173,16 @@
 
                         <hr class="my-4">
 
-                        <div class="d-flex justify-content-center align-content-center gap-2">
+                        <div class="gap-2 d-flex justify-content-center align-content-center">
                             <h3>Endereço</h3>
                         </div>
 
                         <div>
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-5 col-md-5">
                                     <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
                                         <label>{{ __('CEP') }}</label>
-                                        <input id="zip_code_new" type="text" name="zip_code"
+                                        <input id="zip_code_new" type="text" name="zip_code" onblur="searchCep('new')"
                                             class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('CEP') }}"
                                             value="{{ old('zip_code', $end->zip_code ?? '') }}" required>
@@ -188,7 +208,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-5 col-md-5">
                                     <div class="form-group{{ $errors->has('neighborhood') ? ' has-danger' : '' }}">
                                         <label>{{ __('Bairro') }}</label>
@@ -219,8 +239,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="modal-footer justify-content-between mb-0 mt-1">
+                    <div class="mt-2 row">
+                        <div class="mt-1 mb-0 modal-footer justify-content-between">
                             <button type="submit" class="btn btn-success">Salvar</button>
                             <button onclick="clearInputs()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
                         </div>

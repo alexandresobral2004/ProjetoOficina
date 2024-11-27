@@ -86,7 +86,7 @@
         <div class="row mt-2">
             <div class="col-xxl-4 col-md-4">
                 <label for="zip_code" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="zip_code_edit" name="zip_code"
+                <input type="text" class="form-control" id="zip_code_edit" name="zip_code" onblur="searchCep('edit')"
                     value="{{ old('zip_code', $cliente->endereco->zip_code ?? '') }}" required>
             </div>
             <div class="col-xxl-6 col-md-6">
@@ -127,3 +127,18 @@
 </div>
 
 <script type="text/javascript" src="{{ asset('assets/js/cep.js') }}"></script>
+<script>
+    document.getElementById('pessoaFisicaEdit').addEventListener('change', function() {
+        document.getElementById('dados_pessoa_fisica_edit').style.display = 'block';
+        document.getElementById('dados_pessoa_juridica_edit_edit').style.display = 'none';
+    });
+
+    document.getElementById('pessoaJuridicaEdit').addEventListener('change', function() {
+        document.getElementById('dados_pessoa_fisica_edit').style.display = 'none';
+        document.getElementById('dados_pessoa_juridica_edit_edit').style.display = 'block';
+    });
+    function clearInputs() {
+        const inputs = document.querySelectorAll('textarea, input');
+        inputs.forEach(input => input.value = "");
+    }
+</script>
