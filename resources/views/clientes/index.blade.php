@@ -38,27 +38,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-            const pessoaFisicaRadio = document.getElementById('pessoa_fisica');
-            const pessoaJuridicaRadio = document.getElementById('pessoa_juridica');
-            const dadosPessoaFisica = document.getElementById('dados_pessoa_fisica');
-            const dadosPessoaJuridica = document.getElementById('dados_pessoa_juridica');
-
-
-
-            pessoaFisicaRadio.addEventListener('change', function () {
-                if (this.checked) {
-                    dadosPessoaFisica.style.display = 'block';
-                    dadosPessoaJuridica.style.display = 'none';
-                }
-            });
-
-            pessoaJuridicaRadio.addEventListener('change', function () {
-                if (this.checked) {
-                    dadosPessoaFisica.style.display = 'none';
-                    dadosPessoaJuridica.style.display = 'block';
-                }
-            });
-
 
             clienteForm.addEventListener('submit', function (event) {
                 event.preventDefault(); // Impede o envio do formulário

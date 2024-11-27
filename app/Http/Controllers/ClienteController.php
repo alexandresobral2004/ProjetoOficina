@@ -8,6 +8,8 @@ use Wavey\Sweetalert\Sweetalert;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
 
+
+
 class ClienteController extends Controller
 {
     /**
@@ -126,8 +128,7 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
+    public function show(string $id){
         $cliente = Cliente::with('endereco')->find($id);
 
         if (!$cliente) {
@@ -229,4 +230,5 @@ class ClienteController extends Controller
             return redirect()->route('clientes.index')->with('error', 'Erro ao deletar cliente: ' . $e->getMessage());
         }
     }
+
 }
