@@ -2,7 +2,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0 card-title">Tabela de Funcionarios</h5>
+                <input class="form-control me-2 input-group-sm w-25" type="search" placeholder="Search"
+                    aria-label="Search" id="search_employee" oninput="searchList('employee')">
 
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                     data-bs-target="#newEmployeeModal">
@@ -26,7 +27,7 @@
                             <th data-ordering="false">Cargo</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-body-employee">
                         @foreach ($funcionarios as $funcionario)
                         <tr>
                             <!-- <th scope="row">
@@ -37,7 +38,8 @@
                             </th> -->
                             <td>{{ $funcionario->nome . ' ' . $funcionario->sobrenome }}</td>
                             <td>{{ $funcionario->cpf}}</td>
-                            <td>{{ old('data_nascimento', \Carbon\Carbon::parse($funcionario->data_nascimento)->format('d/m/Y')) }}
+                            <td>{{ old('data_nascimento',
+                                \Carbon\Carbon::parse($funcionario->data_nascimento)->format('d/m/Y')) }}
                             </td>
                             <td>{{ $funcionario->telefone }}</td>
                             <td>{{ $funcionario->cargo }}</td>

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servico extends Model
 {
+    use HasFactory;
+
     // Definir os campos que podem ser preenchidos via formulário
     protected $fillable = [
         'cliente_id',
@@ -14,7 +16,7 @@ class Servico extends Model
         'data_inicio',
         'data_termino',
         'status',
-        'observacoes',
+        'descricao',
         'valor_total',
     ];
 
