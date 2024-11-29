@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="row gap-3">
-        <div class="d-flex justify-content-between">
-            <h1 class="h3 mb-3">Serviços</h1>
-           
+        <div class="d-flex justify-content-center align-items-center">
+            <h1 class="h3 mb-3">Tabela de Serviços</h1>
+
         </div>
         @include('servicos.list') <!-- Listagem dos serviços -->
     </div>

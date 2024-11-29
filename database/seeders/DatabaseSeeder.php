@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Cliente;
-use App\Models\Cliente_end;
-use App\Models\User;
+use App\Models\Funcionario;
+use App\Models\Servico;
+use App\Models\Veiculo;
+use GuzzleHttp\Client;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,35 +19,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
-        $this->call(UsersTableSeeder::class);
-
-        $cliente = Cliente::create([
-            'name' => 'Teste 01',
-            'email' => 'teste1@teste.com',
-            'password' => bcrypt('senha123'),
-            'fone' => '(88) 90000-0001',
-            'cpf' => '000.000.000-01',
-            'cnpj' => '00.000.000/0000-01',
-            'dtNasc' => '1990-01-01',
-            'profissao' => 'teste',
-            'razaoSocial' => 'teste',
-            'foneFixo' => '(85) 9000-0001',
-        ]);
-
-        // Adiciona um endereço para o cliente
-        Cliente_end::create([
-            'number' => '123',
-            'street' => 'Rua Teste',
-            'neighborhood' => 'Teste Neighborhood',
-            'city' => 'Teste City',
-            'state' => 'TS',
-            'zip_code' => '00000-000',
-            'cliente_id' => $cliente->id,
-        ]);
+        $this->call(
+            [
+                UsersTableSeeder::class,
+                ClientesTableSeeder::class,
+                FuncionariosTableSeeder::class,
+                ServicosTableSeeder::class,
+                VeiculosTableSeeder::class
+            ]);
     }
 }

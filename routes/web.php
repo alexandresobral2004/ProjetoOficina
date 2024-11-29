@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('auth.dashboard');
 
     //cliente
-    Route::get('/clientes/index', function () {
+    Route::get('/clientes', function () {
     $clientes = Cliente::all();
     return view('clientes.index', ['clientes' => $clientes]);
     })->name('clientes.index');

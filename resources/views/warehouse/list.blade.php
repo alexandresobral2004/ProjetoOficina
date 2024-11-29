@@ -4,7 +4,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0 card-title">Almoxarifado</h5>
+                <input class="form-control me-2 input-group-sm w-25" type="search" placeholder="Search"
+                    aria-label="Search" id="search_warehouse" oninput="searchList('warehouse')">
 
                 <button class="mb-3 btn btn-primary" type="button" data-bs-toggle="modal"
                     data-bs-target="#cadastroModal">
@@ -31,7 +32,7 @@
                             <th class="text-center">Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-body-warehouse">
                         @foreach ($warehouse as $warehouse_itens)
                         <tr>
 
@@ -90,8 +91,10 @@
 
             </div>
         </div>
-    </div><!--end col-->
-</div><!--end row-->
+    </div>
+    <!--end col-->
+</div>
+<!--end row-->
 
 
 <!-- Modal de Cadastro -->
@@ -100,14 +103,14 @@
 <script>
     //  function atualizarModal(conteudo) {
     //     document.getElementById('compatibilidade').innerText = conteudo;
-    // } 
+    // }
 
     // Função para confirmar a exclusão
     /*    function confirmDelete(id) {
             // Configura a rota
             const form = document.getElementById('deleteForm');
             form.action = `/warehouse/${id}`;
-    
+
             // Abre o modal
             const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
             deleteModal.show();

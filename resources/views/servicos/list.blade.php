@@ -2,7 +2,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0 card-title">Tabela de Serviços</h5>
+                <input class="form-control me-2 input-group-sm w-25" type="search" placeholder="Search"
+                    aria-label="Search" id="search_services" oninput="searchList('services')">
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                     data-bs-target="#newServiceModal">
                     Novo Serviço
@@ -22,7 +23,7 @@
                             <th>Valor Total</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-body-services">
                         @foreach ($servicos as $servico)
                         <tr>
 

@@ -18,7 +18,7 @@ class Funcionario extends Model
         'telefone',
         'email',
         'cargo',
-        'is_user',
+        'e_usuario',
     ];
 
     protected $casts = [

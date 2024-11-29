@@ -2,7 +2,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="flex-row card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0 card-title">Tabela de Veículos</h5>
+                <input class="form-control me-2 input-group-sm w-25" type="search" placeholder="Search"
+                    aria-label="Search" id="search_vehicle" oninput="searchList('vehicle')">
 
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newVehicleModal">
                     Novo Veículo
@@ -24,7 +25,7 @@
                             <th data-ordering="false">Proprietário</th> <!-- Alterado de 'ID proprietário' para 'Proprietário' -->
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-body-vehicle">
                         @foreach ($veiculos as $veiculo)
                             <tr>
                                 <th scope="row">
