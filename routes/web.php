@@ -86,6 +86,16 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::get('/user/del/{id}', [\App\Http\Controllers\UserController::class, "destroy"])->name('user.destroy');
     Route::get('/user/view/{id}', [\App\Http\Controllers\UserController::class, "show"])->name('user.show');
 
+    // Rotas para Funcionario
+    Route::get('funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
+    Route::get('funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
+    Route::post('funcionarios', [FuncionarioController::class, 'store'])->name('funcionarios.store');
+    Route::get('funcionarios/{funcionario}', [FuncionarioController::class, 'show'])->name('funcionarios.show');
+    Route::get('funcionarios/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+    Route::put('funcionarios/{funcionario}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+    Route::delete('funcionarios/{funcionario}', [FuncionarioController::class,
+    'destroy'])->name('funcionarios.destroy');
+
 })->middleware(CheckForTokenExpiration::class);
 
 

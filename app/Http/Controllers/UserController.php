@@ -73,8 +73,7 @@ class UserController extends Controller
             'confirm_password'=>  'required|string|min:6',
             'fone'=> 'required|string|max:22',  
             'status'=> 'required|string',  
-          
-           
+
         ]);
             
             
