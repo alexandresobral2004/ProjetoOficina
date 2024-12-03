@@ -4,37 +4,33 @@
 
 <div class="gap-3 row">
     <div>
-        <div class="mb-3 d-flex justify-content-between">
-            <h1 class="mb-3 h3">Clientes</h1>
-            <button type="button" class="p-2 d-flex btn btn-primary align-content-center btn-sm" data-bs-toggle="modal"
-                data-bs-target="#newClientModal">
-                <i class="ri-add-line fs-16">
-                    <span>cliente</span>
-                </i>
-            </button>
-        </div>
-        <div>
-
-            @livewire('Clientes.listClientes')
-        </div>
+        <h1 class="mb-3 h3">Clientes</h1>
+        {{-- <button type="button" class="p-2 d-flex btn btn-primary align-content-center btn-sm" data-bs-toggle="modal"
+            data-bs-target="#newClientModal">
+            <i class="ri-add-line fs-16">
+                <span>cliente</span>
+            </i>
+        </button> --}}
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="newClientModal" tabindex="-1" aria-labelledby="newClientModalLabel" aria-hidden="true">
+    @livewire('Clientes.listClientes')
+</div>
+<!-- Modal -->
+<div class="modal fade" id="newClientModal" tabindex="-1" aria-labelledby="newClientModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title d-flex justify-content-between" id="newClientModalLabel ">Novo Cliente</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title d-flex justify-content-between" id="newClientModalLabel ">Novo Cliente</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                </div>
-                <div class="modal-body">
-                    @include('clientes.new')
-                </div>
+            </div>
+            <div class="modal-body">
+                @include('clientes.create')
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

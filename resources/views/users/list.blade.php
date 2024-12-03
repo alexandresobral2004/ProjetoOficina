@@ -3,8 +3,8 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="d-flex justify-content-center align-items-center">
-            <h2 class="mb-3 h3">Lista de Usuários</h2>
+        <div class="d-flex justify-content-center">
+            <h2 class="mb-3 h3">Usuários</h2>
         </div>
         <div class="card">
             <div class="flex-row card-header d-flex align-content-center justify-content-between">
