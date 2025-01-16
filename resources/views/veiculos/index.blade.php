@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="row gap-3">
-    <div class="d-flex justify-content-center align-items-center">
-        <h1 class="h3 mb-3">Tabela de Veículos</h1>
+    <div>
+        <h1 class="h3 mb-3">Veículos</h1>
         {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
             data-bs-target="#newVehicleModal">
             Novo Veículo

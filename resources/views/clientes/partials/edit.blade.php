@@ -9,11 +9,13 @@
         <div class="row mt-2">
             <div class="col-xxl-6 col-md-6">
                 <label for="name" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="name_edit" name="name" value="{{ $cliente->name }}" required>
+                <input type="text" class="form-control" id="name_edit" name="name" value="{{ $cliente->name }}"
+                    required>
             </div>
             <div class="col-xxl-6 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email_edit" name="email" value="{{ $cliente->email }}" required>
+                <input type="email" class="form-control" id="email_edit" name="email" value="{{ $cliente->email }}"
+                    required>
             </div>
         </div>
 
@@ -24,7 +26,8 @@
             </div>
             <div class="col-xxl-4 col-md-4">
                 <label for="foneFixo" class="form-label">Telefone Fixo</label>
-                <input type="text" class="form-control" id="foneFixo_edit" name="foneFixo" value="{{ $cliente->foneFixo }}">
+                <input type="text" class="form-control" id="foneFixo_edit" name="foneFixo"
+                    value="{{ $cliente->foneFixo }}">
             </div>
             <div class="col-xxl-4 col-md-4">
                 <label for="dtNasc" class="form-label">Data de Nascimento</label>
@@ -32,20 +35,24 @@
             </div>
         </div>
 
-        
-    
+
+
         <!-- Check-box para selecionar Pessoa Física ou Jurídica-->
         <div class="row mt-2">
             <div class="col-md-12 d-flex justify-content-center align-content-center gap-2">
                 <label class="form-check-label">
-                    <input  id="pessoaFisica_edit" name="tipo_pessoa_new_edit" onclick="ShowORHide('dados_pessoa_fisica_edit','dados_pessoa_juridica_edit', 'tipo_pessoa_new_edit')" type="radio" name="tipo_pessoa" value="fisica" checked>
+                    <input id="pessoaFisica_edit" name="tipo_pessoa_new_edit"
+                        onclick="ShowORHide('dados_pessoa_fisica_edit','dados_pessoa_juridica_edit', 'tipo_pessoa_new_edit')"
+                        type="radio" name="tipo_pessoa" value="fisica" checked>
                     Pessoa Física
                 </label>
                 <label class="form-check-label ml-2">
-                    <input  id="pessoaJuridica_edit" name="tipo_pessoa_new_edit" onclick="ShowORHide('dados_pessoa_fisica_edit','dados_pessoa_juridica_edit', 'tipo_pessoa_new_edit')" type="radio" name="tipo_pessoa" value="juridica"> Pessoa
+                    <input id="pessoaJuridica_edit" name="tipo_pessoa_new_edit"
+                        onclick="ShowORHide('dados_pessoa_fisica_edit','dados_pessoa_juridica_edit', 'tipo_pessoa_new_edit')"
+                        type="radio" name="tipo_pessoa" value="juridica"> Pessoa
                     Jurídica
                 </label>
-            </div> 
+            </div>
         </div>
 
         <!-- Dados Pessoa Física -->
@@ -73,7 +80,9 @@
                 </div>
                 <div class="col-md-6">
                     <label for="cnpj" class="form-label">CNPJ</label>
-                    <input id="cnpj_edit" onblur="buscarDadosCNPJ('cnpj_edit', ['razaoSocial_edit', 'zip_code_edit','street_edit','number_edit', 'neighborhood_edit', 'state_edit', 'city_edit']) type="text" class="form-control" name="cnpj" value="{{ $cliente->cnpj }}">
+                    <input id="cnpj_edit"
+                        onblur="buscarDadosCNPJ('cnpj_edit', ['razaoSocial_edit', 'zip_code_edit','street_edit','number_edit', 'neighborhood_edit', 'state_edit', 'city_edit']) type="
+                        text" class="form-control" name="cnpj" value="{{ $cliente->cnpj }}">
                 </div>
             </div>
         </div>
@@ -119,8 +128,9 @@
 
         <div class="row mt-2">
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-warning">Editar</button>
-                <button onclick="clearInputs()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <button onclick="clearInputs()" type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </form>

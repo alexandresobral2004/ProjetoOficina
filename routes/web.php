@@ -7,7 +7,7 @@ use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\VeiculoController;
-use App\Models\Cliente;
+use App\Http\Controllers\ClienteController;
 
 
 //Login e Logout
@@ -32,21 +32,14 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     //Dashboard
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('auth.dashboard');
 
-    //cliente
-    Route::get('/clientes', function () {
-    $clientes = Cliente::all();
-    return view('clientes.index', ['clientes' => $clientes]);
-    })->name('clientes.index');
-
-
-
-    Route::get('/clientes/add', [\App\Http\Controllers\ClienteController::class, "add"])->name('clientes.add');
-    Route::post('/clientes/save', [\App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store');
-    Route::get('/clientes/list', [\App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.list');
-    Route::get('/clientes/show/{id}', [\App\Http\Controllers\ClienteController::class, 'show'])->name('clientes.show');
-    Route::get('/clientes/edit/{id}', [\App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
-    Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
-    Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
+    // Cliente
+    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+    Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
+    Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+    Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
+    Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
+    Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+    Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
     // Rotas para veiculo:
     // Obs: poderia ser resumido a: Route::resource('veiculos', VeiculoController::class);

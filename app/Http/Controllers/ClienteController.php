@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Cliente_end;
+use App\Models\Veiculo;
 use Illuminate\Http\Request;
 use Wavey\Sweetalert\Sweetalert;
 use Illuminate\Database\QueryException;
@@ -17,24 +18,19 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $query = Cliente::with('endereco');
+        $endereco = Cliente_end::with('cliente')->get();
+        $veiculos = Veiculo::with('cliente')->get();
+        $clientes = Cliente::all();
 
-        if ($request -> has('search')) {
-            $query = $query -> where('name', 'like', "%{$search}%");
-        }
-
-        $clientes = $query->get();
-
-        return view('/clientes/list', ['clientes' => $clientes]);
+        return view('clientes.index', compact('clientes', 'endereco', 'veiculos'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function add()
+    public function create()
     {
-        return view('/clientes/new',['obj'=>new Cliente()]);
+        return view('clientes.create');
     }
 
     /**
@@ -110,7 +106,7 @@ class ClienteController extends Controller
          }
          catch(QueryException $exception){
             // dd($exception->getMessage());
-              return Redirect()->route('clientes.add')->with("Erro", $exception->getMessage());
+              return Redirect()->route('clientes.create')->with("Erro", $exception->getMessage());
 
          }
 
@@ -135,7 +131,7 @@ class ClienteController extends Controller
             return redirect()->route('clientes.index')->with('error', 'Cliente não encontrado.');
         }
 
-        return view('clientes.view', [
+        return view('clientes.partials.view', [
             'cliente' => $cliente,
             'endereco' => $cliente->endereco,
         ]);
@@ -152,7 +148,7 @@ class ClienteController extends Controller
         if (!$cliente) {
             return redirect()->route('clientes.index')->with('error', 'Cliente não encontrado.');
         }
-        return view('clientes.edit', [
+        return view('clientes.partials.edit', [
         'cliente' => $cliente,
         'endereco' => $cliente->endereco,]);
     }

@@ -2,11 +2,12 @@
 
 @section('content')
 <div class="gap-3 row">
-    <div class="d-flex justify-content-between ">
+    <div>
         <h1 class="mb-3 h3">Funcionários</h1>
-        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newEmployeeModal">
+        {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+            data-bs-target="#newEmployeeModal">
             Novo Funcionario
-        </button>
+        </button> --}}
     </div>
     @include('funcionarios.list')
 </div>
