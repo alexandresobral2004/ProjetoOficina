@@ -1,46 +1,31 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-
-            <div class="card-header d-flex justify-content-between align-content-center">
-                <h3 class="card-title mb-0 align-content-center">Lista de Clientes</h5>
-                    <form method="GET" action="{{ route('clientes.index') }}" id="searchForm">
-                        <input class="form-control me-2 input-group-sm" type="search" name="search" placeholder="Search"
-                            aria-label="Search" value="{{ request('search') }}" id="searchInput">
-                    </form>
+            <div class="flex-row card-header d-flex align-items-center justify-content-between">
+                <input class="form-control me-2 input-group-sm w-25" type="search" placeholder="Search"
+                    aria-label="Search" id="search_clientes" oninput="searchList('clientes')">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#newClientModal">
+                    Novo Cliente
+                </button>
             </div>
-            <div class="card-body">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+            <div class="card-body table-responsive">
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
                     style="width:100%">
-
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 10px;">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
-                                </div>
-                            </th>
-                            <th data-ordering="false">Nome</th>
-                            <th data-ordering="false">Email</th>
-                            <th data-ordering="false">Telefone</th>
-                            <th data-ordering="false">Telefone fixo</th>
-                            <th data-ordering="false">CPF</th>
-                            <th data-ordering="false">CNPJ</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Telefone fixo</th>
+                            <th>CPF</th>
+                            <th>CNPJ</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-body-clientes">
                         @foreach ($clientes as $cliente)
                         <tr>
-                            <th scope="row">
-                                <div class="form-check">
-
-                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll"
-                                        value="option1">
-
-
-                                </div>
-                            </th>
                             <td>{{ $cliente->name }}</td>
                             <td>{{ $cliente->email }}</td>
                             <td>{{ $cliente->fone }}</td>
@@ -51,99 +36,92 @@
                                 <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-home align-middle"></i>...
+                                        <i class="align-middle fa fa-cog"></i>...
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
                                             <button class="dropdown-item view-client-btn" data-id="{{ $cliente->id }}"
                                                 data-bs-toggle="modal" data-bs-target="#viewClientModal">
-                                                <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
+                                                <i class="align-bottom ri-eye-fill me-2 text-muted"></i> Ver
                                             </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item edit-client-btn" data-id="{{ $cliente->id }}"
                                                 data-bs-toggle="modal" data-bs-target="#editClientModal">
-                                                <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
+                                                <i class="align-bottom ri-pencil-fill me-2 text-muted"></i> Editar
                                             </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item delete-client-btn" data-id="{{ $cliente->id }}"
                                                 data-bs-toggle="modal" data-bs-target="#deleteClientModal">
-                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+                                                <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i> Excluir
                                             </button>
                                         </li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
-                        <!-- Modal Area -->
-
-
-                        <!-- View Modal -->
-                        <div class="modal fade" id="viewClientModal" tabindex="-1"
-                            aria-labelledby="viewClientModalLabel" aria-hidden="true" wire:ignore.self>
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="modal-title" id="viewClientModalLabel">Detalhes do Cliente</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body" id="clientDetails">
-                                        @include('clientes.view', ['cliente' => $cliente])
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Edit Modal -->
-                        <div class="modal fade" id="editClientModal" tabindex="-1"
-                            aria-labelledby="editClientModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="modal-title" id="editClientModalLabel">Editar Cliente</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        @include('clientes.edit', ['cliente' => $cliente])
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Delete Modal -->
-                        <div class="mb-5 modal fade" id="deleteClientModal" tabindex="-1"
-                            aria-labelledby="deleteClientModalLabel" aria-hidden="true" wire:ignore.self>
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="modal-title" id="deleteClientModalLabel">Excluir Cliente</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Tem certeza que deseja excluir este cliente?</p>
-                                        <div class="justify-content-between align-content-between">
-                                            <form id="deleteClientForm" action="" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button wire:click="delete" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">Excluir</button>
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancelar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            @endforeach
-            </tbody>
-            </table>
+
+            <!-- Modal para visualização de cliente específico -->
+            <div class="mb-5 modal fade" id="viewClientModal" tabindex="-1" aria-labelledby="viewClientModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="viewClientModalLabel">Detalhes do Cliente</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="clientDetails">
+                            <!-- Detalhes do cliente serão carregados aqui via AJAX -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para edição de cliente -->
+            <div class="mb-5 modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="editClientModalLabel">Editar Cliente</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="editClientDetails">
+                            <!-- Formulário de edição será carregado aqui -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para confirmação de exclusão de cliente -->
+            <div class="modal fade" id="deleteClientModal" tabindex="-1" aria-labelledby="deleteClientModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="deleteClientModalLabel">Confirmar Exclusão</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <span>Tem certeza que deseja deletar este cliente?</span>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <form id="deleteClientForm" action="" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Deletar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -151,23 +129,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const viewButtons = document.querySelectorAll('.view-client-btn');
-        const editButtons = document.querySelectorAll('.edit-client-btn');
-        const deleteButtons = document.querySelectorAll('.delete-client-btn');
         const clientDetails = document.getElementById('clientDetails');
-        const editClientDetails = document.getElementById('editClientDetails');
-        const deleteClientForm = document.getElementById('deleteClientForm');
-        const searchInput = document.getElementById('searchInput');
-        const searchForm = document.getElementById('searchForm');
 
-        searchInput.addEventListener('input', function () {
-            searchForm.submit();
-        });
-
-        // Ver cliente
         viewButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const clientId = this.getAttribute('data-id');
-                const url = `/clientes/show/${clientId}`;
+                const url = `/clientes/${clientId}`;
                 fetch(url)
                     .then(response => response.text())
                     .then(data => {
@@ -176,32 +143,30 @@
             });
         });
 
-        // Editar cliente
+        const deleteButtons = document.querySelectorAll('.delete-client-btn');
+        const deleteClientForm = document.getElementById('deleteClientForm');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const clientId = this.getAttribute('data-id');
+                const actionUrl = `/clientes/${clientId}`;
+                deleteClientForm.setAttribute('action', actionUrl);
+            });
+        });
+
+        const editButtons = document.querySelectorAll('.edit-client-btn');
+        const editClientDetails = document.getElementById('editClientDetails');
+
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const clientId = this.getAttribute('data-id');
-                const url = `/clientes/edit/${clientId}`; // Corrigido
+                const url = `/clientes/${clientId}/edit`;
+
                 fetch(url)
                     .then(response => response.text())
                     .then(data => {
                         editClientDetails.innerHTML = data;
-                        const editModal = new bootstrap.Modal(document.getElementById('editClientModal'));
-                        editModal.show();
                     });
-            });
-        });
-        $('#editClientModal').on('shown.bs.modal', function () {
-            if (editClientDetails) {
-                editClientDetails.innerHTML = ''; // Limpa os dados antigos
-            }
-        });
-
-        // Deletar cliente
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const clientId = this.getAttribute('data-id');
-                const actionUrl = `/clientes/delete/${clientId}`;
-                deleteClientForm.setAttribute('action', actionUrl);
             });
         });
     });

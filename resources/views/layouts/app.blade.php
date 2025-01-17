@@ -45,10 +45,14 @@
     <!-- datatable buttons css -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- INPUT MASK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css" rel="stylesheet">
+
 
     <style>
         .form-control:focus {
@@ -131,7 +135,7 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Sucesso!',
-                                text: '{{ session('success') }}',
+                                text: '{{ session("success")}}',
                                 confirmButtonText: 'Ok'
                             });
                         });
@@ -229,8 +233,6 @@
 
     <!-- jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-
 
 </body>
 

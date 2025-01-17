@@ -4,9 +4,10 @@ use App\Http\Middleware\CheckForTokenExpiration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\VeiculoController;
-use App\Models\Cliente;
+use App\Http\Controllers\ClienteController;
 
 
 //Login e Logout
@@ -31,19 +32,14 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     //Dashboard
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('auth.dashboard');
 
-    //cliente
-    Route::get('/clientes/index', function () {
-    $clientes = Cliente::all();
-    return view('clientes.index', ['clientes' => $clientes]);
-    })->name('clientes.index');
-
-    Route::get('/clientes/add', [\App\Http\Controllers\ClienteController::class, "add"])->name('clientes.add');
-    Route::post('/clientes/save', [\App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store');
-    Route::get('/clientes/list', [\App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.list');
-    Route::get('/clientes/show/{id}', [\App\Http\Controllers\ClienteController::class, 'show'])->name('clientes.show');
-    Route::get('/clientes/edit/{id}', [\App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
-    Route::put('/clientes/update/{id}', [\App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
-    Route::delete('/clientes/delete/{id}', [\App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
+    // Cliente
+    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+    Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
+    Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+    Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
+    Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
+    Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+    Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
     // Rotas para veiculo:
     // Obs: poderia ser resumido a: Route::resource('veiculos', VeiculoController::class);
@@ -72,6 +68,7 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::put('/warehouse/update/{id}', [\App\Http\Controllers\WarehouseController::class, 'update'])->name('warehouse.update');
     Route::delete('/warehouse/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy']);
     Route::get('/warehouse/destroy/{id}', [\App\Http\Controllers\WarehouseController::class, 'destroy'])->name('warehouse.destroy');
+    Route::get('/warehouse/view/{id}', [\App\Http\Controllers\WarehouseController::class, 'show'])->name('warehouse.show');
 
 
     //user
@@ -81,6 +78,16 @@ Route::group(['middleware' => 'auth','checkForTokenExpiration'], function () {
     Route::get('/user/edit/{id}', [\App\Http\Controllers\UserController::class, "edit"])->name('user.edit');
     Route::get('/user/del/{id}', [\App\Http\Controllers\UserController::class, "destroy"])->name('user.destroy');
     Route::get('/user/view/{id}', [\App\Http\Controllers\UserController::class, "show"])->name('user.show');
+
+    // Rotas para Funcionario
+    Route::get('funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
+    Route::get('funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
+    Route::post('funcionarios', [FuncionarioController::class, 'store'])->name('funcionarios.store');
+    Route::get('funcionarios/{funcionario}', [FuncionarioController::class, 'show'])->name('funcionarios.show');
+    Route::get('funcionarios/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+    Route::put('funcionarios/{funcionario}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+    Route::delete('funcionarios/{funcionario}', [FuncionarioController::class,
+    'destroy'])->name('funcionarios.destroy');
 
 })->middleware(CheckForTokenExpiration::class);
 

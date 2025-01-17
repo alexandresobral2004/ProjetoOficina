@@ -92,7 +92,16 @@ class WarehouseController extends Controller{
 
     /** Display the specified resource.*/
     public function show(string $id){
-            //
+           
+           try {
+            $warehouse = new Warehouse_itens();
+            $warehouse = Warehouse_itens::find($id);
+
+           return view('/warehouse/view', ['warehouse' => $warehouse]);
+
+           } catch (QueryException $exception) {
+           dd($exception->getMessage());
+           }
     }
 
 }

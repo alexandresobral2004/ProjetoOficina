@@ -1,31 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row gap-3">
-        <div class="d-flex justify-content-between">
-            <h1 class="h3 mb-3">Serviços</h1>
-           
-        </div>
-        @include('servicos.list') <!-- Listagem dos serviços -->
-    </div>
+<div class="row gap-3">
+    <div>
+        <h1 class="h3 mb-3">Serviços</h1>
 
-    <!-- Modal para criação de novo Serviço -->
-    <div class="modal fade" id="newServiceModal" tabindex="-1" aria-labelledby="newServiceModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content w-auto">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="newServiceModalLabel">Cadastrar Novo Serviço</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @include('servicos.create') <!-- Formulário de criação de novo serviço -->
-                </div>
+    </div>
+    @include('servicos.list')
+    <!-- Listagem dos serviços -->
+</div>
+
+<!-- Modal para criação de novo Serviço -->
+<div class="modal fade" id="newServiceModal" tabindex="-1" aria-labelledby="newServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content w-auto">
+            <div class="modal-header">
+                <h4 class="modal-title" id="newServiceModalLabel">Cadastrar Novo Serviço</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @include('servicos.create')
+                <!-- Formulário de criação de novo serviço -->
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
             const serviceForm = document.getElementById('serviceForm');
             const newServiceModal = new bootstrap.Modal(document.getElementById('newServiceModal'));
 
@@ -35,5 +37,5 @@
                 newServiceModal.hide(); // Fecha o modal
             });
         });
-    </script>
+</script>
 @endsection
