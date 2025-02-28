@@ -25,14 +25,15 @@ class ClienteFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => $this->faker->password,
+            'dtNasc' => $this->faker->date,
+            'profissao' => $this->faker->jobTitle,
             'fone' => $this->faker->phoneNumber,
             'cpf' => $this->faker->cpf,
             'cnpj' => $this->faker->cnpj,
-            'dtNasc' => $this->faker->date,
-            'profissao' => $this->faker->jobTitle,
             'razaoSocial' => $this->faker->company,
             'foneFixo' => $this->faker->phoneNumber,
+
+            
         ];
     }
 

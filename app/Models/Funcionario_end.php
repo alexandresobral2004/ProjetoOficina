@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cliente_end extends Model
+class Funcionario_end extends Model
 {
     use HasFactory;
 
-      protected $table = 'cliente_end';
+      protected $table = 'funcionario_end';
      protected $fillable = [
         'address',
         'number',
@@ -18,14 +18,14 @@ class Cliente_end extends Model
         'state',
         'zip_code',
         'complemento',
-        'cliente_id',
+        'func_id',
 
 
      ];
 
-     public function cliente()
+     public function funcionario()
      {
-        return $this->belongsTo(Cliente::class, 'cliente_id');
+        return $this->belongsTo(Funcionario::class, 'func_id');
      }
 
 }

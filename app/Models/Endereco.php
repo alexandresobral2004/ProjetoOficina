@@ -7,23 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Endereco extends Model
 {
+    protected $table = 'cliente_end';
     use HasFactory;
 
     protected $fillable = [
-        'rua',
-        'numero',
-        'bairro',
-        'cidade',
-        'estado',
-        'cep',
+        'street',
+        'number',
+        'neighborhood',
+        'city',
+        'state',
+        'zip_code',
         'complemento',
     ];
 
     /**
      * Relacionamento polimórfico
      */
-    public function enderecavel()
-    {
-        return $this->morphTo();
-    }
+   
 }

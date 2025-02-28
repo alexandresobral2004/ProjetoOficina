@@ -10,19 +10,7 @@
 
 
                         <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
-                        <div class="mt-4 mb-4 row">
-                            <div class="gap-2 col-md-12 d-flex ">
-                                <label>{{ __('Tipo de Cliente:') }}</label>
-                                <label class="form-check-label">
-                                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked>
-                                    Pessoa Física
-                                </label>
-                                <label class="ml-2 form-check-label">
-                                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa
-                                    Jurídica
-                                </label>
-                            </div>
-                        </div>
+
                         <div class="mt-2 row">
 
                             <div class="col-xxl-5 col-md-5">
@@ -80,23 +68,25 @@
                         </div>
 
                         <!-- Check-box para selecionar Pessoa Física ou Jurídica -->
-                        <div class="row mt-2">
-                            <div class="col-md-12 d-flex justify-content-center align-content-center gap-2">
-                                <label class="form-check-label">
-                                    <input type="radio" name="tipo_pessoa" value="fisica" id="pessoaFisica" checked>
-                                    Pessoa Física
-                                </label>
-                                <label class="form-check-label ml-2">
-                                    <input type="radio" name="tipo_pessoa" value="juridica" id="pessoaJuridica"> Pessoa
-                                    Jurídica
-                                </label>
+                        <div class="mt-2 mb-2 row">
+                            <div class="col-md-5 d-flex">
+                                <div class="form-group{{ $errors->has('tipo_pessoa') ? ' has-danger' : '' }}">
+                                    <label>{{ __('Tipo de Cliente:') }}</label>
+                                    <select name="tipo_pessoa" class="form-select" id="tipo_pessoa">
+                                        <option value="null" selected>Selecione</option>
+                                        <option value="fisica">PF - Pessoa Física</option>
+                                        <option value="juridica">PJ - Pessoa Jurídica</option>
+                                    </select>
+
+                                </div>
+
                             </div>
                         </div>
 
                         <!-- Informações de Pessoa Física -->
-                        <div id="dados_pessoa_fisica">
+                        <div id="dados_pessoa_fisica" style="display: none;">
 
-                            <div class="row mt-2">
+                            <div class="mt-2 row">
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                         <label>{{ __('CPF') }}</label>
@@ -112,7 +102,6 @@
                                         <input id="profissao" type="text" name="profissao"
                                             class="form-control{{ $errors->has('profissao') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Profissão') }}"
-
                                             value="{{ old('profissao', $obj->profissao ?? '') }}">
 
                                     </div>
@@ -121,7 +110,7 @@
                         </div>
 
                         <!-- Informações de Pessoa Jurídica -->
-                        <div id="dados_pessoa_juridica_new" class="d-none">
+                        <div id="dados_pessoa_juridica_new" style="display: none;">
                             <div class="mt-2 row">
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('razaoSocial') ? ' has-danger' : '' }}">
@@ -129,7 +118,6 @@
                                         <input id="razaoSocial_new" type="text" name="razaoSocial"
                                             class="form-control{{ $errors->has('razaoSocial') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Razão Social') }}"
-
                                             value="{{ old('razaoSocial', $obj->razaoSocial ?? '') }}">
 
                                     </div>
@@ -137,7 +125,9 @@
                                 <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('cnpj') ? ' has-danger' : '' }}">
                                         <label>{{ __('CNPJ') }}</label>
-                                        <input onblur="buscarDadosCNPJ('cnpj_new', ['razaoSocial_new', 'zip_code_new','street_new','number_new', 'neighborhood_new',  'state_new', 'city_new']) " id="cnpj_new" type="text" name="cnpj"
+                                        <input
+                                            onblur="buscarDadosCNPJ('cnpj_new', ['razaoSocial_new', 'zip_code_new','street_new','number_new', 'neighborhood_new',  'state_new', 'city_new']) "
+                                            id="cnpj_new" type="text" name="cnpj"
                                             class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('00.000.000/0000-00') }}"
                                             value="{{ old('cnpj', $obj->cnpj ?? '') }}">
@@ -148,7 +138,7 @@
 
 
                         <!-- Outros campos do formulário -->
-
+                        <!-- 
                         <div class="mt-2 row">
                             <div class="col-xxl-4 col-md-4">
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
@@ -169,17 +159,17 @@
                                         maxlength="6">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <hr class="my-4">
 
-                        <div class="gap-2 d-flex justify-content-center align-content-center">
+                        <!-- <div class="gap-2 d-flex ">
                             <h3>Endereço</h3>
                         </div>
 
                         <div>
                             <div class="mt-2 row">
-                                <div class="col-xxl-5 col-md-5">
+                                <div class="col-xxl-4 col-md-4">
                                     <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
                                         <label>{{ __('CEP') }}</label>
                                         <input id="zip_code_new" type="text" name="zip_code" onblur="searchCep('new')"
@@ -188,15 +178,21 @@
                                             value="{{ old('zip_code', $end->zip_code ?? '') }}" required>
                                     </div>
                                 </div>
-                                <div class="col-xxl-5 col-md-5">
+                                <div class="col-xxl-6 col-md-6">
                                     <div class="form-group{{ $errors->has('street') ? ' has-danger' : '' }}">
-                                        <label>{{ __('Endereço') }}</label>
+                                        <label>{{ __('Rua') }}</label>
                                         <input id="street_new" type="text" name="street"
                                             class="form-control{{ $errors->has('street') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Rua') }}"
                                             value="{{ old('street', $end->street ?? '') }}" required>
                                     </div>
                                 </div>
+
+
+
+
+                            </div>
+                            <div class="mt-2 row">
                                 <div class="col-xxl-2 col-md-2">
                                     <div>
                                         <label>{{__('Numero')}}</label>
@@ -206,9 +202,7 @@
                                             required>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="mt-2 row">
                                 <div class="col-xxl-5 col-md-5">
                                     <div class="form-group{{ $errors->has('neighborhood') ? ' has-danger' : '' }}">
                                         <label>{{ __('Bairro') }}</label>
@@ -218,6 +212,10 @@
                                             value="{{ old('neighborhood', $end->neighborhood ?? '') }}" required>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="mt-2 row">
+
                                 <div class="col-xxl-5 col-md-5">
                                     <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
                                         <label>{{ __('Cidade') }}</label>
@@ -238,13 +236,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mt-2 row">
-                        <div class="mt-1 mb-0 modal-footer justify-content-between">
-                            <button type="submit" class="btn btn-success">Salvar</button>
-                            <button onclick="clearInputs()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                    </div> -->
+                        <div class="mt-2 row">
+                            <div class="mt-1 mb-0 modal-footer justify-content-between">
+                                <button type="submit" class="btn btn-success">Salvar</button>
+                                <button onclick="clearInputs()" type="button" class="btn btn-primary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                            </div>
                         </div>
-                    </div>
                 </form>
 
             </div>
@@ -253,6 +252,51 @@
 </div>
 
 <script type="text/javascript">
+
+
+    //Valida Tipo de Pessoa
+    const tipoPessoa = document.getElementById('tipo_pessoa');
+    tipoPessoa.addEventListener('change', function () {
+
+        console.log(tipoPessoa.value)
+        let pessoaFisica = document.getElementById('dados_pessoa_fisica');
+        let pessoaJuridica = document.getElementById('dados_pessoa_juridica_new');
+
+        if (tipoPessoa.value == null) {
+            pessoaFisica.style.display = "none";
+            pessoaJuridica.style.display = "none";
+        }
+
+        if (tipoPessoa.value == 'fisica') {
+            console.log('fisica')
+            pessoaFisica.style.display = "block";
+            pessoaJuridica.style.display = "none";
+        }
+        else {
+            console.log('juridica')
+            pessoaFisica.style.display = "none";
+            pessoaJuridica.style.display = "block";
+        }
+    })
+
+    //Valida Fone
+    // Adiciona o evento de entrada (input) ao campo de telefone
+    //Mascara  para FONE, CPF e CNPJ
+    Inputmask({
+        mask: '(99) 99999-9999'
+    }).mask(document.getElementById('foneFixo'));
+
+    Inputmask({
+        mask: '(99) 99999-9999'
+    }).mask(document.getElementById('fone'));
+
+    Inputmask({
+        mask: '999.999.999-99'
+    }).mask(document.getElementById('cpf'));
+
+    Inputmask({
+        mask: '99.999.999/999-99'
+    }).mask(document.getElementById('cnpj'));
 
 </script>
 <script type="text/javascript" src="{{ asset('assets/js/cep.js') }}"></script>

@@ -35,12 +35,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-            clienteForm.addEventListener('submit', function (event) {
-                event.preventDefault(); // Impede o envio do formulário
-                // Aqui você pode adicionar a lógica para salvar os dados via AJAX, se necessário
-                newClientModal.hide(); // Fecha o modal
-            });
+        clienteForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+            // Aqui você pode adicionar a lógica para salvar os dados via AJAX, se necessário
+            newClientModal.hide(); // Fecha o modal
         });
+    });
 </script>
 
 @endsection

@@ -43,8 +43,8 @@ class ClienteController extends Controller
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|max:6',
-            'confirm_password' => 'required|string|max:6',
+            // 'password' => 'required|string|max:6',
+            // 'confirm_password' => 'required|string|max:6',
             'fone'=> 'required|string|max:15',
             'dtNasc'=> 'nullable|date',
             'profissao'=> 'nullable|string|max:30',
@@ -63,12 +63,6 @@ class ClienteController extends Controller
         $validatedData = $request->validate($rules);
 
 
-
-         if($validatedData['password'] == $validatedData['confirm_password']){
-
-            // Criptografando a senha
-            $validatedData['password'] = bcrypt($validatedData['password']);
-
             if($validatedData['cpf']  == null && $validatedData['cnpj'] == null ){
                  Sweetalert::error('CPF ou CNPJ obrigatorio!', 'Erro!');
 
@@ -76,39 +70,35 @@ class ClienteController extends Controller
             }
 
 
-         }
-         else{
-            Sweetalert::error('Senhas não conferem!', 'Erro!');
-            return Redirect(route('clientes.index'));
+        
 
-         }
-
-            $validatedData2 = $request->validate([
-            'number'=> 'required|string|max:100',
-            'street'=> 'required|string|max:255',
-            'neighborhood'=> 'required|string|max:100',
-            'city'=> 'required|string|max:100',
-            'state'=> 'required|string|max:100',
-            'zip_code'=> 'required|string|max:15',
-            ]);
+        //     $validatedData2 = $request->validate([
+        //     'number'=> 'required|string|max:100',
+        //     'street'=> 'required|string|max:255',
+        //     'neighborhood'=> 'required|string|max:100',
+        //     'city'=> 'required|string|max:100',
+        //     'state'=> 'required|string|max:100',
+        //     'zip_code'=> 'required|string|max:15',
+        //     ]);
 
 
-           $cliente = Cliente::create($validatedData);
-           $end = new Cliente_end();
-           $end->fill($validatedData2);
-           $end->cliente_id = $cliente->id;
+            $cliente = Cliente::create($validatedData);
+        //    $end = new Cliente_end();
+        //    $end->fill($validatedData2);
+        //    $end->cliente_id = $cliente->id;
 
-           $end->save();
-
+        //    $end->save();
+         
             return redirect()->route('clientes.index')->with('success', 'Cliente salvo com sucesso!');
 
 
-         }
+        }
          catch(QueryException $exception){
             // dd($exception->getMessage());
+            
               return Redirect()->route('clientes.create')->with("Erro", $exception->getMessage());
 
-         }
+        }
 
 //         Sweetalert::basic('Description', 'Title');
 // Sweetalert::info('Description', 'Title');

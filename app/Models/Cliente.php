@@ -20,7 +20,6 @@ class Cliente extends EloquentModel
     protected $fillable = [
         'name',
         'email',
-        'password',
         'fone',
         'cpf',
         'cnpj',

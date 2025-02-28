@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Funcionario;
-use App\Models\Endereco;
+use App\Models\Funcionario_end;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FuncionarioFactory extends Factory
@@ -37,13 +37,13 @@ class FuncionarioFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Funcionario $funcionario) {
-            $funcionario->endereco()->save(Endereco::make([
-                'numero' => $this->faker->numberBetween(1, 1000),
-                'rua' => $this->faker->streetName,
-                'bairro' => $this->faker->city,
-                'cidade' => $this->faker->city,
-                'estado' => $this->faker->stateAbbr,
-                'cep' => $this->faker->postcode,
+            $funcionario->Funcionario_end()->save(Funcionario_end::make([
+                'number' => $this->faker->numberBetween(1, 1000),
+                'street' => $this->faker->streetName,
+                'city' => $this->faker->city,
+                'neighborhood' => $this->faker->city,   
+                'state' => $this->faker->stateAbbr,
+                'zip_code' => $this->faker->postcode,
             ]));
         });
     }

@@ -28,8 +28,9 @@ class Funcionario extends Model
      /**
      * Relacionamento polimórfico com endereço
      */
-    public function endereco()
+    public function Funcionario_end()
     {
-        return $this->morphOne(Endereco::class, 'enderecavel');
+    return $this->hasMany(Funcionario_end::class, 'func_id');
     }
+
 }
